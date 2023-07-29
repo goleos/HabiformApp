@@ -1,4 +1,5 @@
-// documentation reference: https://www.typescriptlang.org/docs/handbook/enums.html
+// documentation reference:
+// https://www.typescriptlang.org/docs/handbook/enums.html
 
 enum HabitStatus {
   Draft = "draft",
