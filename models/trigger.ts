@@ -1,4 +1,4 @@
-class TriggerEvent {
+class Trigger {
   triggerEventID: number;
   name: string;
   intentions: Array<string>;
@@ -8,4 +8,7 @@ class TriggerEvent {
   relevantWeekdays: Array<string>;
 }
 
-export default TriggerEvent;
+export default Trigger;
+
+export const trig = new Trigger()
+trig.name = "Test name"
