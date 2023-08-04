@@ -15,8 +15,18 @@ export default function HabitListItem({ habit }) {
     return (
         <ContentBox>
             <Stack direction="column" alignItems="left">
-                <Text fontSize="xl">{habit.name}</Text>
+                <Stack alignItems="center" justifyContent="center" direction="row" space={1}>
+                    <Text fontSize="xl">{habit.name}</Text>
+                    <Icon as={Ionicons} name={habit.shouldNotify ? "notifications" : 'notifications-off'} size={4} color="blue.700" />
+                </Stack>
+
                 {badge}
+                <Stack direction="row" alignItems="center" space={1}>
+                    <Icon as={Ionicons} name="time" size={3} color="blue.700" />
+                    <Text fontSize="xs" color="coolGray.500">
+                        Finishing dinner
+                    </Text>
+                </Stack>
             </Stack>
         </ContentBox>
     )}
