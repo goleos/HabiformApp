@@ -9,13 +9,13 @@ function DashboardScreen() {
 
 
   const handleButton = () => {
-    dbController.getNames()
+    dbController.initialiseDatabase()
   };
 
   return (
     <View style={styles.container}>
       <Text>Dashboard Screen</Text>
-      <Text>{dbController.names.toString()}</Text>
+      {/*<Text>{dbController.names.toString()}</Text>*/}
       <Button onPress={handleButton}>Press</Button>
     </View>
   );

@@ -3,10 +3,10 @@
 
 import { makeAutoObservable, observable, action } from "mobx";
 import * as SQLLite from "expo-sqlite";
+import { dbInitQueries } from "../dbInit";
 
 export class DatabaseController {
   db = SQLLite.openDatabase("test-db.db");
-  names = ["no", "yes"];
 
   constructor() {
     makeAutoObservable(this);
@@ -15,11 +15,11 @@ export class DatabaseController {
   initialiseDatabase() {
     this.db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists names (id Integer Primary Key Autoincrement, name TEXT)",
+          dbInitQueries[0],
         null,
         (txtObj, result) => console.log("Initialised database"),
         (txtObj, error) =>
-          console.log("Error initialising the database: " + error)
+          console.log("Error initialising the database: " + error.message + txtObj.toString())
       );
       this.db.transaction((tx) => {
         tx.executeSql("insert into names (name) values ('hello')");
