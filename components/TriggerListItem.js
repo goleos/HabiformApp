@@ -1,7 +1,6 @@
 // https://docs.nativebase.io/stack
 // https://docs.nativebase.io/icon#h3-integration-with-third-party-icons
 
-// import { Text } from "react-native";
 import {Text} from 'native-base'
 import { NativeBaseProvider, Box, Stack, IconButton, Icon } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
