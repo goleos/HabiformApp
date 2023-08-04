@@ -9,6 +9,7 @@ import HabitsScreen from "./screens/HabitsScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Entypo from "react-native-vector-icons/Entypo";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +22,7 @@ function AppTabs() {
         //  based on the example in https://reactnavigation.org/docs/tab-based-navigation
         tabBarIcon: () => {
           if (route.name === "Habits") {
-            return <Ionicons name={"barbell-outline"} size={20} />;
+            return <Entypo name={"cycle"} size={20} color="red" />;
           } else if (route.name === "Triggers") {
             return <Ionicons name={"alarm-outline"} size={20} />;
           } else if (route.name === "Dashboard") {
