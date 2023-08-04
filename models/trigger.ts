@@ -1,7 +1,6 @@
 class Trigger {
   triggerEventID: number;
   name: string;
-  intentions: Array<string>;
   extraNotes: string;
   timeIntervalStart: string;
   timeIntervalEnd: string;
@@ -11,4 +10,6 @@ class Trigger {
 export default Trigger;
 
 export const trig = new Trigger()
-trig.name = "Test name"
+trig.name = "Finishing dinner"
+trig.timeIntervalStart = "17:00"
+trig.timeIntervalEnd = "18:00"
