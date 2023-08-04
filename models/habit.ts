@@ -2,11 +2,12 @@
 // https://www.typescriptlang.org/docs/handbook/2/classes.html
 
 import HabitStatus from "./habitStatus";
+import Trigger from "./trigger";
 
 class Habit {
   habitID: number;
   name: string;
-  intentions: Array<string>;
+  intentions: Array<string> = [];
   datesCompleted: Set<Date>;
   triggerEventID: number;
   extraNotes: string;
@@ -24,3 +25,9 @@ class Habit {
 }
 
 export default Habit;
+
+
+export const hab = new Habit()
+hab.name = "Gym exercise"
+hab.addIntention('Take bus')
+hab.addIntention('Walk to gym')
