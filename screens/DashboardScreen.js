@@ -1,9 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
+import { observer } from "mobx-react";
+import { DatabaseController } from "../controllers/DatabaseController";
+import { useEffect } from "react";
+import { Button } from "native-base";
+import {dbController} from "../controllers/DatabaseController";
 
-export default function DashboardScreen() {
+function DashboardScreen() {
+
+
+  const handleButton = () => {
+    dbController.getNames()
+  };
+
   return (
     <View style={styles.container}>
       <Text>Dashboard Screen</Text>
+      <Text>{dbController.names.toString()}</Text>
+      <Button onPress={handleButton}>Press</Button>
     </View>
   );
 }
@@ -16,3 +29,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default observer(DashboardScreen);
