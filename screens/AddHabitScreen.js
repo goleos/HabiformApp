@@ -1,7 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Button } from "native-base";
-import { habitsController } from "../controllers/habitsController";
-import Habit from "../models/habit";
+import { Text } from "react-native";
 
 export default function AddHabitScreen() {
   return <Text>Add Habit Screen</Text>;

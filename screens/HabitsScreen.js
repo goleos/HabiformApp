@@ -1,12 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
-import { hab } from "../models/habit";
-import { Fab, Icon, IconButton, ScrollView, Stack } from "native-base";
+import { StyleSheet } from "react-native";
+import { Fab, Icon, ScrollView, Stack } from "native-base";
 import HabitListItem from "../components/HabitListItem";
 import { habitsController } from "../controllers/habitsController";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AddHabitScreen from "./AddHabitScreen";
 
 const NavStack = createNativeStackNavigator();
 
