@@ -11,6 +11,7 @@ import SettingsScreen from "../screens/SettingsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import { HabitNavigation } from "./NativeStacks";
+import {TriggerNavigation} from "./NativeStacks";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,9 +33,10 @@ function AppTabs() {
             return <Ionicons name={"settings-outline"} size={20} />;
           }
         },
+        headerShown: false
       })}
     >
-      <Tab.Screen name="Triggers" component={TriggersScreen} />
+      <Tab.Screen name="Triggers" component={TriggerNavigation} />
       <Tab.Screen name="Habits" component={HabitNavigation} />
       <Tab.Screen name="Dashboard" component={DashboardScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
