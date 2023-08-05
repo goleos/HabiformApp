@@ -1,4 +1,4 @@
-import AppTabs from "./appNavigation";
+import AppTabs from "./navigation/tabBar";
 import { NavigationContainer } from "@react-navigation/native";
 import {NativeBaseProvider} from "native-base";
 
