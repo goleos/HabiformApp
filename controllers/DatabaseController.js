@@ -72,6 +72,7 @@ export class DatabaseController {
   //   );
   // }
 
+
   getTables() {
     this.db.transaction((tx) => {
       tx.executeSql(
