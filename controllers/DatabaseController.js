@@ -14,32 +14,52 @@ export class DatabaseController {
 
   initialiseDatabase() {
     this.db.transaction((tx) => {
-      tx.executeSql(
-          dbInitQueries[0],
-        null,
-        (txtObj, result) => console.log("Initialised database"),
-        (txtObj, error) =>
-          console.log("Error initialising the database: " + error.message + txtObj.toString())
-      );
-      this.db.transaction((tx) => {
-        tx.executeSql("insert into names (name) values ('hello')");
-      });
+      dbInitQueries.forEach((query) => {
+        tx.executeSql(
+            query,
+            null,
+            (txtObj, result) => console.log("Success init query"),
+            (txtObj, error) =>
+                console.log(
+                    "Error initialising the database: " +
+                    error.message +
+                    txtObj.toString()
+                )
+        );
+      })
+
+      // this.db.transaction((tx) => {
+      //   tx.executeSql("insert into names (name) values ('hello')");
+      // });
     });
   }
 
-  getNames() {
-    if (this.names != null) {
-      this.names = ["1", "2"];
-      // this.db.transaction(
-      //     (tx) => {
-      //       tx.executeSql("select * from names", null, (txtObj, resultSet) => {
-      //         this.names = resultSet.rows._array;
-      //         console.log(this.names);
-      //       });
-      //     },
-      //     (txtObj, error) => console.log(txtObj)
-      // );
-    }
+  getRowsOfTable(tableName, resultCallback) {
+    this.db.transaction(
+      (tx) => {
+        tx.executeSql(
+          "select * from " + tableName,
+          null,
+          (txtObj, resultSet) => {
+            console.log("Successfully retrieved data from database");
+            resultCallback(resultSet.rows._array);
+          }
+        );
+      },
+      (txtObj, error) => console.log(txtObj)
+    );
+  }
+
+  getTables() {
+    this.db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT name FROM sqlite_schema WHERE type ='table' AND name NOT LIKE 'sqlite_%';",
+        null,
+        (txtObj, resultSet) => {
+          console.log(resultSet.rows._array);
+        }
+      );
+    });
   }
 }
 
