@@ -11,11 +11,17 @@ export class HabitsController {
     this.requestHabits();
   }
 
-  addHabits(rows) {
+  getHabits(rows) {
     this.habits = [];
     rows.forEach((obj) => {
       const habit = new Habit(obj);
       this.habits.push(habit);
+    });
+  }
+
+  requestHabits() {
+    dbController.getRowsOfTable("habit", (rows) => {
+      this.getHabits(rows);
     });
   }
 
@@ -46,11 +52,7 @@ VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
     });
   }
 
-  requestHabits() {
-    dbController.getRowsOfTable("habit", (rows) => {
-      this.addHabits(rows);
-    });
-  }
+
 }
 
 export const habitsController = new HabitsController();
