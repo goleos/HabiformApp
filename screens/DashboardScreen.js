@@ -1,21 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
 import { observer } from "mobx-react";
-import { DatabaseController } from "../controllers/DatabaseController";
-import { useEffect } from "react";
+import { dbController } from "../controllers/DatabaseController";
 import { Button } from "native-base";
-import {dbController} from "../controllers/DatabaseController";
+import { habitsController } from "../controllers/HabitsController";
 
 function DashboardScreen() {
-
-
   const handleButton = () => {
-    dbController.initialiseDatabase()
+    dbController.initialiseDatabase();
+    // habitsController.createNewHabit(hab);
+    habitsController.requestHabits();
+    console.log(habitsController.habits);
   };
 
   return (
     <View style={styles.container}>
       <Text>Dashboard Screen</Text>
-      {/*<Text>{dbController.names.toString()}</Text>*/}
+      <Text>{habitsController.habits.toString()}</Text>
       <Button onPress={handleButton}>Press</Button>
     </View>
   );

@@ -4,7 +4,7 @@ import { dbController } from "./DatabaseController";
 import habit from "../models/habit";
 
 export class HabitsController {
-  habits = "null";
+  habits = null;
 
   constructor() {
     makeAutoObservable(this);
