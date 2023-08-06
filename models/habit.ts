@@ -10,7 +10,7 @@ class Habit {
   intentions: Array<string> = [];
   // datesCompleted: Set<Date>;
   triggerEventID: number;
-  extraNotes: string;
+  extraNotes: string = '';
   habitStatus: HabitStatus = HabitStatus.Draft;
   shouldNotify: boolean = true;
   isFormed: boolean = false;
