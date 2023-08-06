@@ -10,7 +10,7 @@ export default function TriggersScreen({ navigation }) {
         renderInPortal={false}
         marginBottom={0}
         placement="bottom-right"
-        colorScheme="blue"
+        bgColor="triggerColour.100"
         size="lg"
         icon={<Icon name="add" as={Ionicons} />}
         onPress={() => {

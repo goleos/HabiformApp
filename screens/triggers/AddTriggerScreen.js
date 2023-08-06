@@ -21,7 +21,7 @@ export default function AddTriggerScreen() {
         </HStack>
         <Text>Extra notes</Text>
         <TextArea h={100} />
-        <Button>Add Trigger</Button>
+        <Button bg="triggerColour.100">Add Trigger</Button>
       </Stack>
     </View>
   );
