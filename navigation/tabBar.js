@@ -4,8 +4,8 @@
 // https://www.npmjs.com/package/react-native-vector-icons
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import TriggersScreen from "../screens/TriggersScreen";
-import HabitsScreen from "../screens/HabitsScreen";
+import TriggersScreen from "../screens/triggers/TriggersScreen";
+import HabitsScreen from "../screens/habits/HabitsScreen";
 import DashboardScreen from "../screens/DashboardScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";

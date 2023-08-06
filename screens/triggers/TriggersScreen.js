@@ -1,5 +1,5 @@
-import TriggerListItem from "../components/TriggerListItem";
-import { trig } from "../models/trigger";
+import TriggerListItem from "../../components/TriggerListItem";
+import { trig } from "../../models/trigger";
 import { Fab, Icon, Stack, Text, View } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 

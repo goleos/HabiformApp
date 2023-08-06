@@ -1,10 +1,10 @@
 // https://reactnavigation.org/docs/native-stack-navigator
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HabitsScreen from "../screens/HabitsScreen";
-import AddHabitScreen from "../screens/AddHabitScreen";
-import TriggersScreen from "../screens/TriggersScreen";
-import AddTriggerScreen from "../screens/AddTriggerScreen";
+import HabitsScreen from "../screens/habits/HabitsScreen";
+import AddHabitScreen from "../screens/habits/AddHabitScreen";
+import TriggersScreen from "../screens/triggers/TriggersScreen";
+import AddTriggerScreen from "../screens/triggers/AddTriggerScreen";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
