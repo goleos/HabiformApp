@@ -6,6 +6,7 @@ import { habitsController } from "../../controllers/HabitsController";
 import HabitListItem from "../../components/HabitListItem";
 import { triggersController } from "../../controllers/TriggersController";
 import { observer } from "mobx-react";
+import { useState } from "react";
 
 function TriggersScreen({ navigation }) {
   return (

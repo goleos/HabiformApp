@@ -6,6 +6,7 @@ import Trigger, { trig } from "../models/trigger";
 
 export class TriggersController {
   triggers = null;
+  focusedTrigger = null;
 
   constructor() {
     makeAutoObservable(this);
