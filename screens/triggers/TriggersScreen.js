@@ -1,9 +1,13 @@
 import TriggerListItem from "../../components/TriggerListItem";
 import { trig } from "../../models/trigger";
-import { Fab, Icon, Stack, Text, View } from "native-base";
+import { Fab, Icon, ScrollView, Stack, Text, View } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { habitsController } from "../../controllers/HabitsController";
+import HabitListItem from "../../components/HabitListItem";
+import { triggersController } from "../../controllers/TriggersController";
+import { observer } from "mobx-react";
 
-export default function TriggersScreen({ navigation }) {
+function TriggersScreen({ navigation }) {
   return (
     <View backgroundColor="white">
       <Fab
@@ -22,14 +26,21 @@ export default function TriggersScreen({ navigation }) {
         habit to a behaviour you already do inreases your chance of regularly
         repeating your habit.
       </Text>
-      <Stack direction="column" padding={1}>
-        <TriggerListItem trigger={trig} />
-        <TriggerListItem trigger={trig} />
-        <TriggerListItem trigger={trig} />
-      </Stack>
+      {/*<Stack direction="column" padding={1}>*/}
+      {/*  <TriggerListItem trigger={trig} />*/}
+      {/*  <TriggerListItem trigger={trig} />*/}
+      {/*  <TriggerListItem trigger={trig} />*/}
+      {/*</Stack>*/}
+      <ScrollView>
+        {triggersController.triggers.map((trigger) => (
+          <TriggerListItem trigger={trigger} key={trigger.triggerEventID} />
+        ))}
+      </ScrollView>
     </View>
   );
 }
+
+export default observer(TriggersScreen);
 
 // const styles = StyleSheet.create({
 //   container: {

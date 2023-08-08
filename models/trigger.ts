@@ -1,9 +1,9 @@
 class Trigger {
   triggerEventID: number;
-  name: string;
-  extraNotes: string = '';
-  timeIntervalStart: string;
-  timeIntervalEnd: string;
+  name: string = 'trigg';
+  extraNotes: string = "";
+  timeIntervalStart: string = null;
+  timeIntervalEnd: string = null;
   relevantWeekdays: Array<string> = [
     "Monday",
     "Tuesday",
@@ -13,6 +13,13 @@ class Trigger {
     "Saturday",
     "Sunday",
   ];
+
+  // helped by https://stackoverflow.com/a/45688622
+  constructor(obj: Object = null) {
+    if (obj != null) {
+      Object.assign(this, obj);
+    }
+  }
 }
 
 export default Trigger;
