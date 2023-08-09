@@ -15,8 +15,9 @@ import Trigger, { trig } from "../../models/trigger";
 import { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { weekdays, weekdaysShort } from "../../constants";
+import TimeIntervalSelector from "../../components/TimeIntervalSelector";
 
-export default function AddTriggerScreen() {
+export default function AddTriggerScreen({ navigation }) {
   const [triggerName, setTriggerName] = useState("");
   const [extraNotes, setExtraNotes] = useState("");
   const [hasTime, setHasTime] = useState(false);
@@ -30,7 +31,12 @@ export default function AddTriggerScreen() {
     trigger.extraNotes = extraNotes;
     trigger.timeIntervalStart = startTime;
     trigger.timeIntervalEnd = endTime;
-    triggersController.createNewTrigger(trigger);
+    triggersController.createNewTrigger(trigger, handleCreatedSuccess);
+  };
+
+  const handleCreatedSuccess = () => {
+    console.log("sds");
+    navigation.navigate("My Triggers");
   };
 
   const handleSelectDay = (day, index) => {
@@ -64,49 +70,11 @@ export default function AddTriggerScreen() {
         </HStack>
         {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
         {hasTime && (
-          <Stack>
-            <Alert maxW="400" status="info" colorScheme="info">
-              Providing an approximate daily time interval in which your trigger
-              event occurs lets the app remind you when you should complete your
-              habit
-            </Alert>
-            <HStack justifyContent="center" alignItems="center">
-              <RNDateTimePicker
-                display="inline"
-                mode="time"
-                value={new Date(2021, 12, 4, 4, 12)}
-                onChange={(event, date) => {
-                  setStartTime(date.toTimeString().split(" ")[0]);
-                }}
-              />
-              <Text>—</Text>
-              <RNDateTimePicker
-                mode="time"
-                value={new Date(2021, 12, 4, 4, 12)}
-                onChange={(event, date) => {
-                  setEndTime(date.toTimeString().split(" ")[0]);
-                }}
-              />
-            </HStack>
-            {/*<Button.Group isAttached>*/}
-            {/*  {weekdaysShort.map((day, index) => (*/}
-            {/*    <Button*/}
-            {/*      key={index}*/}
-            {/*      variant={applicableDays.includes(day) ? "solid" : "outline"}*/}
-            {/*      onPress={() => {*/}
-            {/*        handleSelectDay(day, index);*/}
-            {/*        console.log(applicableDays);*/}
-            {/*      }}*/}
-            {/*    >*/}
-            {/*      {day}*/}
-            {/*    </Button>*/}
-            {/*  ))}*/}
-            {/*</Button.Group>*/}
-          </Stack>
+          <TimeIntervalSelector onStartTimeChange={setStartTime} onEndTimeChange={setEndTime} />
         )}
         <Text>Extra notes</Text>
         <TextArea value={extraNotes} onChangeText={setExtraNotes} h={100} />
-        <Button onPress={handleAddTrigger} bg="triggerColour.100">
+        <Button borderRadius={18} onPress={handleAddTrigger} bg="triggerColour.100">
           Add Trigger
         </Button>
       </Stack>
