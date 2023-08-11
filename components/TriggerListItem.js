@@ -8,7 +8,9 @@ import ContentBox from "./ContentBox";
 
 export default function TriggerListItem({ trigger, navigation }) {
   const handlePress = () => {
-    navigation.navigate("Trigger");
+    navigation.navigate("Trigger", {
+      trigger: trigger,
+    });
   };
 
   return (
