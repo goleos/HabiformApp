@@ -8,6 +8,7 @@ import {
   Text,
   TextArea,
   Alert,
+  useToast,
 } from "native-base";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { triggersController } from "../../controllers/TriggersController";
@@ -25,19 +26,29 @@ export default function AddTriggerScreen({ navigation }) {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
 
+  const toast = useToast();
+
   const handleAddTrigger = () => {
     const trigger = new Trigger();
     trigger.name = triggerName;
     trigger.extraNotes = extraNotes;
     trigger.timeIntervalStart = startTime;
     trigger.timeIntervalEnd = endTime;
-    triggersController.createNewTrigger(trigger, handleCreatedSuccess);
+    triggersController.createNewTrigger(trigger, handleCreatedSuccess, handleCreatedFailure);
   };
 
   const handleCreatedSuccess = () => {
-    console.log("sds");
     navigation.navigate("My Triggers");
+    toast.show({
+      description: "Trigger successfully created",
+    });
   };
+
+  const handleCreatedFailure = () => {
+    toast.show({
+      description: "Error creating a trigger",
+    });
+  }
 
   const handleSelectDay = (day, index) => {
     if (applicableDays.includes(day)) {
@@ -70,11 +81,18 @@ export default function AddTriggerScreen({ navigation }) {
         </HStack>
         {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
         {hasTime && (
-          <TimeIntervalSelector onStartTimeChange={setStartTime} onEndTimeChange={setEndTime} />
+          <TimeIntervalSelector
+            onStartTimeChange={setStartTime}
+            onEndTimeChange={setEndTime}
+          />
         )}
         <Text>Extra notes</Text>
         <TextArea value={extraNotes} onChangeText={setExtraNotes} h={100} />
-        <Button borderRadius={18} onPress={handleAddTrigger} bg="triggerColour.100">
+        <Button
+          borderRadius={18}
+          onPress={handleAddTrigger}
+          bg="triggerColour.100"
+        >
           Add Trigger
         </Button>
       </Stack>

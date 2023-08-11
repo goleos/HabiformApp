@@ -27,7 +27,7 @@ export class TriggersController {
     });
   }
 
-  createNewTrigger(trigger) {
+  createNewTrigger(trigger, onSuccessCallback, onFailureCallback) {
     const sqlStatement = `INSERT INTO triggers (triggerEventID, name, extraNotes, timeIntervalStart, timeIntervalEnd) 
 VALUES ( ?, ?, ?, ?, ?) `;
 
@@ -45,11 +45,13 @@ VALUES ( ?, ?, ?, ?, ?) `;
           console.log(
             "SQLLITE: Successfully inserted a new trigger: " + trigger.name
           );
+          onSuccessCallback();
         },
         (txtObj, error) => {
           console.log(
             "SQLLITE: Error inserting a new trigger: " + error.message
           );
+          onFailureCallback();
         }
       );
     });

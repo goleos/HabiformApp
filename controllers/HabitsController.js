@@ -27,7 +27,7 @@ export class HabitsController {
 
   markHabitAsComplete(habit) {}
 
-  createNewHabit(habit) {
+  createNewHabit(habit, onSuccessCallback, onFailureCallback) {
     const sqlStatement = `INSERT INTO habit (name, intentions, habitStatus, isFormed, extraNotes, shouldNotify, triggerEventID) 
 VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
     dbController.db.transaction((tx) => {
@@ -44,15 +44,15 @@ VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
         ],
         (txtObj, resultSet) => {
           console.log("Successfully inserted a new habit: " + habit.name);
+          onSuccessCallback();
         },
         (txtObj, error) => {
           console.log("Error inserting a new habit: " + error.message);
+          onFailureCallback();
         }
       );
     });
   }
-
-
 }
 
 export const habitsController = new HabitsController();
