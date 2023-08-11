@@ -1,6 +1,6 @@
 import TriggerListItem from "../../components/TriggerListItem";
 import { trig } from "../../models/trigger";
-import { Fab, Icon, ScrollView, Stack, Text, View } from "native-base";
+import {Alert, Fab, Icon, ScrollView, Stack, Text, View} from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { habitsController } from "../../controllers/HabitsController";
 import HabitListItem from "../../components/HabitListItem";
@@ -22,11 +22,11 @@ function TriggersScreen({ navigation }) {
                   navigation.navigate("Add trigger");
               }}
           />
-          <Text alignSelf="center" padding={3}>
+          <Alert marginX={2} marginY={1} borderRadius={10} shadow={2} maxW="400" status="info" colorScheme="info">
               Triggers are actions that you already do regularly. Linking a desired
               habit to a behaviour you already do inreases your chance of regularly
-              repeating your habit.
-          </Text>
+              repeating your habit
+          </Alert>
           {/*<Stack direction="column" padding={1}>*/}
           {/*  <TriggerListItem trigger={trig} />*/}
           {/*  <TriggerListItem trigger={trig} />*/}
@@ -34,7 +34,7 @@ function TriggersScreen({ navigation }) {
           {/*</Stack>*/}
           <ScrollView>
               {triggersController.triggers.map((trigger) => (
-                  <TriggerListItem trigger={trigger} key={trigger.triggerEventID} />
+                  <TriggerListItem navigation={navigation} trigger={trigger} key={trigger.triggerEventID} />
               ))}
           </ScrollView>
       </>

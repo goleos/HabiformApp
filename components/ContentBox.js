@@ -3,6 +3,7 @@ import { NativeBaseProvider, Box, Stack, IconButton, Icon } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function ContentBox(props) {
+
   return (
     <Box
       backgroundColor="white"
@@ -12,7 +13,7 @@ export default function ContentBox(props) {
       margin={2}
       shadow={6}
     >
-      <Pressable>
+      <Pressable onPress={props.onPress}>
         <Stack
           direction="row"
           alignItems="center"
