@@ -16,8 +16,12 @@ function TriggerPage({ navigation, route }) {
   return (
     <Flex height={"100%"} bg={"white"}>
       <VStack margin={2} space={1}>
-        <Heading>{trigger.name}</Heading>
-        <Text>{trigger.extraNotes}</Text>
+        <VStack alignItems={'center'}>
+          <Icon as={Ionicons} size={100} name="alarm" color="primary.800" />
+          <Heading>{trigger.name}</Heading>
+          <Text>{trigger.extraNotes}</Text>
+        </VStack>
+
         <Box borderRadius={10} bg={"blue.200"} padding={2}>
           <VStack alignItems={"center"}>
             <HStack alignItems={"center"} space={1}>
