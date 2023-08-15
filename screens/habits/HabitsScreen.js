@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Fab, Icon, ScrollView, Stack } from "native-base";
+import { Fab, Icon, ScrollView, Stack, Text } from "native-base";
 import HabitListItem from "../../components/HabitListItem";
 import { habitsController } from "../../controllers/HabitsController";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -25,9 +25,13 @@ export default function HabitsScreen({ navigation, isFocused }) {
           }}
         />
         <ScrollView>
-          {habitsController.habits.map((habit) => (
-            <HabitListItem habit={habit} key={habit.habitID} />
-          ))}
+          {habitsController.habits !== null ? (
+            habitsController.habits.map((habit) => (
+              <HabitListItem habit={habit} key={habit.habitID} />
+            ))
+          ) : (
+            <Text>Loading...</Text>
+          )}
         </ScrollView>
       </Stack>
     </>
