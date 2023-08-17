@@ -5,7 +5,6 @@
 // https://github.com/jquense/yup
 
 import { useState } from "react";
-import { weekdays } from "../constants";
 import {
   Button,
   HStack,
@@ -20,7 +19,7 @@ import Trigger from "../models/trigger";
 import { triggersController } from "../controllers/TriggersController";
 import { View } from "react-native";
 import TimeIntervalSelector from "./TimeIntervalSelector";
-import { Formik, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 
 export default function ManageTriggerForm(props) {
