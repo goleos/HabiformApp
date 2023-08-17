@@ -32,18 +32,35 @@ export default function ManageTriggerForm(props) {
   const initialValues = { ...trigger };
 
   const onSubmit = (values) => {
-      triggersController.createNewTrigger(
-          new Trigger(values),
-          handleCreatedSuccess,
-          handleCreatedFailure
-      );
-    console.log('creating trigger: ' + values.toString());
+    triggersController.createNewTrigger(
+      new Trigger(values),
+      handleCreatedSuccess,
+      handleCreatedFailure
+    );
+    console.log("creating trigger: " + values.toString());
   };
 
-  const defaultIntervalStart = new Date(2021, 12, 4, 7, 0);
-  const defaultIntervalEnd = new Date(2021, 12, 4, 8, 0);
+  let startHour;
+  let startMinute;
+  let endHour;
+  let endMinute;
 
-  const [hasTime, setHasTime] = useState(false);
+  if (initialValues.timeIntervalStart !== null) {
+    startHour = parseInt(initialValues.timeIntervalStart.split(":")[0]);
+    startMinute = parseInt(initialValues.timeIntervalStart.split(":")[1]);
+    endHour = parseInt(initialValues.timeIntervalEnd.split(":")[0]);
+    endMinute = parseInt(initialValues.timeIntervalEnd.split(":")[1]);
+  } else {
+    startHour = 7;
+    startMinute = 0;
+    endHour = 8;
+    endMinute = 0;
+  }
+
+  const defaultIntervalStart = new Date(2021, 12, 4, startHour, startMinute);
+  const defaultIntervalEnd = new Date(2021, 12, 4, endHour, endMinute);
+
+  const [hasTime, setHasTime] = useState(!!initialValues.timeIntervalStart);
 
   const toast = useToast();
 
@@ -120,8 +137,13 @@ export default function ManageTriggerForm(props) {
             {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
             {hasTime && (
               <TimeIntervalSelector
-                onStartTimeChange={(value) => {console.log(value); setFieldValue("timeIntervalStart", value)}}
-                onEndTimeChange={(value) => {setFieldValue("timeIntervalEnd", value)}}
+                onStartTimeChange={(value) => {
+                  console.log(value);
+                  setFieldValue("timeIntervalStart", value);
+                }}
+                onEndTimeChange={(value) => {
+                  setFieldValue("timeIntervalEnd", value);
+                }}
                 defaultStart={defaultIntervalStart}
                 defaultEnd={defaultIntervalEnd}
               />
