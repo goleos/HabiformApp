@@ -134,7 +134,6 @@ export default function ManageTriggerForm(props) {
                 size="sm"
               />
             </HStack>
-            {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
             {hasTime && (
               <TimeIntervalSelector
                 onStartTimeChange={(value) => {

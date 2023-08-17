@@ -13,17 +13,29 @@ export const HabitNavigation = () => {
   return (
     <NativeNavigationStack.Navigator initialRouteName="HabitList">
       <NativeNavigationStack.Screen name="My Habits" component={HabitsScreen} />
-      <NativeNavigationStack.Screen name="New Habit" component={AddHabitScreen} />
+      <NativeNavigationStack.Screen
+        name="New Habit"
+        component={AddHabitScreen}
+      />
     </NativeNavigationStack.Navigator>
   );
 };
 
 export const TriggerNavigation = () => {
-    return (
-        <NativeNavigationStack.Navigator initialRouteName="HabitList">
-            <NativeNavigationStack.Screen name="My Triggers" component={TriggersScreen} />
-            <NativeNavigationStack.Screen name="ManageTrigger" component={ManageTriggerScreen} />
-            <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} />
-        </NativeNavigationStack.Navigator>
-    );
+  return (
+    <NativeNavigationStack.Navigator initialRouteName="HabitList">
+      <NativeNavigationStack.Screen
+        name="My Triggers"
+        component={TriggersScreen}
+      />
+      <NativeNavigationStack.Screen
+        name="ManageTrigger"
+        component={ManageTriggerScreen}
+        options={({ route }) => ({
+          title: "Add or edit trigger",
+        })}
+      />
+      <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} />
+    </NativeNavigationStack.Navigator>
+  );
 };

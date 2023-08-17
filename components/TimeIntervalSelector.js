@@ -14,6 +14,7 @@ export default function TimeIntervalSelector({
         occurs lets the app remind you when you should complete your habit
       </Alert>
       <HStack justifyContent="center" alignItems="center">
+          {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
         <RNDateTimePicker
           display="inline"
           mode="time"
