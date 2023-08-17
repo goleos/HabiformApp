@@ -49,7 +49,7 @@ function TriggerPage({ navigation, route }) {
       </VStack>
       <Button
         onPress={() => {
-          navigation.navigate("Add trigger", {
+          navigation.navigate("ManageTrigger", {
             trigger: trigger,
           });
         }}

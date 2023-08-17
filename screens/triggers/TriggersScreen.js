@@ -19,7 +19,7 @@ function TriggersScreen({ navigation }) {
         size="lg"
         icon={<Icon name="add" as={Ionicons} />}
         onPress={() => {
-          navigation.navigate("Add trigger", {
+          navigation.navigate("ManageTrigger", {
             trigger: null,
           });
         }}

@@ -22,7 +22,7 @@ export const TriggerNavigation = () => {
     return (
         <NativeNavigationStack.Navigator initialRouteName="HabitList">
             <NativeNavigationStack.Screen name="My Triggers" component={TriggersScreen} />
-            <NativeNavigationStack.Screen name="Add trigger" component={ManageTriggerScreen} />
+            <NativeNavigationStack.Screen name="ManageTrigger" component={ManageTriggerScreen} />
             <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} />
         </NativeNavigationStack.Navigator>
     );
