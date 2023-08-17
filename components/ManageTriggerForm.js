@@ -1,6 +1,8 @@
 // https://formik.org/docs/overview
 // https://formik.org/docs/guides/react-native
 // https://jasonwatmore.com/post/2020/04/20/react-formik-combined-add-edit-create-update-form-example
+// https://formik.org/docs/tutorial#schema-validation-with-yup
+// https://github.com/jquense/yup
 
 import { useState } from "react";
 import { weekdays } from "../constants";
@@ -18,7 +20,8 @@ import Trigger from "../models/trigger";
 import { triggersController } from "../controllers/TriggersController";
 import { View } from "react-native";
 import TimeIntervalSelector from "./TimeIntervalSelector";
-import { Formik, useFormik } from "formik";
+import { Formik, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 export default function ManageTriggerForm(props) {
   let trigger;
@@ -62,6 +65,13 @@ export default function ManageTriggerForm(props) {
 
   const [hasTime, setHasTime] = useState(!!initialValues.timeIntervalStart);
 
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .required("Name is required")
+      .trim("Invalid name")
+      .max(20, "Name can have at most 20 characters"),
+  });
+
   const toast = useToast();
 
   const handleCreatedSuccess = () => {
@@ -97,8 +107,19 @@ export default function ManageTriggerForm(props) {
   // };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+    >
+      {({
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        values,
+        setFieldValue,
+        errors,
+      }) => (
         <View>
           <Stack
             direction="column"
@@ -123,6 +144,9 @@ export default function ManageTriggerForm(props) {
                 onValueChange={(boolValue) => {
                   if (boolValue === true) {
                     console.log("value ch");
+                    console.log(
+                      defaultIntervalStart.toTimeString().split(" ")[0]
+                    );
                     setFieldValue(
                       "timeIntervalStart",
                       defaultIntervalStart.toTimeString().split(" ")[0]
@@ -133,9 +157,9 @@ export default function ManageTriggerForm(props) {
                     );
                     setHasTime(true);
                   } else {
+                    setHasTime(false);
                     setFieldValue("timeIntervalStart", null);
                     setFieldValue("timeIntervalEnd", null);
-                    setHasTime(false);
                   }
                 }}
                 size="sm"
@@ -181,6 +205,7 @@ export default function ManageTriggerForm(props) {
                 Delete Trigger
               </Button>
             )}
+            {errors !== {} && <Text>{errors.name}</Text>}
           </Stack>
         </View>
       )}
