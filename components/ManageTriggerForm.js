@@ -48,7 +48,7 @@ export default function ManageTriggerForm(props) {
   const toast = useToast();
 
   const handleCreatedSuccess = () => {
-    navigation.navigate("My Triggers");
+    // navigation.navigate("My Triggers");
     toast.show({
       description: "Trigger successfully created",
     });

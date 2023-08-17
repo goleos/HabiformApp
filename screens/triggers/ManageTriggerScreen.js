@@ -19,9 +19,9 @@ import { weekdays, weekdaysShort } from "../../constants";
 import TimeIntervalSelector from "../../components/TimeIntervalSelector";
 import ManageTriggerForm from "../../components/ManageTriggerForm";
 
-export default function AddTriggerScreen({ navigation }) {
+export default function ManageTriggerScreen({ navigation, route }) {
 
   return (
-    <ManageTriggerForm />
+    <ManageTriggerForm trigger={route.params.trigger} />
   );
 }
