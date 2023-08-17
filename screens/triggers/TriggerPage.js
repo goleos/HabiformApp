@@ -47,15 +47,18 @@ function TriggerPage({ navigation, route }) {
         <Heading>Linked habits</Heading>
         <HabitListItem habit={hab} />
       </VStack>
-      <Button
-        onPress={() => {
-          navigation.navigate("ManageTrigger", {
-            trigger: trigger,
-          });
-        }}
-      >
-        Edit
-      </Button>
+      <VStack padding={3}>
+        <Button
+            onPress={() => {
+              navigation.navigate("ManageTrigger", {
+                trigger: trigger,
+              });
+            }}
+        >
+          Edit
+        </Button>
+      </VStack>
+
     </Flex>
   );
 }

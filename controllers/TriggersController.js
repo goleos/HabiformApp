@@ -43,7 +43,8 @@ VALUES ( ?, ?, ?, ?, ?) `;
         ],
         (txtObj, resultSet) => {
           console.log(
-            "SQLLITE: Successfully inserted or replaced a trigger: " + trigger.name
+            "SQLLITE: Successfully inserted or replaced a trigger: " +
+              trigger.name
           );
           onSuccessCallback();
         },
@@ -52,6 +53,31 @@ VALUES ( ?, ?, ?, ?, ?) `;
             "SQLLITE: Error inserting or replacing a trigger: " + error.message
           );
           onFailureCallback();
+        }
+      );
+    });
+    this.requestTriggers();
+  }
+
+  deleteTrigger(triggerEventId, onCompleteCallback) {
+    const sqlStatement =
+      `DELETE FROM triggers WHERE triggerEventID = ` + triggerEventId;
+    dbController.db.transaction((tx) => {
+      tx.executeSql(
+        sqlStatement,
+        [],
+        (txtObj, resultSet) => {
+          console.log(
+            "SQLLITE: Successfully deleted the trigger with id: " +
+              triggerEventId
+          );
+          onCompleteCallback();
+        },
+        (txtObj, error) => {
+          console.log(
+            "SQLLITE: Error deleting trigger with id: " + triggerEventId + ": "
+          );
+          console.log(error);
         }
       );
     });

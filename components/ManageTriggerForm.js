@@ -27,7 +27,7 @@ export default function ManageTriggerForm(props) {
   } else {
     trigger = new Trigger();
   }
-  const formIsInAddMode = !trigger.triggerEventID;
+  const formIsInAddMode = !!trigger.triggerEventID;
 
   const initialValues = { ...trigger };
 
@@ -65,7 +65,7 @@ export default function ManageTriggerForm(props) {
   const toast = useToast();
 
   const handleCreatedSuccess = () => {
-    // navigation.navigate("My Triggers");
+    props.onCreateOrEdit();
     toast.show({
       description: "Trigger successfully created",
     });
@@ -74,6 +74,13 @@ export default function ManageTriggerForm(props) {
   const handleCreatedFailure = () => {
     toast.show({
       description: "Error creating a trigger",
+    });
+  };
+
+  const handleDeleteTrigger = () => {
+    props.onDelete();
+    toast.show({
+      description: "Trigger successfully deleted",
     });
   };
 
@@ -160,6 +167,20 @@ export default function ManageTriggerForm(props) {
             >
               Add Trigger
             </Button>
+            {formIsInAddMode && (
+              <Button
+                borderRadius={18}
+                onPress={() => {
+                  triggersController.deleteTrigger(
+                    values.triggerEventID,
+                    handleDeleteTrigger
+                  );
+                }}
+                bg="red.600"
+              >
+                Delete Trigger
+              </Button>
+            )}
           </Stack>
         </View>
       )}

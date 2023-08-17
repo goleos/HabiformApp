@@ -22,6 +22,10 @@ import ManageTriggerForm from "../../components/ManageTriggerForm";
 export default function ManageTriggerScreen({ navigation, route }) {
 
   return (
-    <ManageTriggerForm trigger={route.params.trigger} />
+    <ManageTriggerForm trigger={route.params.trigger} onCreateOrEdit={() => {
+      navigation.goBack()
+    }} onDelete={() => {
+      navigation.navigate('My Triggers')
+    }} />
   );
 }

@@ -23,7 +23,7 @@ export const HabitNavigation = () => {
 
 export const TriggerNavigation = () => {
   return (
-    <NativeNavigationStack.Navigator initialRouteName="HabitList">
+    <NativeNavigationStack.Navigator initialRouteName="My Triggers">
       <NativeNavigationStack.Screen
         name="My Triggers"
         component={TriggersScreen}
