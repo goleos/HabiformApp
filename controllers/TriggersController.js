@@ -5,7 +5,7 @@ import habit from "../models/habit";
 import Trigger, { trig } from "../models/trigger";
 
 export class TriggersController {
-  triggers = null;
+  triggers = [];
   focusedTrigger = null;
 
   constructor() {
@@ -28,7 +28,7 @@ export class TriggersController {
   }
 
   createNewTrigger(trigger, onSuccessCallback, onFailureCallback) {
-    const sqlStatement = `INSERT INTO triggers (triggerEventID, name, extraNotes, timeIntervalStart, timeIntervalEnd) 
+    const sqlStatement = `INSERT OR REPLACE INTO triggers (triggerEventID, name, extraNotes, timeIntervalStart, timeIntervalEnd) 
 VALUES ( ?, ?, ?, ?, ?) `;
 
     dbController.db.transaction((tx) => {
@@ -43,13 +43,13 @@ VALUES ( ?, ?, ?, ?, ?) `;
         ],
         (txtObj, resultSet) => {
           console.log(
-            "SQLLITE: Successfully inserted a new trigger: " + trigger.name
+            "SQLLITE: Successfully inserted or replaced a trigger: " + trigger.name
           );
           onSuccessCallback();
         },
         (txtObj, error) => {
           console.log(
-            "SQLLITE: Error inserting a new trigger: " + error.message
+            "SQLLITE: Error inserting or replacing a trigger: " + error.message
           );
           onFailureCallback();
         }

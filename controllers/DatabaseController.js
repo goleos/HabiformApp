@@ -10,6 +10,7 @@ export class DatabaseController {
 
   constructor() {
     makeAutoObservable(this);
+    this.initialiseDatabase();
   }
 
   initialiseDatabase() {
@@ -71,7 +72,6 @@ export class DatabaseController {
   //     (txtObj, error) => console.log(txtObj)
   //   );
   // }
-
 
   getTables() {
     this.db.transaction((tx) => {
