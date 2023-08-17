@@ -185,7 +185,20 @@ export default function ManageTriggerForm(props) {
             />
             <Button
               borderRadius={18}
-              onPress={handleSubmit}
+              onPress={() => {
+                if (values.timeIntervalStart !== null) {
+                  if (
+                    parseInt(values.timeIntervalStart.split(":")[0]) <
+                    parseInt(values.timeIntervalEnd.split(":")[0])
+                  ) {
+                    handleSubmit();
+                  } else {
+                      toast.show({
+                        description: "Start time must be before end time",
+                      });
+                  }
+                }
+              }}
               bg="triggerColour.100"
             >
               Add Trigger
