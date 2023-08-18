@@ -70,7 +70,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage>
           </FormControl>
 
-          <FormControl>
+          <FormControl isInvalid={errors.triggerEventID}>
             <FormControl.Label>Link a trigger</FormControl.Label>
             <Select
               selectedValue={values.triggerEventID}
@@ -88,6 +88,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 />
               ))}
             </Select>
+            <FormControl.ErrorMessage>{errors.triggerEventID}</FormControl.ErrorMessage>
           </FormControl>
 
           <VStack space={2}>

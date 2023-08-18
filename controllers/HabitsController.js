@@ -2,7 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import Habit, { hab } from "../models/habit";
 import { dbController } from "./DatabaseController";
 import habit from "../models/habit";
-import {triggersController} from "./TriggersController";
+import { triggersController } from "./TriggersController";
 
 export class HabitsController {
   habits = null;
@@ -30,12 +30,13 @@ export class HabitsController {
   markHabitAsComplete(habit) {}
 
   createNewHabit(habit, onSuccessCallback, onFailureCallback) {
-    const sqlStatement = `INSERT OR REPLACE INTO habit (name, intentions, habitStatus, isFormed, extraNotes, shouldNotify, triggerEventID) 
-VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
+    const sqlStatement = `INSERT OR REPLACE INTO habit (habitID, name, intentions, habitStatus, isFormed, extraNotes, shouldNotify, triggerEventID) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
     dbController.db.transaction((tx) => {
       tx.executeSql(
         sqlStatement,
         [
+          habit.habitID,
           habit.name,
           JSON.stringify(habit.intentions),
           habit.habitStatus,
@@ -58,25 +59,23 @@ VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
   }
 
   deleteHabit(habitID, onCompleteCallback) {
-    const sqlStatement =
-        `DELETE FROM habit WHERE habitID = ` + habitID;
+    const sqlStatement = `DELETE FROM habit WHERE habitID = ` + habitID;
     dbController.db.transaction((tx) => {
       tx.executeSql(
-          sqlStatement,
-          [],
-          (txtObj, resultSet) => {
-            console.log(
-                "SQLLITE: Successfully deleted the habit with id: " +
-                habitID
-            );
-            onCompleteCallback();
-          },
-          (txtObj, error) => {
-            console.log(
-                "SQLLITE: Error deleting habit with id: " + habitID + ": "
-            );
-            console.log(error);
-          }
+        sqlStatement,
+        [],
+        (txtObj, resultSet) => {
+          console.log(
+            "SQLLITE: Successfully deleted the habit with id: " + habitID
+          );
+          onCompleteCallback();
+        },
+        (txtObj, error) => {
+          console.log(
+            "SQLLITE: Error deleting habit with id: " + habitID + ": "
+          );
+          console.log(error);
+        }
       );
     });
     this.requestHabits();

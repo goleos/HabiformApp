@@ -13,9 +13,11 @@ import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HabitListItem from "../../components/HabitListItem";
 import { hab } from "../../models/habit";
+import {habitsController} from "../../controllers/HabitsController";
 
 function TriggerPage({ navigation, route }) {
   const trigger = route.params.trigger;
+  const linkedHabits = habitsController.habits.filter((habit) => habit.triggerEventID === trigger.triggerEventID)
   return (
     <Flex height={"100%"} bg={"white"}>
       <VStack margin={2} space={2}>
@@ -45,7 +47,9 @@ function TriggerPage({ navigation, route }) {
         </Box>
 
         <Heading>Linked habits</Heading>
-        <HabitListItem habit={hab} />
+        {linkedHabits.length !== 0 ? linkedHabits.map((habit) => {
+          return <HabitListItem habit={habit} key={habit.habitID}/>
+        }): <Text>There are no linked habits</Text>}
       </VStack>
       <VStack padding={3}>
         <Button
