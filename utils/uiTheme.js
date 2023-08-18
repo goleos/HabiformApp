@@ -20,5 +20,9 @@ export const uiTheme = extendTheme({
     triggerColour: {
       100: "#641683",
     },
+    tabBarColour: {
+      focused: "#0b4f93",
+      unFocused: "#dab800",
+    },
   },
 });
