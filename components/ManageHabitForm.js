@@ -3,11 +3,19 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Habit from "../models/habit";
-import { Button, FormControl, Input, Stack, Text, VStack } from "native-base";
+import {
+  Button,
+  FormControl,
+  Input,
+  Stack,
+  Text,
+  useToast,
+  VStack,
+} from "native-base";
 import { habitFormValidationSchema } from "../utils/FormValidationSchemas";
 import { habitsController } from "../controllers/HabitsController";
 
-export default function ManageHabitForm({ habit, onCreateOrEdit }) {
+export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
   if (habit === null) {
     initialValues = { ...new Habit() };
@@ -16,6 +24,8 @@ export default function ManageHabitForm({ habit, onCreateOrEdit }) {
   }
 
   const formIsInAddMode = !initialValues.habitID;
+
+  const toast = useToast();
 
   const handleSubmitForm = (values) => {
     habitsController.createNewHabit(
@@ -28,6 +38,13 @@ export default function ManageHabitForm({ habit, onCreateOrEdit }) {
       }
     );
     onCreateOrEdit();
+  };
+
+  const handleDelete = (habitID) => {
+    habitsController.deleteHabit(habitID, () => {
+      toast.show({ description: "Habit deleted" });
+      onDelete();
+    });
   };
 
   return (
@@ -44,15 +61,43 @@ export default function ManageHabitForm({ habit, onCreateOrEdit }) {
         setFieldValue,
         errors,
       }) => (
-        <VStack space={1}>
+
+        <VStack space={10}>
           <FormControl isInvalid={errors.name}>
             <FormControl.Label>Habit name</FormControl.Label>
             <Input value={values.name} onChangeText={handleChange("name")} />
             <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage>
           </FormControl>
-          <Button onPress={handleSubmit}>
-            {formIsInAddMode ? "Create Habit" : "Update Habit"}
-          </Button>
+          <VStack space={2}>
+            <Button
+                onPress={() => {
+                  setFieldValue("habitStatus", "active");
+                  handleSubmit();
+                }}
+            >
+              {formIsInAddMode ? "Start habit now" : "Update habit"}
+            </Button>
+            {!(values.habitStatus === "draft" && !formIsInAddMode) && (
+                <Button
+                    onPress={() => {
+                      setFieldValue("habitStatus", "draft");
+                      handleSubmit();
+                    }}
+                >
+                  {formIsInAddMode ? "Keep habit as draft" : "Move to draft"}
+                </Button>
+            )}
+            {!formIsInAddMode && (
+                <Button
+                    onPress={() => {
+                      handleDelete(values.habitID);
+                    }}
+                >
+                  Delete Habit
+                </Button>
+            )}
+          </VStack>
+
         </VStack>
       )}
     </Formik>

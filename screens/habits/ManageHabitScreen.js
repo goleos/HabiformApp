@@ -10,6 +10,9 @@ export default function ManageHabitScreen({ navigation, route }) {
         onCreateOrEdit={() => {
           navigation.goBack();
         }}
+        onDelete={() => {
+          navigation.navigate("My Habits");
+        }}
       />
     </Flex>
   );

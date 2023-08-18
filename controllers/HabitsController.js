@@ -55,6 +55,31 @@ VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
     });
     this.requestHabits();
   }
+
+  deleteHabit(habitID, onCompleteCallback) {
+    const sqlStatement =
+        `DELETE FROM habit WHERE habitID = ` + habitID;
+    dbController.db.transaction((tx) => {
+      tx.executeSql(
+          sqlStatement,
+          [],
+          (txtObj, resultSet) => {
+            console.log(
+                "SQLLITE: Successfully deleted the habit with id: " +
+                habitID
+            );
+            onCompleteCallback();
+          },
+          (txtObj, error) => {
+            console.log(
+                "SQLLITE: Error deleting habit with id: " + habitID + ": "
+            );
+            console.log(error);
+          }
+      );
+    });
+    this.requestHabits();
+  }
 }
 
 export const habitsController = new HabitsController();
