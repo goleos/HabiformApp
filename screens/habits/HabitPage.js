@@ -1,9 +1,21 @@
-import {Text} from "native-base";
+import { Button, Text } from "native-base";
 
-function HabitPage({ navigation }) {
-    return (
-        <Text>Habit page</Text>
-    )
+function HabitPage({ navigation, route }) {
+  const habit = route.params.habit;
+  return (
+    <>
+      <Text>{habit.name}</Text>
+      <Button
+        onPress={() => {
+          navigation.navigate("ManageHabit", {
+            habit: habit,
+          });
+        }}
+      >
+        Edit
+      </Button>
+    </>
+  );
 }
 
 export default HabitPage;

@@ -31,7 +31,7 @@ function HabitsScreen({ navigation, isFocused }) {
             {habitsController.habits !== null ? (
               habitsController.habits.map((habit) => (
                   <Pressable key={habit.habitID} onPress={() => {
-                      navigation.navigate("ManageHabit", {
+                      navigation.navigate("HabitPage", {
                           habit: habit
                       });
                   }}>
