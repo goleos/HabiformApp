@@ -1,5 +1,13 @@
 import { StyleSheet } from "react-native";
-import {Fab, Flex, Icon, Pressable, ScrollView, Stack, Text} from "native-base";
+import {
+  Fab,
+  Flex,
+  Icon,
+  Pressable,
+  ScrollView,
+  Stack,
+  Text,
+} from "native-base";
 import HabitListItem from "../../components/HabitListItem";
 import { habitsController } from "../../controllers/HabitsController";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -20,7 +28,7 @@ function HabitsScreen({ navigation, isFocused }) {
         icon={<Icon name="add" as={Ionicons} />}
         onPress={() => {
           navigation.navigate("ManageHabit", {
-              habit: null
+            habit: null,
           });
         }}
       />
@@ -30,14 +38,16 @@ function HabitsScreen({ navigation, isFocused }) {
           <ScrollView>
             {habitsController.habits !== null ? (
               habitsController.habits.map((habit) => (
-                  <Pressable key={habit.habitID} onPress={() => {
-                      navigation.navigate("HabitPage", {
-                          habit: habit
-                      });
-                  }}>
-                      <HabitListItem habit={habit}  />
-                  </Pressable>
-
+                <Pressable
+                  key={habit.habitID}
+                  onPress={() => {
+                    navigation.navigate("HabitPage", {
+                      habit: habit,
+                    });
+                  }}
+                >
+                  <HabitListItem habit={habit} />
+                </Pressable>
               ))
             ) : (
               <Text>Loading...</Text>

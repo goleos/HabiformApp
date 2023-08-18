@@ -1,12 +1,13 @@
 // https://docs.nativebase.io/next/form-control#page-title
 
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Habit from "../models/habit";
 import {
   Button,
   FormControl,
   Input,
+  Select,
   Stack,
   Text,
   useToast,
@@ -14,6 +15,7 @@ import {
 } from "native-base";
 import { habitFormValidationSchema } from "../utils/FormValidationSchemas";
 import { habitsController } from "../controllers/HabitsController";
+import { triggersController } from "../controllers/TriggersController";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
@@ -61,43 +63,62 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
         setFieldValue,
         errors,
       }) => (
-
         <VStack space={10}>
           <FormControl isInvalid={errors.name}>
             <FormControl.Label>Habit name</FormControl.Label>
             <Input value={values.name} onChangeText={handleChange("name")} />
             <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage>
           </FormControl>
+
+          <FormControl>
+            <FormControl.Label>Link a trigger</FormControl.Label>
+            <Select
+              selectedValue={values.triggerEventID}
+              onValueChange={(itemValue) => {
+                console.log("set");
+                setFieldValue("triggerEventID", itemValue);
+                console.log(values.triggerEventID);
+              }}
+            >
+              {triggersController.triggers.map((trigger) => (
+                <Select.Item
+                  label={trigger.name}
+                  value={trigger.triggerEventID}
+                  key={trigger.triggerEventID}
+                />
+              ))}
+            </Select>
+          </FormControl>
+
           <VStack space={2}>
             <Button
-                onPress={() => {
-                  setFieldValue("habitStatus", "active");
-                  handleSubmit();
-                }}
+              onPress={() => {
+                setFieldValue("habitStatus", "active");
+                handleSubmit();
+              }}
             >
               {formIsInAddMode ? "Start habit now" : "Update habit"}
             </Button>
             {!(values.habitStatus === "draft" && !formIsInAddMode) && (
-                <Button
-                    onPress={() => {
-                      setFieldValue("habitStatus", "draft");
-                      handleSubmit();
-                    }}
-                >
-                  {formIsInAddMode ? "Keep habit as draft" : "Move to draft"}
-                </Button>
+              <Button
+                onPress={() => {
+                  setFieldValue("habitStatus", "draft");
+                  handleSubmit();
+                }}
+              >
+                {formIsInAddMode ? "Keep habit as draft" : "Move to draft"}
+              </Button>
             )}
             {!formIsInAddMode && (
-                <Button
-                    onPress={() => {
-                      handleDelete(values.habitID);
-                    }}
-                >
-                  Delete Habit
-                </Button>
+              <Button
+                onPress={() => {
+                  handleDelete(values.habitID);
+                }}
+              >
+                Delete Habit
+              </Button>
             )}
           </VStack>
-
         </VStack>
       )}
     </Formik>
