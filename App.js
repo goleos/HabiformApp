@@ -1,7 +1,7 @@
 import AppTabs from "./navigation/tabBar";
 import { NavigationContainer } from "@react-navigation/native";
 import {NativeBaseProvider} from "native-base";
-import {uiTheme} from "./uiTheme";
+import {uiTheme} from "./utils/uiTheme";
 
 export default function App() {
   return (

@@ -2,7 +2,7 @@
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HabitsScreen from "../screens/habits/HabitsScreen";
-import AddHabitScreen from "../screens/habits/AddHabitScreen";
+import ManageHabitScreen from "../screens/habits/ManageHabitScreen";
 import TriggersScreen from "../screens/triggers/TriggersScreen";
 import ManageTriggerScreen from "../screens/triggers/ManageTriggerScreen";
 import TriggerPage from "../screens/triggers/TriggerPage";
@@ -14,8 +14,8 @@ export const HabitNavigation = () => {
     <NativeNavigationStack.Navigator initialRouteName="HabitList">
       <NativeNavigationStack.Screen name="My Habits" component={HabitsScreen} />
       <NativeNavigationStack.Screen
-        name="New Habit"
-        component={AddHabitScreen}
+        name="ManageHabit"
+        component={ManageHabitScreen}
       />
     </NativeNavigationStack.Navigator>
   );

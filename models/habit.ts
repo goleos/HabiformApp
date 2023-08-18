@@ -5,7 +5,7 @@ import HabitStatus from "./habitStatus";
 import Trigger from "./trigger";
 
 class Habit {
-  habitID: number;
+  habitID: number = null;
   name: string;
   intentions: Array<string> = [];
   // datesCompleted: Set<Date>;

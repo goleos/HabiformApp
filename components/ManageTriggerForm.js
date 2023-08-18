@@ -24,7 +24,7 @@ import * as Yup from "yup";
 
 export default function ManageTriggerForm(props) {
   let trigger;
-  if (props.trigger != null) {
+  if (props.trigger !== null) {
     trigger = props.trigger;
   } else {
     trigger = new Trigger();

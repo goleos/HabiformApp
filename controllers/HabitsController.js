@@ -13,6 +13,7 @@ export class HabitsController {
 
   getHabits(rows) {
     this.habits = [];
+    console.log("getting habits");
     rows.forEach((obj) => {
       const habit = new Habit(obj);
       this.habits.push(habit);
@@ -52,6 +53,7 @@ VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
         }
       );
     });
+    this.requestHabits();
   }
 }
 
