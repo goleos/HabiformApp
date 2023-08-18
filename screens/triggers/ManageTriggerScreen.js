@@ -8,7 +8,7 @@ import {
   Text,
   TextArea,
   Alert,
-  useToast,
+  useToast, Flex,
 } from "native-base";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { triggersController } from "../../controllers/TriggersController";
@@ -22,10 +22,13 @@ import ManageTriggerForm from "../../components/ManageTriggerForm";
 export default function ManageTriggerScreen({ navigation, route }) {
 
   return (
-    <ManageTriggerForm trigger={route.params.trigger} onCreateOrEdit={() => {
-      navigation.goBack()
-    }} onDelete={() => {
-      navigation.navigate('My Triggers')
-    }} />
+      <Flex height={"100%"} bg={"white"}>
+        <ManageTriggerForm trigger={route.params.trigger} onCreateOrEdit={() => {
+          navigation.goBack()
+        }} onDelete={() => {
+          navigation.navigate('My Triggers')
+        }} />
+      </Flex>
+
   );
 }

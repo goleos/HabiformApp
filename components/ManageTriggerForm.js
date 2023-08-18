@@ -119,7 +119,6 @@ export default function ManageTriggerForm(props) {
         setFieldValue,
         errors,
       }) => (
-        <View>
           <Stack
             direction="column"
             padding={3}
@@ -132,6 +131,7 @@ export default function ManageTriggerForm(props) {
               onChangeText={handleChange("name")}
               placeholder="eg. Starting dinner, leaving for home after work"
             />
+            {errors.name && <Text color='red.500'>{errors.name}</Text>}
             <HStack
               alignItems="center"
               justifyContent="space-between"
@@ -217,9 +217,8 @@ export default function ManageTriggerForm(props) {
                 Delete Trigger
               </Button>
             )}
-            {errors !== {} && <Text>{errors.name}</Text>}
+
           </Stack>
-        </View>
       )}
     </Formik>
   );
