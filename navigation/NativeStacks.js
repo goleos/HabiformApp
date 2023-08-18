@@ -6,6 +6,7 @@ import ManageHabitScreen from "../screens/habits/ManageHabitScreen";
 import TriggersScreen from "../screens/triggers/TriggersScreen";
 import ManageTriggerScreen from "../screens/triggers/ManageTriggerScreen";
 import TriggerPage from "../screens/triggers/TriggerPage";
+import HabitPage from "../screens/habits/HabitPage";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export const HabitNavigation = () => {
         name="ManageHabit"
         component={ManageHabitScreen}
       />
+      <NativeNavigationStack.Screen name={"HabitPage"} component={HabitPage} />
     </NativeNavigationStack.Navigator>
   );
 };

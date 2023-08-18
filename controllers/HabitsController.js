@@ -29,7 +29,7 @@ export class HabitsController {
   markHabitAsComplete(habit) {}
 
   createNewHabit(habit, onSuccessCallback, onFailureCallback) {
-    const sqlStatement = `INSERT INTO habit (name, intentions, habitStatus, isFormed, extraNotes, shouldNotify, triggerEventID) 
+    const sqlStatement = `INSERT OR REPLACE INTO habit (name, intentions, habitStatus, isFormed, extraNotes, shouldNotify, triggerEventID) 
 VALUES ( ?, ?, ?, ?, ?, ?, ?) `;
     dbController.db.transaction((tx) => {
       tx.executeSql(

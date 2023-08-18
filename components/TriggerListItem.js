@@ -7,14 +7,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ContentBox from "./ContentBox";
 
 export default function TriggerListItem({ trigger, navigation }) {
-  const handlePress = () => {
-    navigation.navigate("Trigger", {
-      trigger: trigger,
-    });
-  };
+
 
   return (
-    <ContentBox onPress={handlePress}>
+    <ContentBox>
       <Stack direction="column" alignItems="left">
         <Text fontSize="xl">{trigger.name}</Text>
         <Stack

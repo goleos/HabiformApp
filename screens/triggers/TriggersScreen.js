@@ -1,6 +1,6 @@
 import TriggerListItem from "../../components/TriggerListItem";
 import { trig } from "../../models/trigger";
-import { Alert, Fab, Icon, ScrollView, Stack, Text, View } from "native-base";
+import {Alert, Fab, Icon, Pressable, ScrollView, Stack, Text, View} from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { habitsController } from "../../controllers/HabitsController";
 import HabitListItem from "../../components/HabitListItem";
@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import { useState } from "react";
 
 function TriggersScreen({ navigation }) {
+
   return (
     <>
       <Fab
@@ -44,11 +45,17 @@ function TriggersScreen({ navigation }) {
       {/*</Stack>*/}
       <ScrollView>
         {triggersController.triggers.map((trigger) => (
-          <TriggerListItem
-            navigation={navigation}
-            trigger={trigger}
-            key={trigger.triggerEventID}
-          />
+            <Pressable key={trigger.triggerEventID} onPress={() => {
+                navigation.navigate("Trigger", {
+                    trigger: trigger,
+                })}}>
+                <TriggerListItem
+                    navigation={navigation}
+                    trigger={trigger}
+
+                />
+            </Pressable>
+
         ))}
       </ScrollView>
     </>

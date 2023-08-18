@@ -9,7 +9,7 @@ import { habitsController } from "../controllers/HabitsController";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit }) {
   let initialValues;
-  if (habit !== null) {
+  if (habit === null) {
     initialValues = { ...new Habit() };
   } else {
     initialValues = { ...habit };

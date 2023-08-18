@@ -13,7 +13,7 @@ export default function ContentBox(props) {
       margin={2}
       shadow={6}
     >
-      <Pressable onPress={props.onPress}>
+
         <Stack
           direction="row"
           alignItems="center"
@@ -25,7 +25,6 @@ export default function ContentBox(props) {
             icon={<Icon as={Ionicons} name="chevron-forward-outline" />}
           />
         </Stack>
-      </Pressable>
     </Box>
   );
 }
