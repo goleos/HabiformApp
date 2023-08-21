@@ -21,6 +21,27 @@ export class TriggersController {
     });
   }
 
+  getSoonestTriggers() {
+    const now = new Date();
+    const timedTriggers = this.getTimedTriggers();
+    return timedTriggers.sort((trigger1, trigger2) => {
+      return trigger1.startTimeAsDateObject() - now;
+    });
+  }
+
+  getTimedTriggers() {
+    let list = [...this.triggers];
+    list = list.filter((trigger) => {
+      return trigger.timeIntervalStart !== null;
+    });
+    list = list.sort((trigger1, trigger2) => {
+      return (
+        trigger1.startTimeAsDateObject() - trigger2.startTimeAsDateObject()
+      );
+    });
+    return list;
+  }
+
   requestTriggers() {
     dbController.getRowsOfTable("triggers", (rows) => {
       this.getTriggers(rows);
