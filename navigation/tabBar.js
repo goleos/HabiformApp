@@ -13,8 +13,9 @@ import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { HabitNavigation } from "./NativeStacks";
-import {TriggerNavigation} from "./NativeStacks";
-import {uiTheme} from "../utils/uiTheme";
+import { TriggerNavigation } from "./NativeStacks";
+import { uiTheme } from "../utils/uiTheme";
+import { Image } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,22 +26,24 @@ function AppTabs() {
       initialRouteName="Habits"
       screenOptions={({ route }) => ({
         //  based on the example in https://reactnavigation.org/docs/tab-based-navigation
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === "Habits") {
-            iconName = 'repeat'
+            iconName = "repeat";
           } else if (route.name === "Triggers") {
-            iconName = 'clock-out'
+            iconName = "clock-out";
           } else if (route.name === "Dashboard") {
-            iconName = focused ? 'view-grid' : 'view-grid-outline'
+            iconName = focused ? "view-grid" : "view-grid-outline";
           } else if (route.name === "Settings") {
-            iconName = focused ? 'cog' : 'cog-outline'
+            iconName = focused ? "cog" : "cog-outline";
           }
-          return <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          return (
+            <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          );
         },
         tabBarActiveTintColor: uiTheme.colors.tabBarColour.focused,
         tabBarInactiveTintColor: uiTheme.colors.tabBarColour.unFocused,
-        headerShown: false
+        headerShown: false,
       })}
     >
       <Tab.Screen name="Triggers" component={TriggerNavigation} />
