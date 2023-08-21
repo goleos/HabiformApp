@@ -14,6 +14,7 @@ export default function IntentionListItem({
         <Input
           _focus={{ variant: "outline" }}
           isDisabled={isReadOnly}
+          _disabled={{color: "black", opacity: '1'}}
           placeholder={'eg. take a bus to the gym'}
           variant={"unstyled"}
           size={"xl"}

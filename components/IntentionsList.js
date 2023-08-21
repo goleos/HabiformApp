@@ -21,24 +21,26 @@ export default function IntentionsList({ intentions, onChange, readOnly }) {
           );
         })}
       </VStack>
-        {!readOnly && <HStack justifyContent={"center"} space={5}>
-        <Button
-          onPress={() => {
-            let newArray = [...intentions];
-            newArray.pop();
-            onChange(newArray);
-          }}
-        >
-          Remove
-        </Button>
-        <Button
-          onPress={() => {
-            onChange([...intentions, ""]);
-          }}
-        >
-          Add intention
-        </Button>
-      </HStack>}
+      {!readOnly && (
+        <HStack justifyContent={"center"} space={5}>
+          <Button
+            onPress={() => {
+              let newArray = [...intentions];
+              newArray.pop();
+              onChange(newArray);
+            }}
+          >
+            Remove
+          </Button>
+          <Button
+            onPress={() => {
+              onChange([...intentions, ""]);
+            }}
+          >
+            Add intention
+          </Button>
+        </HStack>
+      )}
     </VStack>
   );
 }
