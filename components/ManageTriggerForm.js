@@ -119,105 +119,104 @@ export default function ManageTriggerForm(props) {
         setFieldValue,
         errors,
       }) => (
-          <Stack
-            direction="column"
-            padding={3}
-            backgroundColor="white"
-            space={2}
+        <Stack direction="column" padding={3} backgroundColor="white" space={2}>
+          <Text>Trigger name</Text>
+          <Input
+            value={values.name}
+            onChangeText={handleChange("name")}
+            placeholder="eg. Starting dinner, leaving for home after work"
+          />
+          {errors.name && <Text color="red.500">{errors.name}</Text>}
+          <HStack
+            alignItems="center"
+            justifyContent="space-between"
+            marginTop={3}
           >
-            <Text>Trigger name</Text>
-            <Input
-              value={values.name}
-              onChangeText={handleChange("name")}
-              placeholder="eg. Starting dinner, leaving for home after work"
+            <Text>Occurs at predictable times</Text>
+            <Switch
+              value={hasTime}
+              onValueChange={(boolValue) => {
+                if (boolValue === true) {
+                  setFieldValue(
+                    "timeIntervalStart",
+                    defaultIntervalStart.toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  );
+                  setFieldValue(
+                    "timeIntervalEnd",
+                    defaultIntervalEnd.toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  );
+                  setHasTime(true);
+                } else {
+                  setHasTime(false);
+                  setFieldValue("timeIntervalStart", null);
+                  setFieldValue("timeIntervalEnd", null);
+                }
+              }}
+              size="sm"
             />
-            {errors.name && <Text color='red.500'>{errors.name}</Text>}
-            <HStack
-              alignItems="center"
-              justifyContent="space-between"
-              marginTop={3}
-            >
-              <Text>Occurs at predictable times</Text>
-              <Switch
-                value={hasTime}
-                onValueChange={(boolValue) => {
-                  if (boolValue === true) {
-                    console.log(
-                      defaultIntervalStart.toTimeString().split(" ")[0]
-                    );
-                    setFieldValue(
-                      "timeIntervalStart",
-                      defaultIntervalStart.toTimeString().split(" ")[0]
-                    );
-                    setFieldValue(
-                      "timeIntervalEnd",
-                      defaultIntervalEnd.toTimeString().split(" ")[0]
-                    );
-                    setHasTime(true);
-                  } else {
-                    setHasTime(false);
-                    setFieldValue("timeIntervalStart", null);
-                    setFieldValue("timeIntervalEnd", null);
-                  }
-                }}
-                size="sm"
-              />
-            </HStack>
-            {hasTime && (
-              <TimeIntervalSelector
-                onStartTimeChange={(value) => {
-                  console.log(value);
-                  setFieldValue("timeIntervalStart", value);
-                }}
-                onEndTimeChange={(value) => {
-                  setFieldValue("timeIntervalEnd", value);
-                }}
-                defaultStart={defaultIntervalStart}
-                defaultEnd={defaultIntervalEnd}
-              />
-            )}
-            <Text>Extra notes</Text>
-            <TextArea
-              value={values.extraNotes}
-              onChangeText={handleChange("extraNotes")}
-              h={100}
+          </HStack>
+          {hasTime && (
+            <TimeIntervalSelector
+              onStartTimeChange={(value) => {
+                console.log(value);
+                setFieldValue("timeIntervalStart", value);
+              }}
+              onEndTimeChange={(value) => {
+                setFieldValue("timeIntervalEnd", value);
+              }}
+              defaultStart={defaultIntervalStart}
+              defaultEnd={defaultIntervalEnd}
             />
+          )}
+          <Text>Extra notes</Text>
+          <TextArea
+            value={values.extraNotes}
+            onChangeText={handleChange("extraNotes")}
+            h={100}
+          />
+          <Button
+            borderRadius={18}
+            onPress={() => {
+              if (values.timeIntervalStart !== null) {
+                if (
+                  parseInt(values.timeIntervalStart.split(":")[0]) <
+                  parseInt(values.timeIntervalEnd.split(":")[0])
+                ) {
+                  handleSubmit();
+                } else {
+                  toast.show({
+                    description: "Start time must be before end time",
+                  });
+                }
+              } else {
+                handleSubmit()
+              }
+            }}
+            bg="triggerColour.100"
+          >
+            Add Trigger
+          </Button>
+          {formIsInAddMode && (
             <Button
               borderRadius={18}
               onPress={() => {
-                if (values.timeIntervalStart !== null) {
-                  if (
-                    parseInt(values.timeIntervalStart.split(":")[0]) <
-                    parseInt(values.timeIntervalEnd.split(":")[0])
-                  ) {
-                    handleSubmit();
-                  } else {
-                      toast.show({
-                        description: "Start time must be before end time",
-                      });
-                  }
-                }
+                triggersController.deleteTrigger(
+                  values.triggerEventID,
+                  handleDeleteTrigger
+                );
               }}
-              bg="triggerColour.100"
+              bg="red.600"
             >
-              Add Trigger
+              Delete Trigger
             </Button>
-            {formIsInAddMode && (
-              <Button
-                borderRadius={18}
-                onPress={() => {
-                  triggersController.deleteTrigger(
-                    values.triggerEventID,
-                    handleDeleteTrigger
-                  );
-                }}
-                bg="red.600"
-              >
-                Delete Trigger
-              </Button>
-            )}
-
-          </Stack>
+          )}
+        </Stack>
       )}
     </Formik>
   );
