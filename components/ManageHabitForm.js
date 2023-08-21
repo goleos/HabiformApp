@@ -96,13 +96,16 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             </FormControl.ErrorMessage>
           </FormControl>
 
-          <Heading>Implementation intentions</Heading>
-          <IntentionsList
-            intentions={values.intentions}
-            onChange={(intentions) => {
-              setFieldValue("intentions", intentions);
-            }}
-          />
+          <VStack space={1}>
+            <Heading>Implementation intentions</Heading>
+            <IntentionsList
+                intentions={values.intentions}
+                onChange={(intentions) => {
+                  setFieldValue("intentions", intentions);
+                }}
+            />
+          </VStack>
+
 
           <VStack space={2}>
             <Button
