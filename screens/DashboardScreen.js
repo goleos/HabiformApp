@@ -1,27 +1,29 @@
-import { StyleSheet, Text, View } from "react-native";
+import {SafeAreaView, StyleSheet, Text, View} from "react-native";
 import { observer } from "mobx-react";
 import { dbController } from "../controllers/DatabaseController";
-import { Button } from "native-base";
+import {Button, Flex, Heading, VStack} from "native-base";
 import { habitsController } from "../controllers/HabitsController";
+import { triggersController } from "../controllers/TriggersController";
+import TriggerListItem from "../components/TriggerListItem";
+import UpNextBox from "../components/UpNextBox";
+import HabitList from "../components/HabitList";
 
 function DashboardScreen() {
-
   return (
-    <View style={styles.container}>
-      <Text>Dashboard Screen</Text>
-      <Text>{habitsController.habits.toString()}</Text>
-      <Button onPress={handleButton}>Press</Button>
-    </View>
+      <SafeAreaView>
+
+      <Flex height={"100%"} bg={"white"} padding={2}>
+          <VStack space={3} paddingX={3}>
+              <Heading>Up next</Heading>
+              <UpNextBox trigger={triggersController.getSoonestTriggers()[0]} habits={habitsController.habits.filter((habit) => habit.triggerEventID === triggersController.getSoonestTriggers()[0].triggerEventID)} />
+          </VStack>
+          <VStack>
+              <Heading>My active habits</Heading>
+              <HabitList habits={habitsController.getActiveHabits()} />
+          </VStack>
+      </Flex>
+      </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default observer(DashboardScreen);

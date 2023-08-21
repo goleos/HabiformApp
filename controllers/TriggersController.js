@@ -105,6 +105,7 @@ VALUES ( ?, ?, ?, ?, ?) `;
     this.requestTriggers();
   }
 
+
   getTriggerById(triggerID) {
     return this.triggers.find((trigger) => {
       return trigger.triggerEventID === triggerID;

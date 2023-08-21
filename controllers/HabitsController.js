@@ -3,6 +3,7 @@ import Habit, { hab } from "../models/habit";
 import { dbController } from "./DatabaseController";
 import habit from "../models/habit";
 import { triggersController } from "./TriggersController";
+import HabitStatus from "../models/habitStatus";
 
 export class HabitsController {
   habits = null;
@@ -24,6 +25,12 @@ export class HabitsController {
     dbController.getRowsOfTable("habit", (rows) => {
       this.getHabits(rows);
     });
+  }
+
+  getActiveHabits(){
+    return this.habits.filter((habit) => {
+      return habit.habitStatus === HabitStatus.Active
+    })
   }
 
   markHabitAsComplete(habit) {}
