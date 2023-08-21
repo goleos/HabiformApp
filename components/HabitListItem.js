@@ -4,6 +4,7 @@ import { NativeBaseProvider, Box, Stack, IconButton, Icon } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ContentBox from "./ContentBox";
 import { Badge } from 'native-base';
+import {triggersController} from "../controllers/TriggersController";
 
 export default function HabitListItem({ habit }) {
     let badge;
@@ -21,12 +22,13 @@ export default function HabitListItem({ habit }) {
                 </Stack>
 
                 {badge}
-                <Stack direction="row" alignItems="center" space={1}>
+
+                {habit.triggerEventID !== null && <Stack direction="row" alignItems="center" space={1}>
                     <Icon as={Ionicons} name="time" size={3} color="blue.700" />
                     <Text fontSize="xs" color="coolGray.500">
-                        Finishing dinner
+                        {triggersController.getTriggerById(habit.triggerEventID).name}
                     </Text>
-                </Stack>
+                </Stack>}
             </Stack>
         </ContentBox>
     )}
