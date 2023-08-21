@@ -14,6 +14,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { observer } from "mobx-react";
+import HabitList from "../../components/HabitList";
 
 function HabitsScreen({ navigation, isFocused }) {
   // console.log(habitsController.habits);
@@ -33,27 +34,14 @@ function HabitsScreen({ navigation, isFocused }) {
         }}
       />
       <Flex height={"100%"} bg={"white"}>
-        <Stack direction="column" padding={1}>
+
           {/* https://docs.nativebase.io/fab */}
-          <ScrollView>
-            {habitsController.habits !== null ? (
-              habitsController.habits.map((habit) => (
-                <Pressable
-                  key={habit.habitID}
-                  onPress={() => {
-                    navigation.navigate("HabitPage", {
-                      habit: habit,
-                    });
-                  }}
-                >
-                  <HabitListItem habit={habit} />
-                </Pressable>
-              ))
-            ) : (
-              <Text>Loading...</Text>
-            )}
-          </ScrollView>
-        </Stack>
+          <HabitList habits={habitsController.habits} onItemPress={(habit) => {
+              navigation.navigate("HabitPage", {
+                  habit: habit,
+              });
+          }}/>
+
       </Flex>
     </>
   );
