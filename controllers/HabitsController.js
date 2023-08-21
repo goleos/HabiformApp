@@ -14,9 +14,8 @@ export class HabitsController {
 
   getHabits(rows) {
     this.habits = [];
-    console.log("getting habits");
     rows.forEach((obj) => {
-      const habit = new Habit(obj);
+      const habit = new Habit({ ...obj, intentions: JSON.parse(obj.intentions) });
       this.habits.push(habit);
     });
   }
