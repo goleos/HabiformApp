@@ -6,6 +6,7 @@ import Habit from "../models/habit";
 import {
   Button,
   FormControl,
+  Heading,
   Input,
   Select,
   Stack,
@@ -16,6 +17,8 @@ import {
 import { habitFormValidationSchema } from "../utils/FormValidationSchemas";
 import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
+import IntentionListItem from "./IntentionListItem";
+import IntentionsList from "./IntentionsList";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
@@ -88,8 +91,18 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 />
               ))}
             </Select>
-            <FormControl.ErrorMessage>{errors.triggerEventID}</FormControl.ErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.triggerEventID}
+            </FormControl.ErrorMessage>
           </FormControl>
+
+          <Heading>Implementation intentions</Heading>
+          <IntentionsList
+            intentions={values.intentions}
+            onChange={(intentions) => {
+              setFieldValue("intentions", intentions);
+            }}
+          />
 
           <VStack space={2}>
             <Button
