@@ -7,6 +7,7 @@ export default function TimeIntervalSelector({
   defaultStart,
   defaultEnd,
 }) {
+
   return (
     <Stack>
       <Alert maxW="400" status="info" colorScheme="info">
@@ -21,7 +22,7 @@ export default function TimeIntervalSelector({
           value={defaultStart}
           onChange={(event, date) => {
               if (event.type === 'set') {
-                  onStartTimeChange(date.toTimeString().split(" ")[0]);
+                  onStartTimeChange(date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}));
               }
 
           }}
@@ -32,9 +33,8 @@ export default function TimeIntervalSelector({
           value={defaultEnd}
           onChange={(event, date) => {
               if (event.type === 'set') {
-                  onEndTimeChange(date.toTimeString().split(" ")[0]);
+                  onEndTimeChange(date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}));
               }
-            console.log("end ch");
           }}
         />
       </HStack>

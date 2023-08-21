@@ -5,12 +5,6 @@ import { Button } from "native-base";
 import { habitsController } from "../controllers/HabitsController";
 
 function DashboardScreen() {
-  const handleButton = () => {
-    dbController.initialiseDatabase();
-    // habitsController.createNewHabit(hab);
-    habitsController.requestHabits();
-    console.log(habitsController.habits);
-  };
 
   return (
     <View style={styles.container}>

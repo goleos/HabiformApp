@@ -142,7 +142,6 @@ export default function ManageTriggerForm(props) {
                 value={hasTime}
                 onValueChange={(boolValue) => {
                   if (boolValue === true) {
-                    console.log("value ch");
                     console.log(
                       defaultIntervalStart.toTimeString().split(" ")[0]
                     );
