@@ -11,7 +11,6 @@ import HabitList from "../components/HabitList";
 function DashboardScreen() {
   return (
       <SafeAreaView>
-
       <Flex height={"100%"} bg={"white"} padding={2}>
           <VStack space={3} paddingX={3}>
               <Heading>Up next</Heading>

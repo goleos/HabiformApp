@@ -23,7 +23,7 @@ function AppTabs() {
   return (
     <Tab.Navigator
       id="appTabNavigator"
-      initialRouteName="Habits"
+      initialRouteName="Dashboard"
       screenOptions={({ route }) => ({
         //  based on the example in https://reactnavigation.org/docs/tab-based-navigation
         tabBarIcon: ({ focused, color, size }) => {

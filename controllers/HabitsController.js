@@ -25,6 +25,7 @@ export class HabitsController {
   }
 
   requestHabits() {
+    console.log("requesting habits");
     dbController.getRowsOfTable("habit", (rows) => {
       this.getHabits(rows);
     });
