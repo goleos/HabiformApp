@@ -6,11 +6,22 @@ import { habitsController } from "./controllers/HabitsController";
 import { triggersController } from "./controllers/TriggersController";
 import { useEffect } from "react";
 import { observer } from "mobx-react";
+import { notificationsController } from "./controllers/NotificationsController";
 
 function App() {
   useEffect(() => {
     habitsController.requestHabits();
     triggersController.requestTriggers();
+    notificationsController
+      .schedulePushNotification(
+        {
+          title: "Hello",
+          body: "Whats up",
+        },
+        { seconds: 3 }
+      )
+      .then((r) => console.log(r))
+      .catch(() => console.log("reject"));
   }, []);
 
   return (
