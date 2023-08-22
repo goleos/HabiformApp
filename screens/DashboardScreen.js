@@ -18,8 +18,8 @@ function DashboardScreen() {
               <UpNextBox trigger={triggersController.getSoonestTriggers()[0]} habits={habitsController.habits.filter((habit) => habit.triggerEventID === triggersController.getSoonestTriggers()[0].triggerEventID)} />
           </VStack>
           <VStack>
-              <Heading>My active habits</Heading>
-              <HabitList habits={habitsController.getActiveHabits()} />
+              <Heading>Habits without time estimate</Heading>
+              <HabitList habits={habitsController.getUntimedActiveHabits()} />
           </VStack>
       </Flex>
       </SafeAreaView>

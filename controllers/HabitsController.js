@@ -1,7 +1,7 @@
-import { makeAutoObservable, runInAction } from "mobx";
-import Habit, { hab } from "../models/habit";
-import { dbController } from "./DatabaseController";
+import { makeAutoObservable } from "mobx";
+import Habit from "../models/habit";
 import habit from "../models/habit";
+import { dbController } from "./DatabaseController";
 import { triggersController } from "./TriggersController";
 import HabitStatus from "../models/habitStatus";
 
@@ -16,7 +16,10 @@ export class HabitsController {
   getHabits(rows) {
     this.habits = [];
     rows.forEach((obj) => {
-      const habit = new Habit({ ...obj, intentions: JSON.parse(obj.intentions) });
+      const habit = new Habit({
+        ...obj,
+        intentions: JSON.parse(obj.intentions),
+      });
       this.habits.push(habit);
     });
   }
@@ -27,10 +30,20 @@ export class HabitsController {
     });
   }
 
-  getActiveHabits(){
+  getActiveHabits() {
     return this.habits.filter((habit) => {
-      return habit.habitStatus === HabitStatus.Active
-    })
+      return habit.habitStatus === HabitStatus.Active;
+    });
+  }
+
+  getUntimedActiveHabits() {
+    const activeHabits = this.getActiveHabits();
+    return activeHabits.filter((habit) => {
+      return (
+        triggersController.getTriggerById(habit.triggerEventID)
+          .timeIntervalStart === null
+      );
+    });
   }
 
   markHabitAsComplete(habit) {}
