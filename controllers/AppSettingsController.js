@@ -3,7 +3,8 @@ import * as SQLLite from "expo-sqlite";
 import { dbInitQueries } from "../dbInit";
 
 export class AppSettingsController {
-  shouldRemindWithIntentions = true
+  shouldRemindWithIntentions = true;
+  showIntroScreen = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -16,14 +17,12 @@ export class AppSettingsController {
     };
   }
 
-  // setSettings(settings) {
-  //   console.log("changing");
-  //   this.settings = settings;
-  //   console.log(this.settings);
-  // }
-
   setShouldRemindWithIntentions(value) {
-    this.shouldRemindWithIntentions = value
+    this.shouldRemindWithIntentions = value;
+  }
+
+  dismissIntroScreen() {
+    this.showIntroScreen = false;
   }
 }
 

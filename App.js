@@ -7,6 +7,7 @@ import { triggersController } from "./controllers/TriggersController";
 import { useEffect } from "react";
 import { observer } from "mobx-react";
 import { notificationsController } from "./controllers/NotificationsController";
+import {WelcomeStack} from "./navigation/WelcomeNavigation";
 
 function App() {
   useEffect(() => {
@@ -17,7 +18,7 @@ function App() {
   return (
     <NativeBaseProvider theme={uiTheme}>
       <NavigationContainer>
-        {habitsController.habits !== null && <AppTabs />}
+        {habitsController.habits !== null && <WelcomeStack />}
       </NavigationContainer>
     </NativeBaseProvider>
   );
