@@ -23,12 +23,16 @@ export class NotificationsController {
     );
   }
 
+  async getAllScheduledNotifications() {
+    return await Notifications.getAllScheduledNotificationsAsync();
+  }
+
   async cancelPushNotification(identifier) {
-    await Notifications.cancelScheduledNotificationAsync(identifier);
+    return await Notifications.cancelScheduledNotificationAsync(identifier);
   }
 
   async schedulePushNotification(content, when, identifier) {
-    await Notifications.scheduleNotificationAsync({
+    return await Notifications.scheduleNotificationAsync({
       content: content,
       trigger: when,
       identifier: identifier,
