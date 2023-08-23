@@ -7,9 +7,11 @@ import {
   Button,
   FormControl,
   Heading,
+  HStack,
   Input,
   Select,
   Stack,
+  Switch,
   Text,
   useToast,
   VStack,
@@ -99,13 +101,24 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
           <VStack space={1}>
             <Heading>Implementation intentions</Heading>
             <IntentionsList
-                intentions={values.intentions}
-                onChange={(intentions) => {
-                  setFieldValue("intentions", intentions);
-                }}
+              intentions={values.intentions}
+              onChange={(intentions) => {
+                setFieldValue("intentions", intentions);
+              }}
             />
           </VStack>
 
+          <HStack justifyContent={"space-between"}>
+            <Text>Notify</Text>
+            <Switch
+              value={!!values.shouldNotify}
+              onValueChange={(boolValue) => {
+                console.log(boolValue);
+                setFieldValue('shouldNotify', boolValue ? 1 : 0);
+                console.log(values);
+              }}
+            />
+          </HStack>
 
           <VStack space={2}>
             <Button

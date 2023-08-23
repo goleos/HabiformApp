@@ -43,6 +43,12 @@ function setNotifications(habit) {
         .catch((reason) => {
           console.log("failed to cancel notifications");
           console.log(reason);
+        })
+        .then(() => {
+          console.log(
+            "successfully canceled notification with id: " +
+              notificationIdentifier
+          );
         });
     }
   }
