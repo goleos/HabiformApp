@@ -2,6 +2,7 @@
 // https://www.typescriptlang.org/docs/handbook/2/classes.html
 
 import HabitStatus from "./habitStatus";
+import { appSettingsController } from "../controllers/AppSettingsController";
 
 class Habit {
   habitID: number = null;
@@ -34,14 +35,15 @@ class Habit {
     let reminder;
 
     reminder =
-      this.intentions.length === 0
+      this.intentions.length !== 0 &&
+      appSettingsController.shouldRemindWithIntentions
         ? {
             title: reminderTitle,
-            body: "Remember to complete this habit today",
+            body: "Let's start with " + '"' + this.intentions[0] + '"',
           }
         : {
             title: reminderTitle,
-            body: "Let's start with " + '"' + this.intentions[0] + '"',
+            body: "Remember to complete this habit today",
           };
     return reminder;
   }
