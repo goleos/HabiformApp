@@ -38,6 +38,12 @@ export const sampleHabits = [
     habitStatus: "archived",
     shouldNotify: false,
     isFormed: false
+  },
+  {
+    triggerEventID: 1003,
+    habitID: 1004,
+    name: "Check driving license",
+    extraNotes: "Make sure to have your driving license when you are about to drive a car",
   }
 ];
 
@@ -56,5 +62,9 @@ export const sampleTriggers = [
   {
     triggerEventID: 1002,
     name: "Starting breakfast"
+  },
+  {
+    triggerEventID: 1003,
+    name: "Entering my car"
   }
 ];

@@ -6,6 +6,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { welcomeMessages } from "../../constants";
 import { useState } from "react";
+import {sampleHabits, sampleTriggers} from "../../assets/sample_data";
+import {triggersController} from "../../controllers/TriggersController";
+import Habit from "../../models/habit";
+import {habitsController} from "../../controllers/HabitsController";
+import Trigger from "../../models/trigger";
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -13,23 +18,49 @@ function WelcomeScreen({ navigation }) {
     return message.number === slideNumber;
   });
 
-  const lastSlideFinishComponent = <VStack space={1}>
-      <Text>Would you like to start with example habits and triggers so you can better understand how the app works?</Text>
+  const loadSampleData = () => {
+      sampleTriggers.forEach((triggerObj) => {
+          console.log(triggerObj);
+          const trigger = new Trigger(triggerObj);
+          triggersController.createNewTrigger(trigger, () => {console.log('succc')}, () => {console.log('faillll')});
+      });
+      sampleHabits.forEach((habitObj) => {
+          const habit = new Habit(
+              habitObj,
+              () => {console.log('succc')},
+              () => {console.log('failll')}
+          );
+          habitsController.createNewHabit(
+              habit,
+              () => {},
+              () => {}
+          );
+      });
+  }
+
+  const lastSlideFinishComponent = (
+    <VStack space={1}>
+      <Text>
+        Would you like to start with example habits and triggers so you can
+        better understand how the app works?
+      </Text>
       <Button
-          onPress={() => {
-              navigation.navigate("App");
-          }}
+        onPress={() => {
+          loadSampleData();
+          navigation.navigate("App");
+        }}
       >
-          Start with example data
+        Start with example data
       </Button>
       <Button
-          onPress={() => {
-              navigation.navigate("App");
-          }}
+        onPress={() => {
+          navigation.navigate("App");
+        }}
       >
-          Start with empty data
+        Start with empty data
       </Button>
-  </VStack>
+    </VStack>
+  );
 
   return (
     <SafeAreaView>

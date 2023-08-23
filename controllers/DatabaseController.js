@@ -4,6 +4,9 @@
 import { makeAutoObservable, observable, action } from "mobx";
 import * as SQLLite from "expo-sqlite";
 import { dbInitQueries } from "../dbInit";
+import { sampleHabits, sampleTriggers } from "../assets/sample_data";
+import Trigger from "../models/trigger";
+import Habit from "../models/habit";
 
 export class DatabaseController {
   db = SQLLite.openDatabase("test-db.db");
