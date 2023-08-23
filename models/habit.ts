@@ -2,7 +2,6 @@
 // https://www.typescriptlang.org/docs/handbook/2/classes.html
 
 import HabitStatus from "./habitStatus";
-import Trigger from "./trigger";
 
 class Habit {
   habitID: number = null;
@@ -10,7 +9,7 @@ class Habit {
   intentions: Array<string> = [];
   // datesCompleted: Set<Date>;
   triggerEventID: number;
-  extraNotes: string = '';
+  extraNotes: string = "";
   habitStatus: HabitStatus = HabitStatus.Draft;
   shouldNotify: boolean = true;
   isFormed: boolean = false;
@@ -26,6 +25,26 @@ class Habit {
     this.intentions.push(intention);
   }
 
+  isActive() {
+    return this.habitStatus === HabitStatus.Active;
+  }
+
+  produceNotification() {
+    const reminderTitle = this.name;
+    let reminder;
+
+    reminder =
+      this.intentions.length === 0
+        ? {
+            title: reminderTitle,
+            body: "Remember to complete this habit today",
+          }
+        : {
+            title: reminderTitle,
+            body: "Let's start with " + '"' + this.intentions[0] + '"',
+          };
+    return reminder;
+  }
 }
 
 export default Habit;

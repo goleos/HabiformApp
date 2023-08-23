@@ -4,6 +4,49 @@ import habit from "../models/habit";
 import { dbController } from "./DatabaseController";
 import { triggersController } from "./TriggersController";
 import HabitStatus from "../models/habitStatus";
+import { notificationsController } from "./NotificationsController";
+import { DailyTriggerInput } from "expo-notifications";
+
+function setNotifications(habit) {
+  if (habit.isActive()) {
+    const notificationIdentifier = "habit " + habit.habitID;
+    if (habit.shouldNotify) {
+      const trigger = triggersController.getTriggerById(habit.triggerEventID);
+      if (trigger.timeIntervalStart !== null) {
+        const triggerTime = trigger.startTimeAsDateObject();
+        console.log(
+          "Scheduling notification for habit '" +
+            habit.name +
+            "' at " +
+            triggerTime.toString()
+        );
+        notificationsController
+          .schedulePushNotification(
+            habit.produceNotification(),
+            {
+              hour: triggerTime.getHours(),
+              minute: triggerTime.getMinutes(),
+              repeats: true,
+            },
+            notificationIdentifier
+          )
+          .then((r) => {
+            console.log(
+              "Successfully scheduled a notification with response: "
+            );
+            console.log(r);
+          });
+      }
+    } else {
+      notificationsController
+        .cancelPushNotification(notificationIdentifier)
+        .catch((reason) => {
+          console.log("failed to cancel notifications");
+          console.log(reason);
+        });
+    }
+  }
+}
 
 export class HabitsController {
   habits = null;
@@ -21,6 +64,7 @@ export class HabitsController {
         intentions: JSON.parse(obj.intentions),
       });
       this.habits.push(habit);
+      setNotifications(habit);
     });
   }
 
@@ -33,6 +77,16 @@ export class HabitsController {
   getActiveHabits() {
     return this.habits.filter((habit) => {
       return habit.habitStatus === HabitStatus.Active;
+    });
+  }
+
+  getTimedActiveHabits() {
+    const activeHabits = this.getActiveHabits();
+    return activeHabits.filter((habit) => {
+      return (
+        triggersController.getTriggerById(habit.triggerEventID)
+          .timeIntervalStart !== null
+      );
     });
   }
 

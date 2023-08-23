@@ -12,16 +12,6 @@ function App() {
   useEffect(() => {
     habitsController.requestHabits();
     triggersController.requestTriggers();
-    notificationsController
-      .schedulePushNotification(
-        {
-          title: "Hello",
-          body: "Whats up",
-        },
-        { seconds: 3 }
-      )
-      .then((r) => console.log(r))
-      .catch(() => console.log("reject"));
   }, []);
 
   return (

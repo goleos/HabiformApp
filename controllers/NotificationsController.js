@@ -1,7 +1,7 @@
 // This Code is adapted from:
 // https://docs.expo.dev/versions/latest/sdk/notifications/
 
-import * as Device from 'expo-device'
+import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { makeAutoObservable } from "mobx";
 
@@ -23,10 +23,15 @@ export class NotificationsController {
     );
   }
 
-  async schedulePushNotification(content, when) {
+  async cancelPushNotification(identifier) {
+    await Notifications.cancelScheduledNotificationAsync(identifier);
+  }
+
+  async schedulePushNotification(content, when, identifier) {
     await Notifications.scheduleNotificationAsync({
       content: content,
       trigger: when,
+      identifier: identifier,
     });
   }
 
