@@ -64,6 +64,7 @@ function WelcomeScreen({ navigation }) {
         Start with example data
       </Button>
       <Button
+          variant={'outline'}
         colorScheme={"secondary"}
         onPress={async () => {
           await appSettingsController.setShowIntroScreen(false);

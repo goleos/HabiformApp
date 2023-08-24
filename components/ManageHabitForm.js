@@ -149,6 +149,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             )}
             {!formIsInAddMode && (
               <Button
+                  colorScheme={'delete'}
                 onPress={() => {
                   handleDelete(values.habitID);
                 }}
