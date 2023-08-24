@@ -1,15 +1,15 @@
-import {Button, Heading, Text} from "native-base";
+import {Button, Heading, Text, Flex} from "native-base";
 import IntentionsList from "../../components/IntentionsList";
 import {notificationsController} from "../../controllers/NotificationsController";
 import {observer} from "mobx-react";
+import HeadingWithIcon from "../../components/HeadingWithIcon";
 
 function HabitPage({navigation, route}) {
     const habit = route.params.habit;
     const intentions = habit.intentions;
     return (
-        <>
-            <Text>{habit.name}</Text>
-            <Heading>Implementation intentions</Heading>
+        <Flex bg={'white'} padding={0.5}>
+            <HeadingWithIcon headingText={habit.name} bodyText={habit.extraNotes} iconName={'repeat'} />
             <IntentionsList intentions={intentions} readOnly={true}/>
             <Button
                 onPress={() => {
@@ -23,7 +23,7 @@ function HabitPage({navigation, route}) {
             <Button onPress={() => {
                 notificationsController.schedulePushNotification(habit.produceNotification(), {seconds: 2}, 'habit ' + habit.habitID)
             }}>Notify</Button>
-            </>
+            </Flex>
             );
             }
 

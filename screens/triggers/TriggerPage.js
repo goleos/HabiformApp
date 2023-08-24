@@ -15,6 +15,7 @@ import HabitListItem from "../../components/HabitListItem";
 import { hab } from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
 import {observer} from "mobx-react";
+import HeadingWithIcon from "../../components/HeadingWithIcon";
 
 function TriggerPage({ navigation, route }) {
 
@@ -25,12 +26,7 @@ function TriggerPage({ navigation, route }) {
   return (
     <Flex height={"100%"} bg={"white"}>
       <VStack margin={2} space={2}>
-        <VStack alignItems={"center"} space={0}>
-          <Text>{"Trigger id:" + trigger.triggerEventID} </Text>
-          <Icon as={Ionicons} size={100} name="alarm" color="primary.800" />
-          <Heading>{trigger.name}</Heading>
-          <Text>{trigger.extraNotes}</Text>
-        </VStack>
+        <HeadingWithIcon iconName={'clock-out'} headingText={trigger.name} bodyText={trigger.extraNotes} />
 
         <Box borderRadius={10} bg={"blue.200"} padding={2}>
           <VStack alignItems={"center"}>
