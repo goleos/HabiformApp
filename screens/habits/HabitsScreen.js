@@ -1,18 +1,6 @@
-import { StyleSheet } from "react-native";
-import {
-  Fab,
-  Flex,
-  Icon,
-  Pressable,
-  ScrollView,
-  Stack,
-  Text,
-} from "native-base";
-import HabitListItem from "../../components/HabitListItem";
+import { Fab, Flex, Icon } from "native-base";
 import { habitsController } from "../../controllers/HabitsController";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { observer } from "mobx-react";
 import HabitList from "../../components/HabitList";
 
@@ -20,6 +8,7 @@ function HabitsScreen({ navigation, isFocused }) {
   // console.log(habitsController.habits);
   return (
     <>
+      {/* https://docs.nativebase.io/fab */}
       <Fab
         renderInPortal={false}
         marginBottom={0}
@@ -34,14 +23,14 @@ function HabitsScreen({ navigation, isFocused }) {
         }}
       />
       <Flex height={"100%"} bg={"white"}>
-
-          {/* https://docs.nativebase.io/fab */}
-          <HabitList habits={habitsController.habits} onItemPress={(habit) => {
-              navigation.navigate("HabitPage", {
-                  habit: habit,
-              });
-          }}/>
-
+        <HabitList
+          habits={habitsController.habits}
+          onItemPress={(habit) => {
+            navigation.navigate("HabitPage", {
+              habit: habit,
+            });
+          }}
+        />
       </Flex>
     </>
   );

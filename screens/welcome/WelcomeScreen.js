@@ -1,8 +1,6 @@
-import { observer } from "mobx-react";
 import { SafeAreaView } from "react-native";
-import { Alert, Box, Button, Flex, Heading, Text, VStack } from "native-base";
+import { Button, Flex, Heading, Text, VStack } from "native-base";
 import { appSettingsController } from "../../controllers/AppSettingsController";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { welcomeMessages } from "../../constants";
 import { useState } from "react";
@@ -11,7 +9,6 @@ import { triggersController } from "../../controllers/TriggersController";
 import Habit from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
 import Trigger from "../../models/trigger";
-import { uiTheme } from "../../utils/uiTheme";
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -58,7 +55,8 @@ function WelcomeScreen({ navigation }) {
         better understand how the app works?
       </Text>
       <Button
-        onPress={() => {
+        onPress={async () => {
+          await appSettingsController.setShowIntroScreen(false);
           loadSampleData();
           navigation.navigate("App");
         }}
@@ -67,7 +65,8 @@ function WelcomeScreen({ navigation }) {
       </Button>
       <Button
         colorScheme={"secondary"}
-        onPress={() => {
+        onPress={async () => {
+          await appSettingsController.setShowIntroScreen(false);
           navigation.navigate("App");
         }}
       >
