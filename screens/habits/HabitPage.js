@@ -1,6 +1,7 @@
 import {Button, Heading, Text} from "native-base";
 import IntentionsList from "../../components/IntentionsList";
 import {notificationsController} from "../../controllers/NotificationsController";
+import {observer} from "mobx-react";
 
 function HabitPage({navigation, route}) {
     const habit = route.params.habit;
@@ -26,4 +27,4 @@ function HabitPage({navigation, route}) {
             );
             }
 
-export default HabitPage;
+export default observer(HabitPage);

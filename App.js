@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import { observer } from "mobx-react";
 import { WelcomeStack } from "./navigation/WelcomeNavigation";
 
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(['In React 18, SSRProvider', 'Constants.platform.ios.model'])
+
 function App() {
   useEffect(() => {
     habitsController.requestHabits();
@@ -17,9 +21,7 @@ function App() {
   return (
     <NativeBaseProvider theme={uiTheme}>
       <NavigationContainer>
-        {habitsController.habits !== null && (
-          <WelcomeStack />
-        )}
+        {habitsController.habits !== null && <WelcomeStack />}
       </NavigationContainer>
     </NativeBaseProvider>
   );

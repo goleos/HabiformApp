@@ -6,11 +6,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { welcomeMessages } from "../../constants";
 import { useState } from "react";
-import {sampleHabits, sampleTriggers} from "../../assets/sample_data";
-import {triggersController} from "../../controllers/TriggersController";
+import { sampleHabits, sampleTriggers } from "../../assets/sample_data";
+import { triggersController } from "../../controllers/TriggersController";
 import Habit from "../../models/habit";
-import {habitsController} from "../../controllers/HabitsController";
+import { habitsController } from "../../controllers/HabitsController";
 import Trigger from "../../models/trigger";
+import { uiTheme } from "../../utils/uiTheme";
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -19,24 +20,36 @@ function WelcomeScreen({ navigation }) {
   });
 
   const loadSampleData = () => {
-      sampleTriggers.forEach((triggerObj) => {
-          console.log(triggerObj);
-          const trigger = new Trigger(triggerObj);
-          triggersController.createNewTrigger(trigger, () => {console.log('succc')}, () => {console.log('faillll')});
-      });
-      sampleHabits.forEach((habitObj) => {
-          const habit = new Habit(
-              habitObj,
-              () => {console.log('succc')},
-              () => {console.log('failll')}
-          );
-          habitsController.createNewHabit(
-              habit,
-              () => {},
-              () => {}
-          );
-      });
-  }
+    sampleTriggers.forEach((triggerObj) => {
+      console.log(triggerObj);
+      const trigger = new Trigger(triggerObj);
+      triggersController.createNewTrigger(
+        trigger,
+        () => {
+          console.log("succc");
+        },
+        () => {
+          console.log("faillll");
+        }
+      );
+    });
+    sampleHabits.forEach((habitObj) => {
+      const habit = new Habit(
+        habitObj,
+        () => {
+          console.log("succc");
+        },
+        () => {
+          console.log("failll");
+        }
+      );
+      habitsController.createNewHabit(
+        habit,
+        () => {},
+        () => {}
+      );
+    });
+  };
 
   const lastSlideFinishComponent = (
     <VStack space={1}>
@@ -53,6 +66,7 @@ function WelcomeScreen({ navigation }) {
         Start with example data
       </Button>
       <Button
+        colorScheme={"secondary"}
         onPress={() => {
           navigation.navigate("App");
         }}

@@ -181,7 +181,6 @@ export default function ManageTriggerForm(props) {
             h={100}
           />
           <Button
-            borderRadius={18}
             onPress={() => {
               if (values.timeIntervalStart !== null) {
                 if (
@@ -198,13 +197,13 @@ export default function ManageTriggerForm(props) {
                 handleSubmit()
               }
             }}
-            bg="triggerColour.100"
+            colorScheme={'trigger'}
           >
             Add Trigger
           </Button>
           {formIsInAddMode && (
             <Button
-              borderRadius={18}
+                colorScheme={'delete'}
               onPress={() => {
                 triggersController.deleteTrigger(
                   values.triggerEventID,

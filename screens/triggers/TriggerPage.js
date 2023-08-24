@@ -14,6 +14,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import HabitListItem from "../../components/HabitListItem";
 import { hab } from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
+import {observer} from "mobx-react";
 
 function TriggerPage({ navigation, route }) {
 
@@ -73,4 +74,4 @@ function TriggerPage({ navigation, route }) {
   );
 }
 
-export default TriggerPage;
+export default observer(TriggerPage);
