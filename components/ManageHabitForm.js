@@ -4,14 +4,15 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import Habit from "../models/habit";
 import {
+  Box,
   Button,
+  Flex,
   FormControl,
   Heading,
   HStack,
   Input,
   Select,
   Stack,
-  Switch,
   Text,
   useToast,
   VStack,
@@ -21,6 +22,8 @@ import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
 import IntentionListItem from "./IntentionListItem";
 import IntentionsList from "./IntentionsList";
+import BoxStack from "./boxes/BoxStack";
+import { Switch } from "react-native";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
@@ -68,35 +71,37 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
         setFieldValue,
         errors,
       }) => (
-        <VStack space={10}>
-          <FormControl isInvalid={errors.name}>
-            <FormControl.Label>Habit name</FormControl.Label>
-            <Input value={values.name} onChangeText={handleChange("name")} />
-            <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage>
-          </FormControl>
+        <Flex height={"100%"} justifyContent={"space-between"} space={10}>
+          <VStack id={"basic-info"} space={3}>
+            <FormControl isInvalid={errors.name}>
+              <FormControl.Label>Habit name</FormControl.Label>
+              <Input value={values.name} onChangeText={handleChange("name")} />
+              <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage>
+            </FormControl>
 
-          <FormControl isInvalid={errors.triggerEventID}>
-            <FormControl.Label>Link a trigger</FormControl.Label>
-            <Select
-              selectedValue={values.triggerEventID}
-              onValueChange={(itemValue) => {
-                console.log("set");
-                setFieldValue("triggerEventID", itemValue);
-                console.log(values.triggerEventID);
-              }}
-            >
-              {triggersController.triggers.map((trigger) => (
-                <Select.Item
-                  label={trigger.name}
-                  value={trigger.triggerEventID}
-                  key={trigger.triggerEventID}
-                />
-              ))}
-            </Select>
-            <FormControl.ErrorMessage>
-              {errors.triggerEventID}
-            </FormControl.ErrorMessage>
-          </FormControl>
+            <FormControl isInvalid={errors.triggerEventID}>
+              <FormControl.Label>Link a trigger</FormControl.Label>
+              <Select
+                selectedValue={values.triggerEventID}
+                onValueChange={(itemValue) => {
+                  console.log("set");
+                  setFieldValue("triggerEventID", itemValue);
+                  console.log(values.triggerEventID);
+                }}
+              >
+                {triggersController.triggers.map((trigger) => (
+                  <Select.Item
+                    label={trigger.name}
+                    value={trigger.triggerEventID}
+                    key={trigger.triggerEventID}
+                  />
+                ))}
+              </Select>
+              <FormControl.ErrorMessage>
+                {errors.triggerEventID}
+              </FormControl.ErrorMessage>
+            </FormControl>
+          </VStack>
 
           <VStack space={1}>
             <Heading>Implementation intentions</Heading>
@@ -108,17 +113,19 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             />
           </VStack>
 
-          <HStack justifyContent={"space-between"}>
-            <Text>Notify</Text>
-            <Switch
-              value={!!values.shouldNotify}
-              onValueChange={(boolValue) => {
-                console.log(boolValue);
-                setFieldValue('shouldNotify', boolValue ? 1 : 0);
-                console.log(values);
-              }}
-            />
-          </HStack>
+          <BoxStack>
+            <HStack justifyContent={"space-between"} alignItems={"center"}>
+              <Text>Receive reminder notifications</Text>
+              <Switch
+                value={!!values.shouldNotify}
+                onValueChange={(boolValue) => {
+                  console.log(boolValue);
+                  setFieldValue("shouldNotify", boolValue ? 1 : 0);
+                  console.log(values);
+                }}
+              />
+            </HStack>
+          </BoxStack>
 
           <VStack space={2}>
             <Button
@@ -131,6 +138,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             </Button>
             {!(values.habitStatus === "draft" && !formIsInAddMode) && (
               <Button
+                variant={"outline"}
                 onPress={() => {
                   setFieldValue("habitStatus", "draft");
                   handleSubmit();
@@ -149,7 +157,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               </Button>
             )}
           </VStack>
-        </VStack>
+        </Flex>
       )}
     </Formik>
   );

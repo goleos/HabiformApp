@@ -39,6 +39,18 @@ export const uiTheme = extendTheme({
       800: "#742b2b",
       900: "#5f2929",
     },
+    heading: {
+      50: "#96d9e5",
+      100: "#7bcad8",
+      200: "#63b9c8",
+      300: "#4da6b6",
+      400: "#408e9c",
+      500: "#3f7b85",
+      600: "#3c6870",
+      700: "#39575c",
+      800: "#33464a",
+      900: "#2d3739",
+    },
     habitColour: {
       100: "#24b3f1",
     },
@@ -69,6 +81,12 @@ export const uiTheme = extendTheme({
     Button: {
       defaultProps: {
         borderRadius: 16,
+        size: "lg",
+      },
+    },
+    Heading: {
+      defaultProps: {
+        color: "heading.600",
       },
     },
   },
