@@ -24,7 +24,7 @@ function TriggerPage({ navigation, route }) {
     (habit) => habit.triggerEventID === trigger.triggerEventID
   );
   return (
-    <Flex height={"100%"} bg={"white"}>
+    <Flex height={"100%"} bg={"white"} justifyContent={'space-between'}>
       <VStack margin={2} space={2}>
         <HeadingWithIcon iconName={'clock-out'} headingText={trigger.name} bodyText={trigger.extraNotes} />
 
@@ -55,8 +55,9 @@ function TriggerPage({ navigation, route }) {
           <Text>There are no linked habits</Text>
         )}
       </VStack>
-      <VStack padding={3}>
         <Button
+            marginX={2}
+            marginY={3}
           onPress={() => {
             navigation.navigate("ManageTrigger", {
               trigger: trigger,
@@ -65,7 +66,6 @@ function TriggerPage({ navigation, route }) {
         >
           Edit
         </Button>
-      </VStack>
     </Flex>
   );
 }

@@ -1,5 +1,6 @@
 import { Alert, HStack, Stack, Text } from "native-base";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
+import InfoAlert from "./InfoAlert";
 
 export default function TimeIntervalSelector({
   onStartTimeChange,
@@ -10,10 +11,6 @@ export default function TimeIntervalSelector({
 
   return (
     <Stack>
-      <Alert maxW="400" status="info" colorScheme="info">
-        Providing an approximate daily time interval in which your trigger event
-        occurs lets the app remind you when you should complete your habit
-      </Alert>
       <HStack justifyContent="center" alignItems="center">
           {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
         <RNDateTimePicker

@@ -1,18 +1,19 @@
 import {
-  Box,
-  Divider,
-  Heading,
-  HStack,
-  ScrollView,
-  Select,
-  Text,
-  VStack,
+    Box,
+    Divider,
+    Heading,
+    HStack, Icon,
+    ScrollView,
+    Select,
+    Text,
+    VStack,
 } from "native-base";
 import TriggerListItem from "./listItems/TriggerListItem";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HabitList from "./HabitList";
 import { useState } from "react";
 import IntentionsList from "./IntentionsList";
+import {materialIconsNames} from "../utils/constants";
 
 export default function UpNextBox({ trigger, habits }) {
   const hasHabits = habits.length >= 1;
@@ -28,7 +29,7 @@ export default function UpNextBox({ trigger, habits }) {
         alignItems={"center"}
         space={2}
       >
-        <MaterialCommunityIcons name={"clock-outline"} size={50} />
+        <Icon as={MaterialCommunityIcons} name={materialIconsNames.trigger} size={50} color={'primary.500'} />
         <VStack space={0}>
           <Text>{trigger.name}</Text>
           <Text highlight fontSize={"lg"}>

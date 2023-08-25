@@ -48,8 +48,8 @@ function AppTabs() {
     >
       <Tab.Screen name="Triggers" component={TriggerNavigation} />
       <Tab.Screen name="Habits" component={HabitNavigation} />
-      <Tab.Screen name="Dashboard" component={DashboardScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Dashboard" component={DashboardScreen} options={{headerShown: true}} />
+      <Tab.Screen name="Settings" component={SettingsScreen} options={{headerShown: true}}/>
     </Tab.Navigator>
   );
 }

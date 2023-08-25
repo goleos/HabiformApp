@@ -118,6 +118,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             <HStack justifyContent={"space-between"} alignItems={"center"}>
               <Text>Receive reminder notifications</Text>
               <Switch
+                trackColor={{ true: "#2061c8" }}
                 value={!!values.shouldNotify}
                 onValueChange={(boolValue) => {
                   console.log(boolValue);
@@ -129,12 +130,13 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             <HStack justifyContent={"space-between"} alignItems={"center"}>
               <Text>Mark habit as formed</Text>
               <Switch
-                  value={!!values.isFormed}
-                  onValueChange={(boolValue) => {
-                    console.log(boolValue);
-                    setFieldValue("isFormed", boolValue ? 1 : 0);
-                    console.log(values);
-                  }}
+                trackColor={{ true: "#2061c8" }}
+                value={!!values.isFormed}
+                onValueChange={(boolValue) => {
+                  console.log(boolValue);
+                  setFieldValue("isFormed", boolValue ? 1 : 0);
+                  console.log(values);
+                }}
               />
             </HStack>
           </BoxStack>
@@ -160,28 +162,28 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               </Button>
             )}
             {!formIsInAddMode && (
-                <HStack justifyContent={'space-between'}>
-              <Button
-                  width={'50%'}
-                  colorScheme={'delete'}
-                onPress={() => {
-                  handleDelete(values.habitID);
-                }}
-              >
-                Delete Habit
-              </Button>
-                  <Button
-                      width={'50%'}
-                      variant={'outline'}
-                      colorScheme={'delete'}
-                      onPress={() => {
-                        setFieldValue('habitStatus', HabitStatus.Archived)
-                        handleSubmit()
-                      }}
-                  >
-                    Archive Habit
-                  </Button>
-                </HStack>
+              <HStack justifyContent={"space-between"}>
+                <Button
+                  width={"50%"}
+                  colorScheme={"delete"}
+                  onPress={() => {
+                    handleDelete(values.habitID);
+                  }}
+                >
+                  Delete Habit
+                </Button>
+                <Button
+                  width={"50%"}
+                  variant={"outline"}
+                  colorScheme={"delete"}
+                  onPress={() => {
+                    setFieldValue("habitStatus", HabitStatus.Archived);
+                    handleSubmit();
+                  }}
+                >
+                  Archive Habit
+                </Button>
+              </HStack>
             )}
           </VStack>
         </Flex>
