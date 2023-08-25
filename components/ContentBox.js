@@ -7,7 +7,7 @@ export default function ContentBox(props) {
   return (
     <Box
       backgroundColor="white"
-      borderRadius={5}
+      borderRadius={15}
       paddingLeft={3}
       paddingY={3}
       margin={2}

@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { NativeBaseProvider } from "native-base";
+import {NativeBaseProvider, Text} from "native-base";
 import { uiTheme } from "./utils/uiTheme";
 import { habitsController } from "./controllers/HabitsController";
 import { triggersController } from "./controllers/TriggersController";
@@ -23,10 +23,12 @@ function App() {
     triggersController.requestTriggers();
   }, []);
 
+  const isReady = habitsController.habits !== undefined && triggersController.triggers !== undefined
+
   return (
     <NativeBaseProvider theme={uiTheme}>
       <NavigationContainer>
-        {habitsController.habits !== null && <WelcomeStack />}
+        {isReady ? <WelcomeStack /> : <Text>Loading</Text>}
       </NavigationContainer>
     </NativeBaseProvider>
   );

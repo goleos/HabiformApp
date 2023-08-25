@@ -4,7 +4,7 @@ import { dbController } from "../controllers/DatabaseController";
 import {Button, Flex, Heading, VStack} from "native-base";
 import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
-import TriggerListItem from "../components/TriggerListItem";
+import TriggerListItem from "../components/listItems/TriggerListItem";
 import UpNextBox from "../components/UpNextBox";
 import HabitList from "../components/HabitList";
 
@@ -14,7 +14,7 @@ function DashboardScreen() {
       <Flex height={"100%"} bg={"white"} padding={2}>
           <VStack space={3} paddingX={3}>
               <Heading>Up next</Heading>
-              <UpNextBox trigger={triggersController.getSoonestTriggers()[0]} habits={habitsController.habits.filter((habit) => habit.triggerEventID === triggersController.getSoonestTriggers()[0].triggerEventID)} />
+              {triggersController.triggers != false && <UpNextBox trigger={triggersController.getSoonestTriggers()[0]} habits={habitsController.habits.filter((habit) => habit.triggerEventID === triggersController.getSoonestTriggers()[0].triggerEventID)} />}
           </VStack>
           <VStack>
               <Heading>Habits without time estimate</Heading>

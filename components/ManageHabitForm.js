@@ -20,7 +20,7 @@ import {
 import { habitFormValidationSchema } from "../utils/FormValidationSchemas";
 import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
-import IntentionListItem from "./IntentionListItem";
+import IntentionListItem from "./listItems/IntentionListItem";
 import IntentionsList from "./IntentionsList";
 import BoxStack from "./boxes/BoxStack";
 import { Switch } from "react-native";
@@ -104,7 +104,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
           </VStack>
 
           <VStack space={1}>
-            <Heading>Implementation intentions</Heading>
+            {/*<Heading>Implementation intentions</Heading>*/}
             <IntentionsList
               intentions={values.intentions}
               onChange={(intentions) => {

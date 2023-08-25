@@ -30,7 +30,7 @@ export class TriggersController {
   }
 
   getTimedTriggers() {
-    let list = [...this.triggers];
+    let list = this.triggers !== null ? [...this.triggers] : [];
     list = list.filter((trigger) => {
       return trigger.timeIntervalStart !== null;
     });

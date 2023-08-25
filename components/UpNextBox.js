@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from "native-base";
-import TriggerListItem from "./TriggerListItem";
+import TriggerListItem from "./listItems/TriggerListItem";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HabitList from "./HabitList";
 import { useState } from "react";

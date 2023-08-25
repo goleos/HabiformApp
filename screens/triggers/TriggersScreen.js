@@ -1,9 +1,9 @@
-import TriggerListItem from "../../components/TriggerListItem";
+import TriggerListItem from "../../components/listItems/TriggerListItem";
 import { trig } from "../../models/trigger";
 import {Alert, Fab, Icon, Pressable, ScrollView, Stack, Text, View} from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { habitsController } from "../../controllers/HabitsController";
-import HabitListItem from "../../components/HabitListItem";
+import HabitListItem from "../../components/listItems/HabitListItem";
 import { triggersController } from "../../controllers/TriggersController";
 import { observer } from "mobx-react";
 import { useState } from "react";

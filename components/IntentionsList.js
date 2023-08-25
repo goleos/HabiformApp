@@ -1,14 +1,20 @@
-import {Button, HStack, Icon, IconButton, Stack, VStack} from "native-base";
-import IntentionListItem from "./IntentionListItem";
+import {Box, Button, Heading, HStack, Icon, IconButton, ScrollView, Stack, VStack} from "native-base";
+import IntentionListItem from "./listItems/IntentionListItem";
 import BasicBox from "./boxes/BasicBox";
 import BoxStack from "./boxes/BoxStack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function IntentionsList({ intentions, onChange, readOnly, includeTitle }) {
   return (
-      <BoxStack title={includeTitle === true ? 'Implementation intentions' : undefined}>
+      <Box bg={'gray.200'} padding={2} borderRadius={10} maxHeight={200}>
+
     <VStack space={3}>
+      <ScrollView>
+
       <VStack space={1}>
+        <Heading fontSize={'lg'} alignSelf={'center'}>Implementation intentions</Heading>
+
+
         {intentions.map((intention, index) => {
           return (
             <IntentionListItem
@@ -25,6 +31,7 @@ export default function IntentionsList({ intentions, onChange, readOnly, include
           );
         })}
       </VStack>
+
       {!readOnly && (
         <HStack justifyContent={"center"} space={3}>
           <IconButton
@@ -47,7 +54,8 @@ export default function IntentionsList({ intentions, onChange, readOnly, include
           </IconButton>
         </HStack>
       )}
+      </ScrollView>
     </VStack>
-      </BoxStack>
+      </Box>
   );
 }
