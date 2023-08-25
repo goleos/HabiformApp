@@ -1,4 +1,4 @@
-import { Box, Divider, Heading, Text } from "native-base";
+import {Box, Divider, Heading, Text, View} from "native-base";
 import { Children } from "react";
 
 export default function BoxStack({ children, title }) {
@@ -15,10 +15,10 @@ export default function BoxStack({ children, title }) {
       <Box bg={"gray.200"} borderRadius={10} padding={2}>
         {childrenArray.map((child, index) => {
           return index !== childrenArray.length - 1 ? (
-            <>
+            <View key={index}>
               {child}
               {divider}
-            </>
+            </View>
           ) : (
             child
           );

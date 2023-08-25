@@ -125,6 +125,17 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 }}
               />
             </HStack>
+            <HStack justifyContent={"space-between"} alignItems={"center"}>
+              <Text>Mark habit as formed</Text>
+              <Switch
+                  value={!!values.isFormed}
+                  onValueChange={(boolValue) => {
+                    console.log(boolValue);
+                    setFieldValue("isFormed", boolValue ? 1 : 0);
+                    console.log(values);
+                  }}
+              />
+            </HStack>
           </BoxStack>
 
           <VStack space={2}>

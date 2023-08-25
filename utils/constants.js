@@ -12,6 +12,11 @@ export const weekdays = [
 
 export const weekdaysShort = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
+export const materialIconsNames = {
+  trigger: 'clock-time-eight-outline',
+  habit: 'repeat'
+}
+
 export const welcomeMessages = [
   {
     number: 1,

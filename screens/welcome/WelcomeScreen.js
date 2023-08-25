@@ -2,7 +2,7 @@ import { SafeAreaView } from "react-native";
 import { Button, Flex, Heading, Text, VStack } from "native-base";
 import { appSettingsController } from "../../controllers/AppSettingsController";
 import WelcomeMessage from "../../components/WelcomeMessage";
-import { welcomeMessages } from "../../constants";
+import { welcomeMessages } from "../../utils/constants";
 import { useState } from "react";
 import { sampleHabits, sampleTriggers } from "../../assets/sample_data";
 import { triggersController } from "../../controllers/TriggersController";

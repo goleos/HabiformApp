@@ -15,7 +15,7 @@ import { triggersController } from "../../controllers/TriggersController";
 import Trigger, { trig } from "../../models/trigger";
 import { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { weekdays, weekdaysShort } from "../../constants";
+import { weekdays, weekdaysShort } from "../../utils/constants";
 import TimeIntervalSelector from "../../components/TimeIntervalSelector";
 import ManageTriggerForm from "../../components/ManageTriggerForm";
 
