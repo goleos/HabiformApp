@@ -32,7 +32,7 @@ export default function UpNextBox({ trigger, habits }) {
         <Icon as={MaterialCommunityIcons} name={materialIconsNames.trigger} size={50} color={'primary.500'} />
         <VStack space={0}>
           <Text>{trigger.name}</Text>
-          <Text highlight fontSize={"lg"}>
+          <Text fontSize={"lg"}>
             {trigger.timeIntervalStart + " — " + trigger.timeIntervalEnd}
           </Text>
         </VStack>

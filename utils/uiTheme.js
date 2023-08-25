@@ -74,7 +74,7 @@ export const uiTheme = extendTheme({
     },
     tabBarColour: {
       focused: "#0b4f93",
-      unFocused: "#dab800",
+      unFocused: "#c47700",
     },
   },
   components: {

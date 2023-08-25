@@ -13,7 +13,7 @@ export const weekdays = [
 export const weekdaysShort = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export const materialIconsNames = {
-  trigger: 'clock-time-eight-outline',
+  trigger: 'clock-time-eight',
   habit: 'repeat'
 }
 

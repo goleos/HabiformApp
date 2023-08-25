@@ -16,6 +16,7 @@ import { HabitNavigation } from "./NativeStacks";
 import { TriggerNavigation } from "./NativeStacks";
 import { uiTheme } from "../utils/uiTheme";
 import { Image } from "react-native";
+import {materialIconsNames} from "../utils/constants";
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +32,7 @@ function AppTabs() {
           if (route.name === "Habits") {
             iconName = "repeat";
           } else if (route.name === "Triggers") {
-            iconName = "clock-out";
+            iconName = focused ? materialIconsNames.trigger : materialIconsNames.trigger + '-outline';
           } else if (route.name === "Dashboard") {
             iconName = focused ? "view-grid" : "view-grid-outline";
           } else if (route.name === "Settings") {
