@@ -1,34 +1,66 @@
-
-import {Text} from 'native-base'
+import { Text } from "native-base";
 import { NativeBaseProvider, Box, Stack, IconButton, Icon } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ContentBox from "../ContentBox";
-import { Badge } from 'native-base';
-import {triggersController} from "../../controllers/TriggersController";
+import { Badge } from "native-base";
+import { triggersController } from "../../controllers/TriggersController";
+import IconWithText from "../IconWithText";
+import { materialIconsNames } from "../../utils/constants";
 
 export default function HabitListItem({ habit }) {
-    let badge;
-    if (!habit.isFormed) {
-        badge = <Badge variant="solid" borderRadius={10} colorScheme="info">Building</Badge>
-    } else {
-        badge = <Badge variant="solid" borderRadius={10} colorScheme="success">Formed</Badge>
-    }
-    return (
-        <ContentBox>
-            <Stack direction="column" alignItems="left">
-                <Stack alignItems="center" justifyContent="center" direction="row" space={1}>
-                    <Text fontSize="xl">{habit.name}</Text>
-                    <Icon as={Ionicons} name={habit.shouldNotify ? "notifications" : 'notifications-off'} size={4} color="blue.700" />
-                </Stack>
+  let badge;
+  if (!habit.isFormed) {
+    badge = (<></>);
+    // badge = (
+    //   <Badge variant="solid" borderRadius={10} colorScheme="info">
+    //     Building
+    //   </Badge>
+    // );
+  } else {
+    badge = (
+      <Badge variant="solid" borderRadius={10} colorScheme="success">
+        Formed
+      </Badge>
+    );
+  }
+  const trigger = triggersController.getTriggerById(habit.triggerEventID);
 
-                {badge}
+  return (
+    <ContentBox>
+      <Stack direction="column" alignItems="left" space={2}>
+        <Stack
+          alignItems="center"
+          justifyContent="center"
+          direction="row"
+          space={1}
+        >
+          <Text fontSize="xl">{habit.name}</Text>
+          <Icon
+            as={Ionicons}
+            name={habit.shouldNotify ? "notifications" : "notifications-off"}
+            size={4}
+            color="blue.700"
+          />
+          {badge}
+        </Stack>
 
-                {habit.triggerEventID !== null && <Stack direction="row" alignItems="center" space={1}>
-                    <Icon as={Ionicons} name="time" size={3} color="blue.700" />
-                    <Text fontSize="xs" color="coolGray.500">
-                        {triggersController.getTriggerById(habit.triggerEventID).name}
-                    </Text>
-                </Stack>}
-            </Stack>
-        </ContentBox>
-    )}
+
+
+        {habit.triggerEventID !== null && (
+          <IconWithText
+            iconName={materialIconsNames.trigger}
+            text={trigger.name}
+          />
+        )}
+        <IconWithText
+          iconName={"play"}
+          text={
+            habit.intentions.length >= 1
+              ? habit.intentions[0]
+              : "No intentions provided"
+          }
+        />
+      </Stack>
+    </ContentBox>
+  );
+}
