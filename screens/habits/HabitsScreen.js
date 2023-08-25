@@ -1,11 +1,18 @@
-import { Fab, Flex, Icon } from "native-base";
+import {Button, Fab, Flex, Icon, ScrollView, Text, VStack} from "native-base";
 import { habitsController } from "../../controllers/HabitsController";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { observer } from "mobx-react";
 import HabitList from "../../components/HabitList";
+import ContentBox from "../../components/ContentBox";
+import {useState} from "react";
+import HabitStatus from "../../models/habitStatus";
 
 function HabitsScreen({ navigation, isFocused }) {
   // console.log(habitsController.habits);
+    const [filterValue, setFilterValue] = useState(HabitStatus.Active)
+    const habits = habitsController.habits.filter((habit) => {
+        return habit.habitStatus === filterValue
+    })
   return (
     <>
       {/* https://docs.nativebase.io/fab */}
@@ -22,16 +29,35 @@ function HabitsScreen({ navigation, isFocused }) {
           });
         }}
       />
-      <Flex height={"100%"} bg={"white"}>
+        <Flex height={"100%"} bg={"white"}>
+            <VStack space={2}>
+        <Button.Group mt={3} alignSelf={'center'} isAttached colorScheme={'secondary'} size={'md'}>
+            <Button variant={filterValue !== HabitStatus.Draft ? 'outline' : 'solid'} onPress={() => {
+                setFilterValue(HabitStatus.Draft)
+            }}>Draft</Button>
+            <Button variant={filterValue !== HabitStatus.Active ? 'outline' : 'solid'} onPress={() => {
+                setFilterValue(HabitStatus.Active)
+            }} >Active</Button>
+            <Button variant={filterValue !== HabitStatus.Archived ? 'outline' : 'solid'} onPress={() => {
+                setFilterValue(HabitStatus.Archived)
+            }}>Archived</Button>
+
+        </Button.Group>
+        <ScrollView>
+
+
         <HabitList
-          habits={habitsController.habits}
+          habits={habits}
           onItemPress={(habit) => {
             navigation.navigate("HabitPage", {
               habit: habit,
             });
           }}
         />
-      </Flex>
+
+        </ScrollView>
+            </VStack>
+    </Flex>
     </>
   );
 }
