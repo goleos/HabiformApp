@@ -29,8 +29,8 @@ function HabitsScreen({ navigation, isFocused }) {
           });
         }}
       />
-        <Flex height={"100%"} bg={"white"}>
-            <VStack space={2}>
+
+            <VStack space={2} backgroundColor={'white'}>
         <Button.Group mt={3} alignSelf={'center'} isAttached colorScheme={'secondary'} size={'md'}>
             <Button variant={filterValue !== HabitStatus.Draft ? 'outline' : 'solid'} onPress={() => {
                 setFilterValue(HabitStatus.Draft)
@@ -43,6 +43,7 @@ function HabitsScreen({ navigation, isFocused }) {
             }}>Archived</Button>
 
         </Button.Group>
+                <Flex height={"100%"} bg={"white"}>
         <ScrollView>
 
 
@@ -56,8 +57,8 @@ function HabitsScreen({ navigation, isFocused }) {
         />
 
         </ScrollView>
-            </VStack>
     </Flex>
+            </VStack>
     </>
   );
 }

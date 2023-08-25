@@ -17,8 +17,11 @@ export const HabitNavigation = () => {
       <NativeNavigationStack.Screen
         name="ManageHabit"
         component={ManageHabitScreen}
+        options={{title: 'Add or edit habit'}}
       />
-      <NativeNavigationStack.Screen name={"HabitPage"} component={HabitPage} />
+      <NativeNavigationStack.Screen name={"HabitPage"} component={HabitPage} options={({route}) => ({
+          title: route.params.habit.name
+      })} />
     </NativeNavigationStack.Navigator>
   );
 };
@@ -37,7 +40,9 @@ export const TriggerNavigation = () => {
           title: "Add or edit trigger",
         })}
       />
-      <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} />
+      <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} options={({route}) => ({
+          title: route.params.trigger.name
+      })} />
     </NativeNavigationStack.Navigator>
   );
 };
