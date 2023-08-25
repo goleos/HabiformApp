@@ -6,13 +6,15 @@ function HabitList({habits, onItemPress}) {
     return (
         <Stack direction="column" padding={1}>
             {habits !== null ? (
-                habits.map((habit) => (
+                habits.map((habit) => onItemPress !== undefined ? (
                     <Pressable
                         key={habit.habitID}
                         onPress={() => onItemPress(habit)}
                     >
                         <HabitListItem habit={habit} />
                     </Pressable>
+                ) : (
+                    <HabitListItem key={habit.habitID} habit={habit} />
                 ))
             ) : (
                 <Text>Loading...</Text>
