@@ -24,6 +24,7 @@ import IntentionListItem from "./listItems/IntentionListItem";
 import IntentionsList from "./IntentionsList";
 import BoxStack from "./boxes/BoxStack";
 import { Switch } from "react-native";
+import HabitStatus from "../models/habitStatus";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
@@ -159,7 +160,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               </Button>
             )}
             {!formIsInAddMode && (
+                <HStack justifyContent={'space-between'}>
               <Button
+                  width={'50%'}
                   colorScheme={'delete'}
                 onPress={() => {
                   handleDelete(values.habitID);
@@ -167,6 +170,18 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               >
                 Delete Habit
               </Button>
+                  <Button
+                      width={'50%'}
+                      variant={'outline'}
+                      colorScheme={'delete'}
+                      onPress={() => {
+                        setFieldValue('habitStatus', HabitStatus.Archived)
+                        handleSubmit()
+                      }}
+                  >
+                    Archive Habit
+                  </Button>
+                </HStack>
             )}
           </VStack>
         </Flex>
