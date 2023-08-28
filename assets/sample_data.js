@@ -29,7 +29,11 @@ export const sampleHabits = [
     extraNotes: "I want to stop using my car and use my bike instead",
     habitStatus: "active",
     shouldNotify: false,
-    isFormed: true
+    isFormed: true,
+    intentions: [
+        'Get the bike from garage',
+        'Take the bike lock with you'
+    ]
   },
   {
     triggerEventID: 1002,
@@ -44,6 +48,7 @@ export const sampleHabits = [
     habitID: 1004,
     name: "Check driving license",
     extraNotes: "Make sure to have your driving license when you are about to drive a car",
+    habitStatus: "active",
   }
 ];
 
@@ -57,11 +62,17 @@ export const sampleTriggers = [
   },
   {
     triggerEventID: 1001,
-    name: "Leaving home for work"
+    name: "Leaving home for work",
+    timeIntervalStart: "07:00",
+    timeIntervalEnd: "07:30",
+    relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
   },
   {
     triggerEventID: 1002,
-    name: "Starting breakfast"
+    name: "Starting breakfast",
+    timeIntervalStart: "06:30",
+    timeIntervalEnd: "06:40",
+    relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
   },
   {
     triggerEventID: 1003,

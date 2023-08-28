@@ -148,7 +148,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 handleSubmit();
               }}
             >
-              {formIsInAddMode ? "Start habit now" : "Update habit"}
+              {formIsInAddMode ? "Start habit now" : "Update habit and make it active"}
             </Button>
             {!(values.habitStatus === "draft" && !formIsInAddMode) && (
               <Button

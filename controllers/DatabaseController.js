@@ -42,12 +42,39 @@ export class DatabaseController {
           "select * from " + tableName,
           null,
           (txtObj, resultSet) => {
-            console.log("Successfully retrieved data from database");
+            console.log("SQLLITE: Successfully retrieved data from table " + tableName);
             resultCallback(resultSet.rows._array);
           }
         );
       },
       (txtObj, error) => console.log(txtObj)
+    );
+  }
+
+  deleteEverything() {
+    this.db.transaction(
+        (tx) => {
+          tx.executeSql(
+              "delete from triggers",
+              null,
+              (txtObj, resultSet) => {
+                console.log("Successfully deleted the triggers table");
+              }
+          );
+        },
+        (txtObj, error) => console.log(txtObj)
+    );
+    this.db.transaction(
+        (tx) => {
+          tx.executeSql(
+              "delete from habit",
+              null,
+              (txtObj, resultSet) => {
+                console.log("Successfully deleted the habit table");
+              }
+          );
+        },
+        (txtObj, error) => console.log(txtObj)
     );
   }
 
