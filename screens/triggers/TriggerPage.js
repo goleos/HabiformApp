@@ -49,7 +49,7 @@ function TriggerPage({ navigation, route }) {
         <Heading>Linked habits</Heading>
         {linkedHabits.length !== 0 ? (
           linkedHabits.map((habit) => {
-            return <HabitListItem habit={habit} key={habit.habitID} />;
+            return <HabitListItem hideArrowButton={true} habit={habit} key={habit.habitID} />;
           })
         ) : (
           <Text>There are no linked habits</Text>

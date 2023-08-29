@@ -21,9 +21,9 @@ export default function ContentBox(props) {
           justifyContent="space-between"
         >
           {props.children}
-          <IconButton
+            {props.hideArrowButton !== true && <IconButton
             icon={<Icon as={Ionicons} name="chevron-forward-outline" />}
-          />
+          />}
         </Stack>
     </Box>
   );

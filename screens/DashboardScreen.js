@@ -24,7 +24,7 @@ function DashboardScreen() {
               </Alert>
               <ScrollView>
 
-              <HabitList habits={habitsController.getUntimedActiveHabits()} />
+              <HabitList hideArrowButton={true} habits={habitsController.getUntimedActiveHabits()} />
               </ScrollView>
           </VStack>
       </Flex>

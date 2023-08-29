@@ -7,7 +7,7 @@ import { triggersController } from "../../controllers/TriggersController";
 import IconWithText from "../IconWithText";
 import { materialIconsNames } from "../../utils/constants";
 
-export default function HabitListItem({ habit }) {
+export default function HabitListItem({ habit, hideArrowButton }) {
   let badge;
   if (!habit.isFormed) {
     badge = (<></>);
@@ -26,7 +26,7 @@ export default function HabitListItem({ habit }) {
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
 
   return (
-    <ContentBox>
+    <ContentBox hideArrowButton={hideArrowButton}>
       <Stack direction="column" alignItems="left" space={2}>
         <Stack
           alignItems="center"

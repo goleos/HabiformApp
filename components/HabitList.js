@@ -2,7 +2,7 @@ import {habitsController} from "../controllers/HabitsController";
 import {Pressable, ScrollView, Text, Stack} from "native-base";
 import HabitListItem from "./listItems/HabitListItem";
 
-function HabitList({habits, onItemPress}) {
+function HabitList({habits, onItemPress, hideArrowButton}) {
     return (
         <Stack direction="column" padding={1}>
             {habits !== null ? (
@@ -14,7 +14,7 @@ function HabitList({habits, onItemPress}) {
                         <HabitListItem habit={habit} />
                     </Pressable>
                 ) : (
-                    <HabitListItem key={habit.habitID} habit={habit} />
+                    <HabitListItem hideArrowButton={hideArrowButton} key={habit.habitID} habit={habit} />
                 ))
             ) : (
                 <Text>Loading...</Text>

@@ -55,7 +55,7 @@ export const sampleHabits = [
 export const sampleTriggers = [
   {
     triggerEventID: 1000,
-    name: "Finishing the work day",
+    name: "Finishing work day",
     timeIntervalStart: "17:00",
     timeIntervalEnd: "18:00",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
