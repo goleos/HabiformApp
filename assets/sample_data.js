@@ -13,13 +13,18 @@ export const sampleHabits = [
     shouldNotify: true,
     isFormed: false,
   },
+  //   {
+  //     habitID: 1001,
+  //     name: "Meditate",
+  //     extraNotes: ` I need to decide on:
+  // - when i want to meditate
+  // - how long to meditate for
+  // `,
+  //     habitStatus: "draft",
+  //   },
   {
     habitID: 1001,
-    name: "Meditate",
-    extraNotes: ` I need to decide on:
-- when i want to meditate
-- how long to meditate for
-`,
+    name: "Eat a vegetable",
     habitStatus: "draft",
   },
   {
@@ -30,10 +35,7 @@ export const sampleHabits = [
     habitStatus: "active",
     shouldNotify: false,
     isFormed: true,
-    intentions: [
-        'Get the bike from garage',
-        'Take the bike lock with you'
-    ]
+    intentions: ["Get the bike from garage", "Take the bike lock with you"],
   },
   {
     triggerEventID: 1002,
@@ -41,15 +43,23 @@ export const sampleHabits = [
     name: "Drink a glass of water",
     habitStatus: "archived",
     shouldNotify: false,
-    isFormed: false
+    isFormed: false,
   },
   {
     triggerEventID: 1003,
     habitID: 1004,
     name: "Check driving license",
-    extraNotes: "Make sure to have your driving license when you are about to drive a car",
+    extraNotes:
+      "Make sure to have your driving license when you are about to drive a car",
     habitStatus: "active",
-  }
+  },
+  {
+    triggerEventID: 1000,
+    habitID: 1005,
+    name: "Call my parents",
+    intentions: ["Open phone app", "Call Mum", "Call Dad"],
+    habitStatus: 'active'
+  },
 ];
 
 export const sampleTriggers = [
@@ -76,6 +86,6 @@ export const sampleTriggers = [
   },
   {
     triggerEventID: 1003,
-    name: "Entering my car"
-  }
+    name: "Entering my car",
+  },
 ];

@@ -24,6 +24,7 @@ export default function HabitListItem({ habit, hideArrowButton }) {
     );
   }
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
+  const notifyCondition = (habit.shouldNotify && trigger !== undefined && trigger.timeIntervalStart !== null)
 
   return (
     <ContentBox hideArrowButton={hideArrowButton}>
@@ -37,9 +38,9 @@ export default function HabitListItem({ habit, hideArrowButton }) {
           <Text fontSize="xl">{habit.name}</Text>
           <Icon
             as={Ionicons}
-            name={habit.shouldNotify ? "notifications" : "notifications-off"}
+            name={notifyCondition ? "notifications" : "notifications-off"}
             size={4}
-            color="blue.700"
+            color={notifyCondition ? "green.600" : 'red.600'}
           />
           {badge}
         </Stack>
