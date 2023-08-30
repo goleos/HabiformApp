@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export class AppSettingsController {
   shouldRemindWithIntentions = true;
   showIntroScreen = true;
+  daysBeforeRequestCancelNotification = 3;
   _storageKeyName = "appSettings";
 
   constructor() {

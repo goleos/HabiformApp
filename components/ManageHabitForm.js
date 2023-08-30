@@ -18,7 +18,10 @@ import {
   VStack,
 } from "native-base";
 import { habitFormValidationSchema } from "../utils/FormValidationSchemas";
-import { habitsController } from "../controllers/HabitsController";
+import {
+  cancelHabitNotification,
+  habitsController,
+} from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
 import IntentionListItem from "./listItems/IntentionListItem";
 import IntentionsList from "./IntentionsList";
@@ -42,10 +45,10 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
     habitsController.createNewHabit(
       new Habit(values),
       () => {
-        console.log("succ");
+        // console.log("succ");
       },
       () => {
-        console.log("no");
+        // console.log("no");
       }
     );
     onCreateOrEdit();
@@ -85,9 +88,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               <Select
                 selectedValue={values.triggerEventID}
                 onValueChange={(itemValue) => {
-                  console.log("set");
+                  // console.log("set");
                   setFieldValue("triggerEventID", itemValue);
-                  console.log(values.triggerEventID);
+                  // console.log(values.triggerEventID);
                 }}
               >
                 {triggersController.triggers.map((trigger) => (
@@ -121,9 +124,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 trackColor={{ true: "#2061c8" }}
                 value={!!values.shouldNotify}
                 onValueChange={(boolValue) => {
-                  console.log(boolValue);
+                  // console.log(boolValue);
                   setFieldValue("shouldNotify", boolValue ? 1 : 0);
-                  console.log(values);
+                  // console.log(values);
                 }}
               />
             </HStack>
@@ -148,7 +151,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 handleSubmit();
               }}
             >
-              {formIsInAddMode ? "Start habit now" : "Update habit and make it active"}
+              {formIsInAddMode
+                ? "Start habit now"
+                : "Update habit and make it active"}
             </Button>
             {!(values.habitStatus === "draft" && !formIsInAddMode) && (
               <Button
@@ -167,6 +172,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                   width={"50%"}
                   colorScheme={"delete"}
                   onPress={() => {
+                    cancelHabitNotification(new Habit(values));
                     handleDelete(values.habitID);
                   }}
                 >

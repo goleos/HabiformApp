@@ -22,6 +22,10 @@ class Habit {
     }
   }
 
+  notificationIdentifier() {
+    return "habit " + this.habitID;
+  }
+
   addIntention(intention: string) {
     this.intentions.push(intention);
   }
@@ -40,10 +44,16 @@ class Habit {
         ? {
             title: reminderTitle,
             body: "Let's start with " + '"' + this.intentions[0] + '"',
+        data: {
+              startTime: new Date().toJSON()
+        }
           }
         : {
             title: reminderTitle,
             body: "Remember to complete this habit today",
+            data: {
+              startTime: new Date().toJSON()
+            }
           };
     return reminder;
   }

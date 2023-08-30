@@ -18,9 +18,9 @@ function App() {
   useEffect(() => {
     console.log("App.js: triggered useEffect");
     const loadSettingsData = async () => {
-      console.log("Loading data for app settings");
+      // console.log("Loading data for app settings");
       await appSettingsController.loadFromAsyncStorage();
-      console.log("Shouldshowscreen: " + appSettingsController.showIntroScreen);
+      // console.log("Shouldshowscreen: " + appSettingsController.showIntroScreen);
     };
     loadSettingsData()
       .then((value) => {

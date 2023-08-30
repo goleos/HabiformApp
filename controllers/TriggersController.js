@@ -24,12 +24,12 @@ export class TriggersController {
   getSoonestTriggers() {
     const now = new Date();
     const timedTriggers = this.getTimedTriggers();
-    console.log(
-      "old " +
-        timedTriggers.map((val) => {
-          return [val.name, val.timeIntervalStart];
-        })
-    );
+    // console.log(
+    //   "old " +
+    //     timedTriggers.map((val) => {
+    //       return [val.name, val.timeIntervalStart];
+    //     })
+    // );
     const sorted = timedTriggers.sort((trigger1, trigger2) => {
       // helped by this answer: https://stackoverflow.com/a/11796365 [Accessed 29 Aug]
       const diff1 = Math.abs(now - trigger1.startTimeAsDateObject());

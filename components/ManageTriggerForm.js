@@ -184,7 +184,7 @@ export default function ManageTriggerForm(props) {
             {hasTime && (
               <TimeIntervalSelector
                 onStartTimeChange={(value) => {
-                  console.log(value);
+                  // console.log(value);
                   setFieldValue("timeIntervalStart", value);
                 }}
                 onEndTimeChange={(value) => {

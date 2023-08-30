@@ -4,6 +4,7 @@
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { makeAutoObservable } from "mobx";
+import { appSettingsController } from "./AppSettingsController";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -15,16 +16,41 @@ Notifications.setNotificationHandler({
 
 export class NotificationsController {
   expoPushToken = "";
+  notifications = [];
+  prolongedNotifications = [];
 
   constructor() {
     makeAutoObservable(this);
-    this.registerForPushNotificationsAsync().then(
-      (token) => (this.expoPushToken = token)
-    );
+    this.registerForPushNotificationsAsync().then((token) => {
+      this.expoPushToken = token;
+      this.requestAllScheduledNotifications();
+    });
   }
 
-  async getAllScheduledNotifications() {
-    return await Notifications.getAllScheduledNotificationsAsync();
+  setNotifications(notifications) {
+    this.notifications = notifications;
+  }
+
+  requestAllScheduledNotifications() {
+    let notifications;
+    Notifications.getAllScheduledNotificationsAsync()
+      .then((value) => {
+        console.log("Getting notifications");
+        console.log(value);
+        this.setNotifications(value);
+        this.prolongedNotifications = value.filter((notif) => {
+          const startDate = Date.parse(notif.content.data.startTime);
+          const daysPassed = (new Date() - startDate) / 1000 / 60 / 60 / 24;
+          console.log(daysPassed);
+          return (
+            daysPassed >
+            appSettingsController.daysBeforeRequestCancelNotification
+          );
+        });
+      })
+      .catch((reason) => {
+        console.log("error getting notifications " + reason);
+      });
   }
 
   async cancelPushNotification(identifier) {
@@ -55,7 +81,7 @@ export class NotificationsController {
         return;
       }
       token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log(token);
+      // console.log(token);
     } else {
       alert("Must use physical device for Push Notifications");
     }

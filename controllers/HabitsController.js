@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import Habit from "../models/habit";
+import Habit, {hab} from "../models/habit";
 import habit from "../models/habit";
 import { dbController } from "./DatabaseController";
 import { triggersController } from "./TriggersController";
@@ -9,49 +9,63 @@ import { DailyTriggerInput } from "expo-notifications";
 
 function setNotifications(habit) {
   if (habit.isActive()) {
-    const notificationIdentifier = "habit " + habit.habitID;
-    if (habit.shouldNotify) {
-      const trigger = triggersController.getTriggerById(habit.triggerEventID);
-      if (trigger.timeIntervalStart !== null) {
-        const triggerTime = trigger.startTimeAsDateObject();
-        console.log(
-          "Scheduling notification for habit '" +
-            habit.name +
-            "' at " +
-            triggerTime.toString()
-        );
-        notificationsController
-          .schedulePushNotification(
+    if (getHabitNotificationInfo(habit)) {
+      if (habit.shouldNotify) {
+        addNotificationToHabit(habit);
+      } else {
+        cancelHabitNotification(habit);
+      }
+    }
+  }
+}
+
+function addNotificationToHabit(habit) {
+  const trigger = triggersController.getTriggerById(habit.triggerEventID);
+  if (trigger.timeIntervalStart !== null) {
+    const triggerTime = trigger.startTimeAsDateObject();
+    console.log(
+        "Scheduling notification for habit '" +
+        habit.name +
+        "' at " +
+        triggerTime.toString()
+    );
+    notificationsController
+        .schedulePushNotification(
             habit.produceNotification(),
             {
               hour: triggerTime.getHours(),
               minute: triggerTime.getMinutes(),
               repeats: true,
             },
-            notificationIdentifier
-          )
-          .then((r) => {
-            console.log(
-              "Successfully scheduled a notification with response: "
-            );
-            console.log(r);
-          });
-      }
-    } else {
-      notificationsController
-        .cancelPushNotification(notificationIdentifier)
-        .catch((reason) => {
-          console.log("failed to cancel notifications");
-          console.log(reason);
-        })
-        .then(() => {
+            habit.notificationIdentifier()
+        )
+        .then((r) => {
           console.log(
-            "successfully canceled notification with id: " +
-              notificationIdentifier
+              "Successfully scheduled a notification with response: " + r
           );
         });
-    }
   }
+}
+
+function getHabitNotificationInfo(habit) {
+  return notificationsController.notifications.find((notif) => {
+    return notif.identifier === habit.notificationIdentifier()
+  })
+}
+
+export function cancelHabitNotification(habit) {
+  notificationsController
+      .cancelPushNotification(habit.notificationIdentifier())
+      .catch((reason) => {
+        console.log("failed to cancel notifications");
+        console.log(reason);
+      })
+      .then(() => {
+        console.log(
+            "successfully canceled notification with id: " +
+            habit.notificationIdentifier()
+        );
+      });
 }
 
 export class HabitsController {
