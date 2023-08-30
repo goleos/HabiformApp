@@ -68,6 +68,7 @@ export const sampleTriggers = [
     name: "Finishing work day",
     timeIntervalStart: "17:00",
     timeIntervalEnd: "18:00",
+    extraNotes: "When I leave office",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
   },
   {

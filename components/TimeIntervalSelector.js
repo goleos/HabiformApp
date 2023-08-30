@@ -8,20 +8,23 @@ export default function TimeIntervalSelector({
   defaultStart,
   defaultEnd,
 }) {
-
   return (
     <Stack>
       <HStack justifyContent="center" alignItems="center">
-          {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
+        {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
         <RNDateTimePicker
           display="inline"
           mode="time"
           value={defaultStart}
           onChange={(event, date) => {
-              if (event.type === 'set') {
-                  onStartTimeChange(date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}));
-              }
-
+            if (event.type === "set") {
+              onStartTimeChange(
+                date.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              );
+            }
           }}
         />
         <Text>—</Text>
@@ -29,9 +32,14 @@ export default function TimeIntervalSelector({
           mode="time"
           value={defaultEnd}
           onChange={(event, date) => {
-              if (event.type === 'set') {
-                  onEndTimeChange(date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}));
-              }
+            if (event.type === "set") {
+              onEndTimeChange(
+                date.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              );
+            }
           }}
         />
       </HStack>

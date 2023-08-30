@@ -55,7 +55,7 @@ function setNotifications(habit) {
 }
 
 export class HabitsController {
-  habits = null;
+  habits = [];
   filterValue = HabitStatus.Active
 
   constructor() {
@@ -73,10 +73,6 @@ export class HabitsController {
       this.habits.push(habit);
       setNotifications(habit);
     });
-  }
-
-  setFilterValue(value) {
-    this.filterValue = value
   }
 
   requestHabits() {

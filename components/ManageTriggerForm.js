@@ -33,7 +33,7 @@ export default function ManageTriggerForm(props) {
   } else {
     trigger = new Trigger();
   }
-  const formIsInAddMode = !!trigger.triggerEventID;
+  const formIsInAddMode = !trigger.triggerEventID;
 
   const initialValues = { ...trigger };
 
@@ -222,9 +222,9 @@ export default function ManageTriggerForm(props) {
               }}
               colorScheme={"trigger"}
             >
-              Add Trigger
+              {formIsInAddMode ? 'Add Trigger' : 'Update Trigger'}
             </Button>
-            {formIsInAddMode && (
+            {!formIsInAddMode && (
               <Button
                 colorScheme={"delete"}
                 onPress={() => {

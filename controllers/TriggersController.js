@@ -34,19 +34,19 @@ export class TriggersController {
       // helped by this answer: https://stackoverflow.com/a/11796365 [Accessed 29 Aug]
       const diff1 = Math.abs(now - trigger1.startTimeAsDateObject());
       const diff2 = Math.abs(now - trigger2.startTimeAsDateObject());
-      console.log("diff for " + trigger1.name + " = ");
-      console.log(
-        "trigger time: " + trigger1.startTimeAsDateObject().toString()
-      );
+      // console.log("diff for " + trigger1.name + " = ");
+      // console.log(
+      //   "trigger time: " + trigger1.startTimeAsDateObject().toString()
+      // );
       return diff1 - diff2;
     });
-    console.log("time now: " + now.toString());
+    // console.log("time now: " + now.toString());
 
-    console.log(
-      sorted.map((val) => {
-        return [val.name, val.timeIntervalStart];
-      })
-    );
+    // console.log(
+    //   sorted.map((val) => {
+    //     return [val.name, val.timeIntervalStart];
+    //   })
+    // );
     return sorted;
   }
 
