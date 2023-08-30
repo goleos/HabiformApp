@@ -15,6 +15,7 @@ export const WelcomeStack = () => {
       <NativeNavigationStack.Screen
         name={"Welcome"}
         component={WelcomeScreen}
+        options={{headerShown: true}}
       />
       <NativeNavigationStack.Screen name={"App"} component={tabBar} />
     </NativeNavigationStack.Navigator>

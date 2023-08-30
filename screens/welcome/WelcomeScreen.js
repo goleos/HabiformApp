@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native";
-import { Button, Flex, Heading, Text, VStack } from "native-base";
+import { Button, Flex, Heading, Text, View, VStack } from "native-base";
 import { appSettingsController } from "../../controllers/AppSettingsController";
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { welcomeMessages } from "../../utils/constants";
@@ -49,11 +49,13 @@ function WelcomeScreen({ navigation }) {
   };
 
   const lastSlideFinishComponent = (
-    <VStack space={1}>
+    <VStack space={5} margin={1}>
       <Text>
         Would you like to start with example habits and triggers so you can
         better understand how the app works?
       </Text>
+        <VStack space={2}>
+
       <Button
         onPress={async () => {
           await appSettingsController.setShowIntroScreen(false);
@@ -64,7 +66,7 @@ function WelcomeScreen({ navigation }) {
         Start with example data
       </Button>
       <Button
-          variant={'outline'}
+        variant={"outline"}
         colorScheme={"secondary"}
         onPress={async () => {
           await appSettingsController.setShowIntroScreen(false);
@@ -73,20 +75,19 @@ function WelcomeScreen({ navigation }) {
       >
         Start with empty data
       </Button>
+        </VStack>
     </VStack>
   );
 
   return (
-    <SafeAreaView>
-      <Flex
-        height={"100%"}
-        bg={"white"}
-        padding={2}
-        justifyContent={"space-between"}
-      >
-        <Heading alignSelf={"center"}>Welcome!</Heading>
-        <WelcomeMessage message={selectedMessage} />
+    <Flex height={"100%"} bg={"white"} padding={2}>
+      {/*<Heading alignSelf={"center"}>Welcome!</Heading>*/}
+        <View style={{marginTop: 100}}>
 
+      <WelcomeMessage message={selectedMessage} />
+        </View>
+
+      <View style={{ position: "absolute", left: 10, right: 10, bottom: 40 }}>
         {selectedMessage.isLastSlide ? (
           lastSlideFinishComponent
         ) : (
@@ -98,8 +99,8 @@ function WelcomeScreen({ navigation }) {
             Continue
           </Button>
         )}
-      </Flex>
-    </SafeAreaView>
+      </View>
+    </Flex>
   );
 }
 
