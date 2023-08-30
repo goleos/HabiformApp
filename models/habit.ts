@@ -44,16 +44,18 @@ class Habit {
         ? {
             title: reminderTitle,
             body: "Let's start with " + '"' + this.intentions[0] + '"',
-        data: {
-              startTime: new Date().toJSON()
-        }
+            data: {
+              startTime: new Date().toJSON(),
+              habit: this,
+            },
           }
         : {
             title: reminderTitle,
             body: "Remember to complete this habit today",
             data: {
-              startTime: new Date().toJSON()
-            }
+              startTime: new Date().toJSON(),
+              habit: this,
+            },
           };
     return reminder;
   }

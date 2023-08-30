@@ -16,15 +16,26 @@ Notifications.setNotificationHandler({
 
 export class NotificationsController {
   expoPushToken = "";
-  notifications = [];
+  notifications = null;
   prolongedNotifications = [];
+
+  // isLoading = true;
 
   constructor() {
     makeAutoObservable(this);
     this.registerForPushNotificationsAsync().then((token) => {
       this.expoPushToken = token;
       this.requestAllScheduledNotifications();
+      // this.finishLoading();
     });
+  }
+
+  finishLoading() {
+    this.isLoading = false;
+  }
+
+  setProlongedNotifications(notifications) {
+    this.prolongedNotifications = notifications;
   }
 
   setNotifications(notifications) {
@@ -38,15 +49,19 @@ export class NotificationsController {
         console.log("Getting notifications");
         console.log(value);
         this.setNotifications(value);
-        this.prolongedNotifications = value.filter((notif) => {
+        const prolongedNotifications = value.filter((notif) => {
           const startDate = Date.parse(notif.content.data.startTime);
           const daysPassed = (new Date() - startDate) / 1000 / 60 / 60 / 24;
           console.log(daysPassed);
+          console.log(
+            appSettingsController.daysBeforeRequestCancelNotification
+          );
           return (
             daysPassed >
             appSettingsController.daysBeforeRequestCancelNotification
           );
         });
+        this.setProlongedNotifications(prolongedNotifications);
       })
       .catch((reason) => {
         console.log("error getting notifications " + reason);

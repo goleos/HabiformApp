@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import Habit, {hab} from "../models/habit";
+import Habit, { hab } from "../models/habit";
 import habit from "../models/habit";
 import { dbController } from "./DatabaseController";
 import { triggersController } from "./TriggersController";
@@ -7,70 +7,88 @@ import HabitStatus from "../models/habitStatus";
 import { notificationsController } from "./NotificationsController";
 import { DailyTriggerInput } from "expo-notifications";
 
-function setNotifications(habit) {
-  if (habit.isActive()) {
-    if (getHabitNotificationInfo(habit)) {
-      if (habit.shouldNotify) {
-        addNotificationToHabit(habit);
-      } else {
+export function setNotifications(habit) {
+  if (notificationsController.notifications !== null) {
+    console.log("not null: " + notificationsController.notifications);
+    console.log("notification controller ready");
+    if (habit.isActive()) {
+      if (!habit.shouldNotify) {
         cancelHabitNotification(habit);
+      } else {
+
+        if (getHabitNotificationInfo(habit)) {
+          console.log(
+            "Notifications: found existing notification for " +
+              habit.name +
+              ". Not scheduling a new one."
+          );
+        } else {
+          if (habit.shouldNotify) {
+            addNotificationToHabit(habit);
+          }
+        }
       }
     }
+  } else {
+    console.log("notification controller still loading");
   }
 }
 
-function addNotificationToHabit(habit) {
+export function addNotificationToHabit(habit) {
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
   if (trigger.timeIntervalStart !== null) {
     const triggerTime = trigger.startTimeAsDateObject();
     console.log(
-        "Scheduling notification for habit '" +
+      "Scheduling notification for habit '" +
         habit.name +
         "' at " +
         triggerTime.toString()
     );
     notificationsController
-        .schedulePushNotification(
-            habit.produceNotification(),
-            {
-              hour: triggerTime.getHours(),
-              minute: triggerTime.getMinutes(),
-              repeats: true,
-            },
-            habit.notificationIdentifier()
-        )
-        .then((r) => {
-          console.log(
-              "Successfully scheduled a notification with response: " + r
-          );
-        });
+      .schedulePushNotification(
+        habit.produceNotification(),
+        {
+          hour: triggerTime.getHours(),
+          minute: triggerTime.getMinutes(),
+          repeats: true,
+        },
+        habit.notificationIdentifier()
+      )
+      .then((r) => {
+        console.log(
+          "Successfully scheduled a notification with response: " + r
+        );
+      });
   }
 }
 
 function getHabitNotificationInfo(habit) {
-  return notificationsController.notifications.find((notif) => {
-    return notif.identifier === habit.notificationIdentifier()
-  })
+  if (notificationsController.notifications !== null) {
+    return notificationsController.notifications.find((notif) => {
+      return notif.identifier === habit.notificationIdentifier();
+    });
+  }
 }
 
 export function cancelHabitNotification(habit) {
   notificationsController
-      .cancelPushNotification(habit.notificationIdentifier())
-      .catch((reason) => {
-        console.log("failed to cancel notifications");
-        console.log(reason);
-      })
-      .then(() => {
-        console.log(
-            "successfully canceled notification with id: " +
-            habit.notificationIdentifier()
-        );
-      });
+    .cancelPushNotification(habit.notificationIdentifier())
+    .catch((reason) => {
+      console.log("failed to cancel notifications");
+      console.log(reason);
+    })
+    .then(() => {
+      console.log(
+        "successfully canceled notification with id: " +
+          habit.notificationIdentifier() +
+          ": " +
+          habit.name
+      );
+    });
 }
 
 export class HabitsController {
   habits = [];
-  filterValue = HabitStatus.Active
 
   constructor() {
     makeAutoObservable(this);
