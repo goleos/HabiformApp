@@ -1,9 +1,9 @@
 // example from https://mobx.js.org/react-integration.html
 // mobx tutorial: https://mobx.js.org/react-integration.html
 
-import { makeAutoObservable, observable, action } from "mobx";
+import { makeAutoObservable } from "mobx";
 import * as SQLLite from "expo-sqlite";
-import { dbInitQueries } from "../dbInit";
+import { dbInitQueries } from "../utils/dbInit";
 
 export class DatabaseController {
   db = SQLLite.openDatabase("test-db.db");
