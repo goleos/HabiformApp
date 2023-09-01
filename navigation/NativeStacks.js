@@ -7,6 +7,8 @@ import TriggersScreen from "../screens/triggers/TriggersScreen";
 import ManageTriggerScreen from "../screens/triggers/ManageTriggerScreen";
 import TriggerPage from "../screens/triggers/TriggerPage";
 import HabitPage from "../screens/habits/HabitPage";
+import DashboardScreen from "../screens/dashboard/DashboardScreen";
+import HabitListWithoutEstimate from "../screens/dashboard/HabitListWithoutEstimate";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
@@ -45,4 +47,21 @@ export const TriggerNavigation = () => {
       })} />
     </NativeNavigationStack.Navigator>
   );
+};
+
+export const DashboardNavigation = () => {
+    return (
+        <NativeNavigationStack.Navigator initialRouteName="DashboardScreen" screenOptions={{headerShown: true}}>
+            <NativeNavigationStack.Screen
+                name="DashboardScreen"
+                component={DashboardScreen}
+                options={{title: "Dashboard"}}
+            />
+            <NativeNavigationStack.Screen
+                name="NoTimeEstimateHabitList"
+                component={HabitListWithoutEstimate}
+                options={{title: "Habits with no time"}}
+            />
+        </NativeNavigationStack.Navigator>
+    );
 };

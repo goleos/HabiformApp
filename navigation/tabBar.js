@@ -6,13 +6,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TriggersScreen from "../screens/triggers/TriggersScreen";
 import HabitsScreen from "../screens/habits/HabitsScreen";
-import DashboardScreen from "../screens/DashboardScreen";
+import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { HabitNavigation } from "./NativeStacks";
+import {DashboardNavigation, HabitNavigation} from "./NativeStacks";
 import { TriggerNavigation } from "./NativeStacks";
 import { uiTheme } from "../utils/uiTheme";
 import { Image } from "react-native";
@@ -50,7 +50,7 @@ function AppTabs() {
     >
       <Tab.Screen name="Triggers" component={TriggerNavigation} />
       <Tab.Screen name="Habits" component={HabitNavigation} />
-      <Tab.Screen name="Dashboard" component={DashboardScreen} options={{headerShown: true}} />
+      <Tab.Screen name="Dashboard" component={DashboardNavigation} options={{headerShown: false}} />
       <Tab.Screen name="Settings" component={SettingsScreen} options={{headerShown: true}}/>
     </Tab.Navigator>
   );
