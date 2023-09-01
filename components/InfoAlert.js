@@ -7,7 +7,6 @@ export default function InfoAlert({heading, text}) {
         marginY={1}
         borderRadius={10}
         shadow={2}
-        maxW="400"
         status="info"
         colorScheme="info"
       >
