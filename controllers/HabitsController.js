@@ -9,13 +9,12 @@ import { DailyTriggerInput } from "expo-notifications";
 
 export function setNotifications(habit) {
   if (notificationsController.notifications !== null) {
-    console.log("not null: " + notificationsController.notifications);
-    console.log("notification controller ready");
+    // console.log("not null: " + notificationsController.notifications);
+    // console.log("notification controller ready");
     if (habit.isActive()) {
       if (!habit.shouldNotify) {
         cancelHabitNotification(habit);
       } else {
-
         if (getHabitNotificationInfo(habit)) {
           console.log(
             "Notifications: found existing notification for " +
@@ -30,7 +29,7 @@ export function setNotifications(habit) {
       }
     }
   } else {
-    console.log("notification controller still loading");
+    // console.log("notification controller still loading");
   }
 }
 
@@ -38,8 +37,8 @@ export function addNotificationToHabit(habit) {
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
   if (trigger.timeIntervalStart !== null) {
     const triggerTime = trigger.startTimeAsDateObject();
-    console.log(
-      "Scheduling notification for habit '" +
+    console.info(
+      "Notifications: Scheduling notification for habit '" +
         habit.name +
         "' at " +
         triggerTime.toString()
@@ -55,8 +54,12 @@ export function addNotificationToHabit(habit) {
         habit.notificationIdentifier()
       )
       .then((r) => {
-        console.log(
-          "Successfully scheduled a notification with response: " + r
+        console.info(
+          "Notifications: Successfully scheduled a notification with notification ID: " +
+            r +
+            ' (habit "' +
+            habit.name +
+            '"'
         );
       });
   }
@@ -78,8 +81,8 @@ export function cancelHabitNotification(habit) {
       console.log(reason);
     })
     .then(() => {
-      console.log(
-        "successfully canceled notification with id: " +
+      console.info(
+        "Notifications: Successfully canceled notification with id " +
           habit.notificationIdentifier() +
           ": " +
           habit.name
@@ -158,11 +161,11 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
           habit.triggerEventID,
         ],
         (txtObj, resultSet) => {
-          console.log("Successfully inserted a new habit: " + habit.name);
+          console.info("Successfully inserted a new habit: " + habit.name);
           onSuccessCallback();
         },
         (txtObj, error) => {
-          console.log("Error inserting a new habit: " + error.message);
+          console.error("Error inserting a new habit: " + error.message);
           onFailureCallback();
         }
       );
@@ -177,7 +180,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
         sqlStatement,
         [],
         (txtObj, resultSet) => {
-          console.log(
+          console.info(
             "SQLLITE: Successfully deleted the habit with id: " + habitID
           );
           onCompleteCallback();

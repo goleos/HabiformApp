@@ -136,9 +136,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                 trackColor={{ true: "#2061c8" }}
                 value={!!values.isFormed}
                 onValueChange={(boolValue) => {
-                  console.log(boolValue);
+                  // console.log(boolValue);
                   setFieldValue("isFormed", boolValue ? 1 : 0);
-                  console.log(values);
+                  // console.log(values);
                 }}
               />
             </HStack>

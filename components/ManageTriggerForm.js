@@ -43,7 +43,7 @@ export default function ManageTriggerForm(props) {
       handleCreatedSuccess,
       handleCreatedFailure
     );
-    console.log("creating trigger: " + values.toString());
+    console.info("Creating trigger: " + values.toString());
   };
 
   let startHour;

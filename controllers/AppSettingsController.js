@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export class AppSettingsController {
   shouldRemindWithIntentions = true;
   showIntroScreen = true;
-  daysBeforeRequestCancelNotification = 0.001;
+  daysBeforeRequestCancelNotification = 3;
   _storageKeyName = "appSettings";
 
   constructor() {
@@ -16,19 +16,24 @@ export class AppSettingsController {
     this.showIntroScreen = true;
   }
 
+  async setDaysBeforeRequestCancelNotification(val) {
+    this.daysBeforeRequestCancelNotification = val
+    await this.loadIntoAsyncStorage();
+  }
+
   async resetSettings() {
     this.initialiseSettings();
     await this.loadIntoAsyncStorage();
   }
 
   async loadIntoAsyncStorage() {
-    console.log("Settings: uploading settings data");
+    console.log("Settings: uploading app settings data to AsyncStorage");
     const data = JSON.stringify(this);
     return await AsyncStorage.setItem(this._storageKeyName, data);
   }
 
   async loadFromAsyncStorage() {
-    console.log("Settings: downloading settings data");
+    console.info("Settings: downloading app settings data");
     const value = await AsyncStorage.getItem(this._storageKeyName);
     if (value !== null) {
       const obj = JSON.parse(value);

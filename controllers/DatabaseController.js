@@ -19,7 +19,7 @@ export class DatabaseController {
         tx.executeSql(
           query,
           null,
-          (txtObj, result) => console.log("Success init query"),
+          (txtObj, result) => console.info("SQLLITE: Successful init query"),
           (txtObj, error) =>
             console.log(
               "Error initialising the database: " +
@@ -42,7 +42,7 @@ export class DatabaseController {
           "select * from " + tableName,
           null,
           (txtObj, resultSet) => {
-            console.log("SQLLITE: Successfully retrieved data from table " + tableName);
+            console.info("SQLLITE: Successfully retrieved data from table '" + tableName + "'");
             resultCallback(resultSet.rows._array);
           }
         );

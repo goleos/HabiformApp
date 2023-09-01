@@ -16,7 +16,7 @@ function App() {
   const [effectDone, setEffectDone] = useState(false);
 
   useEffect(() => {
-    console.log("App.js: triggered useEffect");
+    console.info("App.js: triggered useEffect");
     const loadSettingsData = async () => {
       // console.log("Loading data for app settings");
       await appSettingsController.loadFromAsyncStorage();

@@ -46,16 +46,16 @@ export class NotificationsController {
     let notifications;
     Notifications.getAllScheduledNotificationsAsync()
       .then((value) => {
-        console.log("Getting notifications");
-        console.log(value);
+        console.log("Notifications: Retrieving notifications");
+        console.log("Current Notifications: " + JSON.stringify(value));
         this.setNotifications(value);
         const prolongedNotifications = value.filter((notif) => {
           const startDate = Date.parse(notif.content.data.startTime);
           const daysPassed = (new Date() - startDate) / 1000 / 60 / 60 / 24;
-          console.log(daysPassed);
-          console.log(
-            appSettingsController.daysBeforeRequestCancelNotification
-          );
+          // console.log(daysPassed);
+          // console.log(
+          //   appSettingsController.daysBeforeRequestCancelNotification
+          // );
           return (
             daysPassed >
             appSettingsController.daysBeforeRequestCancelNotification
