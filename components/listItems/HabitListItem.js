@@ -35,7 +35,7 @@ export default function HabitListItem({ habit, hideArrowButton }) {
           direction="row"
           space={1}
         >
-          <Text fontSize="xl">{habit.name}</Text>
+          <Text maxWidth={200} fontSize="xl">{habit.name}</Text>
           <Icon
             as={Ionicons}
             name={notifyCondition ? "notifications" : "notifications-off"}
