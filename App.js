@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { WelcomeStack } from "./navigation/WelcomeNavigation";
 
-import { LogBox } from "react-native";
+import {LogBox} from "react-native";
 import { appSettingsController } from "./controllers/AppSettingsController";
 
 LogBox.ignoreLogs(["In React 18, SSRProvider", "Constants.platform.ios.model"]);
@@ -37,9 +37,9 @@ function App() {
 
   return (
     <NativeBaseProvider theme={uiTheme}>
-      <NavigationContainer>
-        {isReady && effectDone ? <WelcomeStack /> : <Text>Loading</Text>}
-      </NavigationContainer>
+        <NavigationContainer>
+          {isReady && effectDone ? <WelcomeStack /> : <Text>Loading</Text>}
+        </NavigationContainer>
     </NativeBaseProvider>
   );
 }

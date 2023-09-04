@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import {Keyboard, TouchableWithoutFeedback, View} from "react-native";
 import {
   Button,
   HStack,
@@ -22,6 +22,8 @@ import ManageTriggerForm from "../../components/ManageTriggerForm";
 export default function ManageTriggerScreen({ navigation, route }) {
 
   return (
+      // helped by this answer on stackoverflow: https://stackoverflow.com/a/34779467 [Accessed: 4 September]
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Flex height={"100%"} bg={"white"}>
         <ManageTriggerForm trigger={route.params.trigger} onCreateOrEdit={() => {
           navigation.goBack()
@@ -29,6 +31,7 @@ export default function ManageTriggerScreen({ navigation, route }) {
           navigation.navigate('My Triggers')
         }} />
       </Flex>
+      </TouchableWithoutFeedback>
 
   );
 }
