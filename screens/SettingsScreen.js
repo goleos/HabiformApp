@@ -54,7 +54,8 @@ function SettingsScreen() {
                 value={
                   appSettingsController.daysBeforeRequestCancelNotification.toString()
                 }
-                onValueChange={(val) => {
+                onChangeText={(val) => {
+                  console.log('changing')
                   parseInt(appSettingsController.setDaysBeforeRequestCancelNotification(val));
                 }}
                 width={20}

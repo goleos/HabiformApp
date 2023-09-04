@@ -11,7 +11,7 @@ export default function TimeIntervalSelector({
   return (
     <Stack>
       <HStack justifyContent="center" alignItems="center">
-        {/*https://github.com/react-native-datetimepicker/datetimepicker*/}
+        {/*Example taken from https://github.com/react-native-datetimepicker/datetimepicker [Accessed July 2023]*/}
         <RNDateTimePicker
           display="inline"
           mode="time"
