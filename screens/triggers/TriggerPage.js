@@ -7,7 +7,7 @@ import {
   HStack,
   Icon,
   Box,
-  Button,
+  Button, ScrollView,
 } from "native-base";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -25,6 +25,7 @@ function TriggerPage({ navigation, route }) {
   );
   return (
     <Flex height={"100%"} bg={"white"} justifyContent={'space-between'}>
+      <ScrollView>
       <VStack margin={2} space={2}>
         <HeadingWithIcon iconName={'clock-out'} headingText={trigger.name} bodyText={trigger.extraNotes} />
 
@@ -66,6 +67,7 @@ function TriggerPage({ navigation, route }) {
         >
           Edit
         </Button>
+      </ScrollView>
     </Flex>
   );
 }
