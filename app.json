@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "HabitApplication",
-    "slug": "HabitApplication",
-    "version": "1.0.0",
+    "name": "Habiform",
+    "slug": "Habiform",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.leopold99.Habiform"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a28d0b8b-9667-46b5-ad80-582dcb32d62c"
+      }
+    },
+    "owner": "leopold99"
   }
 }
