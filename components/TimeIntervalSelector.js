@@ -19,10 +19,7 @@ export default function TimeIntervalSelector({
           onChange={(event, date) => {
             if (event.type === "set") {
               onStartTimeChange(
-                date.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
+                date
               );
             }
           }}
@@ -34,10 +31,7 @@ export default function TimeIntervalSelector({
           onChange={(event, date) => {
             if (event.type === "set") {
               onEndTimeChange(
-                date.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
+                date
               );
             }
           }}

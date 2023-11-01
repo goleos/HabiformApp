@@ -7,7 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ContentBox from "../ContentBox";
 import IconWithText from "../IconWithText";
 
-export default function TriggerListItem({ trigger, navigation }) {
+export default function TriggerListItem({ trigger }) {
   return (
     <ContentBox>
       <Stack direction="column" alignItems="left" space={1.5}>

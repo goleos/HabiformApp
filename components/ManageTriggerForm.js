@@ -33,6 +33,12 @@ export default function ManageTriggerForm(props) {
 
   const initialValues = trigger;
 
+  const localeTimeOptions = {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
   const onSubmit = (values) => {
     triggersController.createNewTrigger(
       values,
@@ -158,17 +164,11 @@ export default function ManageTriggerForm(props) {
                   if (boolValue === true) {
                     setFieldValue(
                       "timeIntervalStart",
-                      defaultIntervalStart.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
+                      defaultIntervalStart.toLocaleTimeString([], localeTimeOptions)
                     );
                     setFieldValue(
                       "timeIntervalEnd",
-                      defaultIntervalEnd.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
+                      defaultIntervalEnd.toLocaleTimeString([], localeTimeOptions)
                     );
                     setHasTime(true);
                   } else {
@@ -183,11 +183,10 @@ export default function ManageTriggerForm(props) {
             {hasTime && (
               <TimeIntervalSelector
                 onStartTimeChange={(value) => {
-                  // console.log(value);
-                  setFieldValue("timeIntervalStart", value);
+                  setFieldValue("timeIntervalStart", value.toLocaleTimeString(["en-GB"], localeTimeOptions));
                 }}
                 onEndTimeChange={(value) => {
-                  setFieldValue("timeIntervalEnd", value);
+                  setFieldValue("timeIntervalEnd", value.toLocaleTimeString(["en-GB"], localeTimeOptions));
                 }}
                 defaultStart={defaultIntervalStart}
                 defaultEnd={defaultIntervalEnd}
@@ -206,8 +205,8 @@ export default function ManageTriggerForm(props) {
               onPress={() => {
                 if (values.timeIntervalStart !== null) {
                   if (
-                    parseInt(values.timeIntervalStart.split(":")[0]) <
-                    parseInt(values.timeIntervalEnd.split(":")[0])
+                    values.startTimeAsDateObject() <
+                    values.endTimeAsDateObject()
                   ) {
                     handleSubmit();
                   } else {

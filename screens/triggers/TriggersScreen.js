@@ -22,6 +22,7 @@ import { useState } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import InfoAlert from "../../components/InfoAlert";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
+import { triggerScheduleController } from "../../controllers/TriggerScheduleController";
 
 function TriggersScreen({ navigation }) {
   const alertText =
@@ -29,6 +30,9 @@ function TriggersScreen({ navigation }) {
 
   const handleCreateTrigger = () => {
     focusedTriggerController.newTrigger();
+    triggerScheduleController.formSchedule();
+    console.log("schedule:  ");
+    console.log(triggerScheduleController.schedule);
     navigation.navigate("ManageTrigger");
   };
 
@@ -42,19 +46,22 @@ function TriggersScreen({ navigation }) {
       <InfoAlert heading={"Tip"} text={alertText} />
       <ScrollView>
         {triggersController.triggers.map((trigger) => (
-          <Pressable key={trigger.triggerEventID} onPress={() => handleViewTrigger(trigger)}>
+          <Pressable
+            key={trigger.triggerEventID}
+            onPress={() => handleViewTrigger(trigger)}
+          >
             <TriggerListItem navigation={navigation} trigger={trigger} />
           </Pressable>
         ))}
       </ScrollView>
       <Fab
-          renderInPortal={false}
-          marginBottom={0}
-          placement="bottom-right"
-          bgColor="triggerColour.100"
-          size="lg"
-          icon={<Icon name="add" as={Ionicons} />}
-          onPress={handleCreateTrigger}
+        renderInPortal={false}
+        marginBottom={0}
+        placement="bottom-right"
+        bgColor="triggerColour.100"
+        size="lg"
+        icon={<Icon name="add" as={Ionicons} />}
+        onPress={handleCreateTrigger}
       />
     </>
   );

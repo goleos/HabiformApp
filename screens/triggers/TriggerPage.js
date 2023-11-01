@@ -74,9 +74,7 @@ function TriggerPage({ navigation }) {
           marginX={2}
           marginY={3}
           onPress={() => {
-            navigation.navigate("ManageTrigger", {
-              trigger: trigger,
-            });
+            navigation.navigate("ManageTrigger");
           }}
         >
           Edit
