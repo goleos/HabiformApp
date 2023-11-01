@@ -20,7 +20,7 @@ import TimeIntervalSelector from "../../components/TimeIntervalSelector";
 import ManageTriggerForm from "../../components/ManageTriggerForm";
 import {focusedTriggerController} from "../../controllers/FocusedTriggerController";
 
-export default function ManageTriggerScreen({ navigation, route }) {
+export default function ManageTriggerScreen({ navigation }) {
 
   return (
       // helped by this answer on stackoverflow: https://stackoverflow.com/a/34779467 [Accessed: 4 September]

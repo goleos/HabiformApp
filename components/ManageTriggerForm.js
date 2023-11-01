@@ -25,22 +25,17 @@ import * as Yup from "yup";
 import InfoAlert from "./InfoAlert";
 import { Switch } from "react-native";
 import { uiTheme } from "../utils/uiTheme";
-import {focusedTriggerController} from "../controllers/FocusedTriggerController";
+import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 
 export default function ManageTriggerForm(props) {
-  let trigger;
-  if (props.trigger !== null) {
-    trigger = props.trigger;
-  } else {
-    trigger = new Trigger();
-  }
+  let trigger = props.trigger;
   const formIsInAddMode = !trigger.triggerEventID;
 
   const initialValues = { ...trigger };
 
   const onSubmit = (values) => {
-    let newTrigger = new Trigger(values)
-    focusedTriggerController.setTrigger(newTrigger)
+    let newTrigger = new Trigger(values);
+    focusedTriggerController.setTrigger(newTrigger);
     triggersController.createNewTrigger(
       newTrigger,
       handleCreatedSuccess,
@@ -225,7 +220,7 @@ export default function ManageTriggerForm(props) {
               }}
               colorScheme={"trigger"}
             >
-              {formIsInAddMode ? 'Add Trigger' : 'Update Trigger'}
+              {formIsInAddMode ? "Add Trigger" : "Update Trigger"}
             </Button>
             {!formIsInAddMode && (
               <Button

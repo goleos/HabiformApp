@@ -21,7 +21,7 @@ import { observer } from "mobx-react";
 import { useState } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import InfoAlert from "../../components/InfoAlert";
-import {focusedTriggerController} from "../../controllers/FocusedTriggerController";
+import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
 
 function TriggersScreen({ navigation }) {
   const alertText =
@@ -37,9 +37,8 @@ function TriggersScreen({ navigation }) {
         size="lg"
         icon={<Icon name="add" as={Ionicons} />}
         onPress={() => {
-          navigation.navigate("ManageTrigger", {
-            trigger: null,
-          });
+          focusedTriggerController.newTrigger();
+          navigation.navigate("ManageTrigger");
         }}
       />
       <InfoAlert heading={"Tip"} text={alertText} />
@@ -53,10 +52,8 @@ function TriggersScreen({ navigation }) {
           <Pressable
             key={trigger.triggerEventID}
             onPress={() => {
-                focusedTriggerController.setTrigger(trigger);
-              navigation.navigate("Trigger", {
-                trigger: trigger,
-              });
+              focusedTriggerController.setTrigger(trigger);
+              navigation.navigate("Trigger");
             }}
           >
             <TriggerListItem navigation={navigation} trigger={trigger} />

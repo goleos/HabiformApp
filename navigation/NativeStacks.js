@@ -9,6 +9,7 @@ import TriggerPage from "../screens/triggers/TriggerPage";
 import HabitPage from "../screens/habits/HabitPage";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import HabitListWithoutEstimate from "../screens/dashboard/HabitListWithoutEstimate";
+import {focusedTriggerController} from "../controllers/FocusedTriggerController";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
@@ -43,7 +44,7 @@ export const TriggerNavigation = () => {
         })}
       />
       <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} options={({route}) => ({
-          title: route.params.trigger.name
+          title: focusedTriggerController.trigger.name
       })} />
     </NativeNavigationStack.Navigator>
   );
