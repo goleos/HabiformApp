@@ -102,7 +102,7 @@ function DashboardScreen({ navigation }) {
 
       <VStack height={"100%"} bg={"white"} padding={2} space={8}>
         <VStack space={3} paddingX={3}>
-          {triggersController.triggers != false && (
+          {triggerScheduleController.schedule.length > 0 && (
             <UpNextBox
               trigger={triggerScheduleController.schedule[0]}
               habits={habitsController.habits.filter(
