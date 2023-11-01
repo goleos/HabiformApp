@@ -12,6 +12,10 @@ export class FocusedTriggerController {
     this.trigger = trigger;
   }
 
+  newTrigger() {
+      this.trigger = new Trigger()
+  }
+
   dismissTrigger() {
     this.trigger = null;
   }
