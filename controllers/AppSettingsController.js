@@ -17,7 +17,6 @@ export class AppSettingsController {
   }
 
   async setDaysBeforeRequestCancelNotification(val) {
-    console.log("nononowe");
     this.daysBeforeRequestCancelNotification = val;
     await this.loadIntoAsyncStorage();
   }

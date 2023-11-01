@@ -22,6 +22,7 @@ import { dbController } from "../controllers/DatabaseController";
 import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
 import { useRef, useState } from "react";
+import {notificationsController} from "../controllers/NotificationsController";
 
 function SettingsScreen() {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -83,6 +84,7 @@ function SettingsScreen() {
                 colorScheme={"delete"}
                 onPress={() => {
                   dbController.deleteEverything();
+                  notificationsController.cancelAllNotifications().then(r => console.log("deleted all notifs"));
                   habitsController.requestHabits();
                   triggersController.requestTriggers();
                 }}

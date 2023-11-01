@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Habiform",
-    "slug": "Habiform",
+    "slug": "habitapp",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -32,6 +32,12 @@
         "projectId": "a28d0b8b-9667-46b5-ad80-582dcb32d62c"
       }
     },
-    "owner": "leopold99"
+    "owner": "leopold99",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a28d0b8b-9667-46b5-ad80-582dcb32d62c"
+    }
   }
 }

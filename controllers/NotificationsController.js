@@ -72,6 +72,10 @@ export class NotificationsController {
     return await Notifications.cancelScheduledNotificationAsync(identifier);
   }
 
+  async cancelAllNotifications() {
+    return await Notifications.cancelAllScheduledNotificationsAsync();
+  }
+
   async schedulePushNotification(content, when, identifier) {
     return await Notifications.scheduleNotificationAsync({
       content: content,

@@ -47,7 +47,7 @@ export default function HabitListItem({ habit, hideArrowButton }) {
 
 
 
-        {habit.triggerEventID !== null && (
+        {habit.triggerEventID !== null && trigger !== undefined && (
           <IconWithText
             iconName={materialIconsNames.trigger}
             text={trigger.name}
