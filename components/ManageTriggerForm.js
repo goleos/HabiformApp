@@ -25,6 +25,7 @@ import * as Yup from "yup";
 import InfoAlert from "./InfoAlert";
 import { Switch } from "react-native";
 import { uiTheme } from "../utils/uiTheme";
+import {focusedTriggerController} from "../controllers/FocusedTriggerController";
 
 export default function ManageTriggerForm(props) {
   let trigger;
@@ -38,8 +39,10 @@ export default function ManageTriggerForm(props) {
   const initialValues = { ...trigger };
 
   const onSubmit = (values) => {
+    let newTrigger = new Trigger(values)
+    focusedTriggerController.setTrigger(newTrigger)
     triggersController.createNewTrigger(
-      new Trigger(values),
+      newTrigger,
       handleCreatedSuccess,
       handleCreatedFailure
     );

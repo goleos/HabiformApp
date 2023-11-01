@@ -16,13 +16,14 @@ import { hab } from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
 import {observer} from "mobx-react";
 import HeadingWithIcon from "../../components/HeadingWithIcon";
+import {focusedTriggerController} from "../../controllers/FocusedTriggerController";
 
 function TriggerPage({ navigation, route }) {
 
-  const trigger = route.params.trigger;
-  const linkedHabits = habitsController.habits.filter(
-    (habit) => habit.triggerEventID === trigger.triggerEventID
-  );
+  const trigger = focusedTriggerController.trigger
+  // const linkedHabits = habitsController.habits.filter(
+  //   (habit) => habit.triggerEventID === trigger.triggerEventID
+  // );
   return (
     <Flex height={"100%"} bg={"white"} justifyContent={'space-between'}>
       <ScrollView>
@@ -48,13 +49,13 @@ function TriggerPage({ navigation, route }) {
         </Box>
 
         <Heading>Linked habits</Heading>
-        {linkedHabits.length !== 0 ? (
-          linkedHabits.map((habit) => {
-            return <HabitListItem hideArrowButton={true} habit={habit} key={habit.habitID} />;
-          })
-        ) : (
-          <Text>There are no linked habits</Text>
-        )}
+        {/*{linkedHabits.length !== 0 ? (*/}
+        {/*  linkedHabits.map((habit) => {*/}
+        {/*    return <HabitListItem hideArrowButton={true} habit={habit} key={habit.habitID} />;*/}
+        {/*  })*/}
+        {/*) : (*/}
+        {/*  <Text>There are no linked habits</Text>*/}
+        {/*)}*/}
       </VStack>
         <Button
             marginX={2}

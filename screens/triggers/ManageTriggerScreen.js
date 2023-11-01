@@ -18,6 +18,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { weekdays, weekdaysShort } from "../../utils/constants";
 import TimeIntervalSelector from "../../components/TimeIntervalSelector";
 import ManageTriggerForm from "../../components/ManageTriggerForm";
+import {focusedTriggerController} from "../../controllers/FocusedTriggerController";
 
 export default function ManageTriggerScreen({ navigation, route }) {
 
@@ -25,7 +26,7 @@ export default function ManageTriggerScreen({ navigation, route }) {
       // helped by this answer on stackoverflow: https://stackoverflow.com/a/34779467 [Accessed: 4 September]
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Flex height={"100%"} bg={"white"}>
-        <ManageTriggerForm trigger={route.params.trigger} onCreateOrEdit={() => {
+        <ManageTriggerForm trigger={focusedTriggerController.trigger} onCreateOrEdit={() => {
           navigation.goBack()
         }} onDelete={() => {
           navigation.navigate('My Triggers')
