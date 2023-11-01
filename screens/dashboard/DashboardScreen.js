@@ -30,6 +30,7 @@ import Habit from "../../models/habit";
 import HabitListItem from "../../components/listItems/HabitListItem";
 import ContentBox from "../../components/ContentBox";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {triggerScheduleController} from "../../controllers/TriggerScheduleController";
 
 function DashboardScreen({ navigation }) {
   const prolongedNotifications = notificationsController.prolongedNotifications;
@@ -103,11 +104,11 @@ function DashboardScreen({ navigation }) {
         <VStack space={3} paddingX={3}>
           {triggersController.triggers != false && (
             <UpNextBox
-              trigger={triggersController.getSoonestTriggers()[0]}
+              trigger={triggerScheduleController.schedule[0]}
               habits={habitsController.habits.filter(
                 (habit) =>
                   habit.triggerEventID ===
-                  triggersController.getSoonestTriggers()[0].triggerEventID
+                    triggerScheduleController.schedule[0].triggerEventID
               )}
             />
           )}

@@ -31,7 +31,7 @@ function TriggersScreen({ navigation }) {
   const handleCreateTrigger = () => {
     focusedTriggerController.newTrigger();
     triggerScheduleController.formSchedule();
-    console.log("schedule:  ");
+    console.log("schedule:   ");
     console.log(triggerScheduleController.schedule);
     navigation.navigate("ManageTrigger");
   };

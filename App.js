@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { WelcomeStack } from "./navigation/WelcomeNavigation";
 
-import {LogBox} from "react-native";
+import { LogBox } from "react-native";
 import { appSettingsController } from "./controllers/AppSettingsController";
+import { triggerScheduleController } from "./controllers/TriggerScheduleController";
 
 LogBox.ignoreLogs(["In React 18, SSRProvider", "Constants.platform.ios.model"]);
 
@@ -29,6 +30,18 @@ function App() {
       .catch(console.error);
     habitsController.requestHabits();
     triggersController.requestTriggers();
+    triggerScheduleController.formSchedule();
+  }, []);
+
+  // https://stackoverflow.com/a/65049865
+  const MINUTE_MS = 60000;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      triggerScheduleController.formSchedule();
+      console.log("Time change");
+    }, MINUTE_MS);
+
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   }, []);
 
   const isReady =
@@ -37,9 +50,9 @@ function App() {
 
   return (
     <NativeBaseProvider theme={uiTheme}>
-        <NavigationContainer>
-          {isReady && effectDone ? <WelcomeStack /> : <Text>Loading</Text>}
-        </NavigationContainer>
+      <NavigationContainer>
+        {isReady && effectDone ? <WelcomeStack /> : <Text>Loading</Text>}
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
