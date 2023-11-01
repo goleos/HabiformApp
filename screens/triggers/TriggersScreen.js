@@ -27,39 +27,35 @@ function TriggersScreen({ navigation }) {
   const alertText =
     "Triggers are actions that you already do regularly. Linking a desired habit to a behaviour you already do inreases your chance of regularly repeating your habit";
 
+  const handleCreateTrigger = () => {
+    focusedTriggerController.newTrigger();
+    navigation.navigate("ManageTrigger");
+  };
+
+  const handleViewTrigger = (trigger) => {
+    focusedTriggerController.setTrigger(trigger);
+    navigation.navigate("Trigger");
+  };
+
   return (
     <>
-      <Fab
-        renderInPortal={false}
-        marginBottom={0}
-        placement="bottom-right"
-        bgColor="triggerColour.100"
-        size="lg"
-        icon={<Icon name="add" as={Ionicons} />}
-        onPress={() => {
-          focusedTriggerController.newTrigger();
-          navigation.navigate("ManageTrigger");
-        }}
-      />
       <InfoAlert heading={"Tip"} text={alertText} />
-      {/*<Stack direction="column" padding={1}>*/}
-      {/*  <TriggerListItem trigger={trig} />*/}
-      {/*  <TriggerListItem trigger={trig} />*/}
-      {/*  <TriggerListItem trigger={trig} />*/}
-      {/*</Stack>*/}
       <ScrollView>
         {triggersController.triggers.map((trigger) => (
-          <Pressable
-            key={trigger.triggerEventID}
-            onPress={() => {
-              focusedTriggerController.setTrigger(trigger);
-              navigation.navigate("Trigger");
-            }}
-          >
+          <Pressable key={trigger.triggerEventID} onPress={() => handleViewTrigger(trigger)}>
             <TriggerListItem navigation={navigation} trigger={trigger} />
           </Pressable>
         ))}
       </ScrollView>
+      <Fab
+          renderInPortal={false}
+          marginBottom={0}
+          placement="bottom-right"
+          bgColor="triggerColour.100"
+          size="lg"
+          icon={<Icon name="add" as={Ionicons} />}
+          onPress={handleCreateTrigger}
+      />
     </>
   );
 }

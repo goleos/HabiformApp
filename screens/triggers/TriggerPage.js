@@ -19,7 +19,7 @@ import { observer } from "mobx-react";
 import HeadingWithIcon from "../../components/HeadingWithIcon";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
 
-function TriggerPage({ navigation, route }) {
+function TriggerPage({ navigation }) {
   const trigger = focusedTriggerController.trigger;
   const linkedHabits = focusedTriggerController.getLinkedHabits();
 

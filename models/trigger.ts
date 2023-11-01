@@ -1,5 +1,5 @@
 class Trigger {
-  triggerEventID: number = null;
+  triggerEventID?: number = null;
   name: string;
   extraNotes: string = "";
   timeIntervalStart: string = null;
