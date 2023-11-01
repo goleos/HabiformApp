@@ -31,16 +31,24 @@ export default function ManageTriggerForm(props) {
   let trigger = props.trigger;
   const formIsInAddMode = !trigger.triggerEventID;
 
-  const initialValues = { ...trigger };
+  const initialValues = trigger;
 
   const onSubmit = (values) => {
-    let newTrigger = new Trigger(values);
-    focusedTriggerController.setTrigger(newTrigger);
     triggersController.createNewTrigger(
-      newTrigger,
-      handleCreatedSuccess,
+      values,
+      (insertID) => {
+        if (formIsInAddMode) {
+          values.triggerEventID = insertID;
+        }
+        focusedTriggerController.setTrigger(values);
+        props.onCreateOrEdit();
+        toast.show({
+          description: "Trigger successfully created",
+        });
+      },
       handleCreatedFailure
     );
+
     console.info("Creating trigger: " + values.toString());
   };
 
@@ -74,13 +82,6 @@ export default function ManageTriggerForm(props) {
   });
 
   const toast = useToast();
-
-  const handleCreatedSuccess = () => {
-    props.onCreateOrEdit();
-    toast.show({
-      description: "Trigger successfully created",
-    });
-  };
 
   const handleCreatedFailure = () => {
     toast.show({

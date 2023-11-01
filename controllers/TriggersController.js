@@ -87,7 +87,7 @@ VALUES ( ?, ?, ?, ?, ?) `;
             "SQLLITE: Successfully inserted or replaced a trigger: " +
               trigger.name
           );
-          onSuccessCallback();
+          onSuccessCallback(resultSet["insertId"]);
         },
         (txtObj, error) => {
           console.log(
