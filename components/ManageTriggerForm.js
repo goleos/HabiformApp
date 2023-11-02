@@ -40,13 +40,10 @@ export default function ManageTriggerForm(props) {
   };
 
   const onSubmit = (values) => {
-    triggersController.createNewTrigger(
+    console.info("Creating trigger: " + values.toString());
+    focusedTriggerController.insertOrUpdate(
       values,
-      (insertID) => {
-        if (formIsInAddMode) {
-          values.triggerEventID = insertID;
-        }
-        focusedTriggerController.setTrigger(values);
+      () => {
         props.onCreateOrEdit();
         toast.show({
           description: "Trigger successfully created",
@@ -54,8 +51,6 @@ export default function ManageTriggerForm(props) {
       },
       handleCreatedFailure
     );
-
-    console.info("Creating trigger: " + values.toString());
   };
 
   let startHour;
@@ -96,23 +91,14 @@ export default function ManageTriggerForm(props) {
   };
 
   const handleDeleteTrigger = () => {
-    props.onDelete();
-    toast.show({
-      description: "Trigger successfully deleted",
+
+    focusedTriggerController.delete(() => {
+      props.onDelete();
+      toast.show({
+        description: "Trigger successfully deleted",
+      });
     });
   };
-
-  // const handleSelectDay = (day, index) => {
-  //   if (applicableDays.includes(day)) {
-  //     setApplicableDays(
-  //       applicableDays.filter((dayIn) => {
-  //         return dayIn !== day;
-  //       })
-  //     );
-  //   } else {
-  //     setApplicableDays(...applicableDays, day);
-  //   }
-  // };
 
   return (
     <Formik
@@ -164,11 +150,17 @@ export default function ManageTriggerForm(props) {
                   if (boolValue === true) {
                     setFieldValue(
                       "timeIntervalStart",
-                      defaultIntervalStart.toLocaleTimeString([], localeTimeOptions)
+                      defaultIntervalStart.toLocaleTimeString(
+                        [],
+                        localeTimeOptions
+                      )
                     );
                     setFieldValue(
                       "timeIntervalEnd",
-                      defaultIntervalEnd.toLocaleTimeString([], localeTimeOptions)
+                      defaultIntervalEnd.toLocaleTimeString(
+                        [],
+                        localeTimeOptions
+                      )
                     );
                     setHasTime(true);
                   } else {
@@ -183,10 +175,16 @@ export default function ManageTriggerForm(props) {
             {hasTime && (
               <TimeIntervalSelector
                 onStartTimeChange={(value) => {
-                  setFieldValue("timeIntervalStart", value.toLocaleTimeString(["en-GB"], localeTimeOptions));
+                  setFieldValue(
+                    "timeIntervalStart",
+                    value.toLocaleTimeString(["en-GB"], localeTimeOptions)
+                  );
                 }}
                 onEndTimeChange={(value) => {
-                  setFieldValue("timeIntervalEnd", value.toLocaleTimeString(["en-GB"], localeTimeOptions));
+                  setFieldValue(
+                    "timeIntervalEnd",
+                    value.toLocaleTimeString(["en-GB"], localeTimeOptions)
+                  );
                 }}
                 defaultStart={defaultIntervalStart}
                 defaultEnd={defaultIntervalEnd}
@@ -225,12 +223,7 @@ export default function ManageTriggerForm(props) {
             {!formIsInAddMode && (
               <Button
                 colorScheme={"delete"}
-                onPress={() => {
-                  triggersController.deleteTrigger(
-                    values.triggerEventID,
-                    handleDeleteTrigger
-                  );
-                }}
+                onPress={handleDeleteTrigger}
                 bg="red.600"
               >
                 Delete Trigger
