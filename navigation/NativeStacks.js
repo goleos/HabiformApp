@@ -9,7 +9,7 @@ import TriggerPage from "../screens/triggers/TriggerPage";
 import HabitPage from "../screens/habits/HabitPage";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import HabitListWithoutEstimate from "../screens/dashboard/HabitListWithoutEstimate";
-import {focusedTriggerController} from "../controllers/FocusedTriggerController";
+import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
@@ -39,7 +39,7 @@ export const TriggerNavigation = () => {
       <NativeNavigationStack.Screen
         name="ManageTrigger"
         component={ManageTriggerScreen}
-        options={({ route }) => ({
+        options={() => ({
           title: "Add or edit trigger",
         })}
       />

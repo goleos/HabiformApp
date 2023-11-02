@@ -1,20 +1,16 @@
 import {
-  Text,
-  Container,
+  Box,
+  Button,
   Flex,
-  VStack,
   Heading,
   HStack,
   Icon,
-  Box,
-  Button,
   ScrollView,
+  Text,
+  VStack,
 } from "native-base";
-import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HabitListItem from "../../components/listItems/HabitListItem";
-import { hab } from "../../models/habit";
-import { habitsController } from "../../controllers/HabitsController";
 import { observer } from "mobx-react";
 import HeadingWithIcon from "../../components/HeadingWithIcon";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";

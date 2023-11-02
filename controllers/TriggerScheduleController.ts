@@ -12,7 +12,10 @@ export class TriggerScheduleController {
 
   formSchedule(): void {
     const now = new Date();
-    const timedTriggers = (triggersController !== undefined) ? triggersController.getTimedTriggers() : [];
+    const timedTriggers =
+      triggersController !== undefined
+        ? triggersController.getTimedTriggers()
+        : [];
     const withoutPastTriggers: Trigger[] = timedTriggers.filter(
       (trigger: Trigger) => {
         return trigger.endTimeAsDateObject() > now;

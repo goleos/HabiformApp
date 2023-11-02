@@ -1,17 +1,5 @@
-import {
-  Box,
-  Divider,
-  Heading,
-  HStack,
-  Icon,
-  ScrollView,
-  Select,
-  Text,
-  VStack,
-} from "native-base";
-import TriggerListItem from "./listItems/TriggerListItem";
+import { Box, Divider, HStack, Icon, Select, Text, VStack } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import HabitList from "./HabitList";
 import { useState } from "react";
 import IntentionsList from "./IntentionsList";
 import { materialIconsNames } from "../utils/constants";
@@ -23,33 +11,24 @@ export default function UpNextBox({ trigger, habits }) {
     <Text>No habits are associated with this trigger</Text>
   );
 
-  const HabitsPresentComponent = ({habits}) => {
-    const [selectedHabit, setSelectedHabit] = useState(
-        habits[0]
-    );
+  const HabitsPresentComponent = ({ habits }) => {
+    const [selectedHabit, setSelectedHabit] = useState(habits[0]);
     return (
-        <VStack space={1} padding={2}>
-          <Select
-              selectedValue={selectedHabit}
-              onValueChange={(itemValue) => {
-                setSelectedHabit(itemValue);
-              }}
-          >
-            {habits.map((habit) => (
-                <Select.Item
-                    label={habit.name}
-                    value={habit}
-                    key={habit.habitID}
-                />
-            ))}
-          </Select>
-          <IntentionsList
-              intentions={selectedHabit.intentions}
-              readOnly={true}
-          />
-        </VStack>
-    )
-  }
+      <VStack space={1} padding={2}>
+        <Select
+          selectedValue={selectedHabit}
+          onValueChange={(itemValue) => {
+            setSelectedHabit(itemValue);
+          }}
+        >
+          {habits.map((habit) => (
+            <Select.Item label={habit.name} value={habit} key={habit.habitID} />
+          ))}
+        </Select>
+        <IntentionsList intentions={selectedHabit.intentions} readOnly={true} />
+      </VStack>
+    );
+  };
 
   return (
     <Box borderWidth={2} borderRadius={10} padding={2}>
@@ -74,7 +53,11 @@ export default function UpNextBox({ trigger, habits }) {
       </HStack>
       <Divider my={2} />
       {/*<Heading fontSize={'xl'}>Habits</Heading>*/}
-      {hasHabits ? <HabitsPresentComponent habits={habits} /> : noHabitsComponent}
+      {hasHabits ? (
+        <HabitsPresentComponent habits={habits} />
+      ) : (
+        noHabitsComponent
+      )}
     </Box>
   );
 }

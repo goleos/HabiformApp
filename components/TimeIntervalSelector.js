@@ -1,6 +1,5 @@
-import { Alert, HStack, Stack, Text } from "native-base";
+import { HStack, Stack, Text } from "native-base";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import InfoAlert from "./InfoAlert";
 
 export default function TimeIntervalSelector({
   onStartTimeChange,
@@ -8,7 +7,6 @@ export default function TimeIntervalSelector({
   defaultStart,
   defaultEnd,
 }) {
-
   return (
     <Stack>
       <HStack justifyContent="center" alignItems="center">

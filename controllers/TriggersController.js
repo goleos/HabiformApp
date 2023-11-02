@@ -1,8 +1,6 @@
-import { makeAutoObservable, runInAction } from "mobx";
-import Habit, { hab } from "../models/habit";
+import { makeAutoObservable } from "mobx";
 import { dbController } from "./DatabaseController";
-import habit from "../models/habit";
-import Trigger, { trig } from "../models/trigger";
+import Trigger from "../models/trigger";
 
 export class TriggersController {
   triggers = [];

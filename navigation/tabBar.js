@@ -4,19 +4,15 @@
 // https://www.npmjs.com/package/react-native-vector-icons
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import TriggersScreen from "../screens/triggers/TriggersScreen";
-import HabitsScreen from "../screens/habits/HabitsScreen";
-import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Entypo from "react-native-vector-icons/Entypo";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import {DashboardNavigation, HabitNavigation} from "./NativeStacks";
-import { TriggerNavigation } from "./NativeStacks";
+import {
+  DashboardNavigation,
+  HabitNavigation,
+  TriggerNavigation,
+} from "./NativeStacks";
 import { uiTheme } from "../utils/uiTheme";
-import { Image } from "react-native";
-import {materialIconsNames} from "../utils/constants";
+import { materialIconsNames } from "../utils/constants";
 
 const Tab = createBottomTabNavigator();
 

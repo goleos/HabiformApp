@@ -1,9 +1,7 @@
-import { Pressable, Text } from "native-base";
-import { NativeBaseProvider, Box, Stack, IconButton, Icon } from "native-base";
+import { Box, Icon, Stack } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function ContentBox(props) {
-
   return (
     <Box
       backgroundColor="white"
@@ -13,16 +11,22 @@ export default function ContentBox(props) {
       margin={2}
       shadow={6}
     >
-
-        <Stack
-          direction="row"
-          alignItems="center"
-          space={5}
-          justifyContent="space-between"
-        >
-          {props.children}
-            {props.hideArrowButton !== true && <Icon margin={3} size={19} as={Ionicons} name="chevron-forward-outline" />}
-        </Stack>
+      <Stack
+        direction="row"
+        alignItems="center"
+        space={5}
+        justifyContent="space-between"
+      >
+        {props.children}
+        {props.hideArrowButton !== true && (
+          <Icon
+            margin={3}
+            size={19}
+            as={Ionicons}
+            name="chevron-forward-outline"
+          />
+        )}
+      </Stack>
     </Box>
   );
 }

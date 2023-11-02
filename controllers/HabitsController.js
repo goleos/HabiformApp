@@ -1,11 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import Habit, { hab } from "../models/habit";
+import Habit from "../models/habit";
 import habit from "../models/habit";
 import { dbController } from "./DatabaseController";
 import { triggersController } from "./TriggersController";
 import HabitStatus from "../models/habitStatus";
 import { notificationsController } from "./NotificationsController";
-import { DailyTriggerInput } from "expo-notifications";
 
 export function setNotifications(habit) {
   if (notificationsController.notifications !== null) {

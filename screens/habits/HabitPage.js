@@ -1,18 +1,8 @@
-import {
-  Button,
-  Heading,
-  Text,
-  Flex,
-  VStack,
-  Box,
-  HStack,
-  Icon,
-} from "native-base";
+import { Box, Button, Flex, HStack, Icon, Text, VStack } from "native-base";
 import IntentionsList from "../../components/IntentionsList";
 import { notificationsController } from "../../controllers/NotificationsController";
 import { observer } from "mobx-react";
 import HeadingWithIcon from "../../components/HeadingWithIcon";
-import ButtonGroup from "native-base/src/components/primitives/Button/ButtonGroup";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { materialIconsNames } from "../../utils/constants";
 import { triggersController } from "../../controllers/TriggersController";
@@ -73,8 +63,8 @@ function HabitPage({ navigation, route }) {
           Edit
         </Button>
         <Button
-            variant={'outline'}
-            size={'md'}
+          variant={"outline"}
+          size={"md"}
           onPress={() => {
             notificationsController.schedulePushNotification(
               habit.produceNotification(),

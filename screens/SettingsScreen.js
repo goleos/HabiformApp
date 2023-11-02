@@ -4,16 +4,7 @@ import {
   Switch,
   TouchableWithoutFeedback,
 } from "react-native";
-import {
-  AlertDialog,
-  Button,
-  Flex,
-  Heading,
-  HStack,
-  Input,
-  Text,
-  VStack,
-} from "native-base";
+import { Button, Flex, HStack, Input, Text, VStack } from "native-base";
 import { appSettingsController } from "../controllers/AppSettingsController";
 import { observer } from "mobx-react";
 import BoxStack from "../components/boxes/BoxStack";
@@ -22,7 +13,7 @@ import { dbController } from "../controllers/DatabaseController";
 import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
 import { useRef, useState } from "react";
-import {notificationsController} from "../controllers/NotificationsController";
+import { notificationsController } from "../controllers/NotificationsController";
 
 function SettingsScreen() {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -84,7 +75,9 @@ function SettingsScreen() {
                 colorScheme={"delete"}
                 onPress={() => {
                   dbController.deleteEverything();
-                  notificationsController.cancelAllNotifications().then(r => console.log("deleted all notifs"));
+                  notificationsController
+                    .cancelAllNotifications()
+                    .then((r) => console.log("deleted all notifs"));
                   habitsController.requestHabits();
                   triggersController.requestTriggers();
                 }}

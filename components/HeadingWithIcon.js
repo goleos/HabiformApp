@@ -1,5 +1,4 @@
-import { Box, Heading, Icon, Text, VStack } from "native-base";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Heading, Icon, Text, VStack } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import BasicBox from "./boxes/BasicBox";
 

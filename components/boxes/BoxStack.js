@@ -1,4 +1,4 @@
-import {Box, Divider, Heading, Text, View} from "native-base";
+import { Box, Divider, Heading, View } from "native-base";
 import { Children } from "react";
 
 export default function BoxStack({ children, title }) {

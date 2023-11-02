@@ -1,17 +1,13 @@
 import {
   Box,
-  Button,
   Heading,
   HStack,
   Icon,
   IconButton,
   ScrollView,
-  Stack,
   VStack,
 } from "native-base";
 import IntentionListItem from "./listItems/IntentionListItem";
-import BasicBox from "./boxes/BasicBox";
-import BoxStack from "./boxes/BoxStack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function IntentionsList({
@@ -19,7 +15,7 @@ export default function IntentionsList({
   onChange,
   readOnly,
   includeTitle,
-    disableScroll
+  disableScroll,
 }) {
   const adjustButtons = (
     <HStack justifyContent={"center"} space={3}>
@@ -44,36 +40,42 @@ export default function IntentionsList({
     </HStack>
   );
 
-  const intentionsList = <VStack space={1}>
+  const intentionsList = (
+    <VStack space={1}>
       <Heading fontSize={"lg"} alignSelf={"center"}>
-          Implementation intentions
+        Implementation intentions
       </Heading>
       {intentions.map((intention, index) => {
-          return (
-              <IntentionListItem
-                  intentionText={intention}
-                  isReadOnly={readOnly}
-                  key={index}
-                  intentionNumber={(index + 1).toString()}
-                  onChangeText={(newText) => {
-                      const intentionsArray = [...intentions];
-                      intentionsArray[index] = newText;
-                      onChange(intentionsArray);
-                  }}
-              />
-          );
+        return (
+          <IntentionListItem
+            intentionText={intention}
+            isReadOnly={readOnly}
+            key={index}
+            intentionNumber={(index + 1).toString()}
+            onChangeText={(newText) => {
+              const intentionsArray = [...intentions];
+              intentionsArray[index] = newText;
+              onChange(intentionsArray);
+            }}
+          />
+        );
       })}
-  </VStack>
+    </VStack>
+  );
   return (
     <Box bg={"gray.200"} padding={2} borderRadius={10} maxHeight={200}>
       <VStack space={3}>
-          {!disableScroll ? <ScrollView>
+        {!disableScroll ? (
+          <ScrollView>
             {intentionsList}
-          {!readOnly && adjustButtons}
-        </ScrollView> : <>
-              {intentionsList}
-              {!readOnly && adjustButtons}
-          </>}
+            {!readOnly && adjustButtons}
+          </ScrollView>
+        ) : (
+          <>
+            {intentionsList}
+            {!readOnly && adjustButtons}
+          </>
+        )}
       </VStack>
     </Box>
   );

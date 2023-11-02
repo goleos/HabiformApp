@@ -1,5 +1,3 @@
-import {date} from "yup";
-
 class Trigger {
   triggerEventID?: number = null;
   name: string;

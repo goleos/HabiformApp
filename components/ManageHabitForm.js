@@ -1,18 +1,14 @@
 // https://docs.nativebase.io/next/form-control#page-title
 
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
+import { Formik } from "formik";
 import Habit from "../models/habit";
 import {
-  Box,
   Button,
   Flex,
   FormControl,
-  Heading,
   HStack,
   Input,
   Select,
-  Stack,
   Text,
   useToast,
   VStack,
@@ -23,7 +19,6 @@ import {
   habitsController,
 } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
-import IntentionListItem from "./listItems/IntentionListItem";
 import IntentionsList from "./IntentionsList";
 import BoxStack from "./boxes/BoxStack";
 import { Switch } from "react-native";

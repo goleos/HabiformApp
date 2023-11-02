@@ -1,25 +1,8 @@
 import TriggerListItem from "../../components/listItems/TriggerListItem";
-import { trig } from "../../models/trigger";
-import {
-  Alert,
-  Fab,
-  Heading,
-  HStack,
-  Icon,
-  Pressable,
-  ScrollView,
-  Stack,
-  Text,
-  View,
-  VStack,
-} from "native-base";
+import { Fab, Icon, Pressable, ScrollView } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { habitsController } from "../../controllers/HabitsController";
-import HabitListItem from "../../components/listItems/HabitListItem";
 import { triggersController } from "../../controllers/TriggersController";
 import { observer } from "mobx-react";
-import { useState } from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import InfoAlert from "../../components/InfoAlert";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
 import { triggerScheduleController } from "../../controllers/TriggerScheduleController";

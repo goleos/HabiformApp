@@ -1,34 +1,24 @@
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native";
 import { observer } from "mobx-react";
-import { dbController } from "../../controllers/DatabaseController";
 import {
   Alert,
   AlertDialog,
   Button,
-  Center,
-  Flex,
   Heading,
-  ScrollView,
-  VStack,
-  Text,
   Icon,
+  Text,
+  VStack,
 } from "native-base";
 import {
   addNotificationToHabit,
   cancelHabitNotification,
   habitsController,
-  setNotifications,
 } from "../../controllers/HabitsController";
-import { triggersController } from "../../controllers/TriggersController";
-import TriggerListItem from "../../components/listItems/TriggerListItem";
 import UpNextBox from "../../components/UpNextBox";
-import HabitList from "../../components/HabitList";
-import InfoAlert from "../../components/InfoAlert";
 import { notificationsController } from "../../controllers/NotificationsController";
 import { useRef, useState } from "react";
 import Habit from "../../models/habit";
 import HabitListItem from "../../components/listItems/HabitListItem";
-import ContentBox from "../../components/ContentBox";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { triggerScheduleController } from "../../controllers/TriggerScheduleController";
 

@@ -1,9 +1,8 @@
-import { Button, Fab, Flex, Icon, ScrollView, Text, VStack } from "native-base";
+import { Button, Fab, Icon, ScrollView, VStack } from "native-base";
 import { habitsController } from "../../controllers/HabitsController";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { observer } from "mobx-react";
 import HabitList from "../../components/HabitList";
-import ContentBox from "../../components/ContentBox";
 import { useState } from "react";
 import HabitStatus from "../../models/habitStatus";
 
@@ -63,16 +62,16 @@ function HabitsScreen({ navigation, isFocused }) {
             Archived
           </Button>
         </Button.Group>
-          <ScrollView >
-            <HabitList
-              habits={habits}
-              onItemPress={(habit) => {
-                navigation.navigate("HabitPage", {
-                  habit: habit,
-                });
-              }}
-            />
-          </ScrollView>
+        <ScrollView>
+          <HabitList
+            habits={habits}
+            onItemPress={(habit) => {
+              navigation.navigate("HabitPage", {
+                habit: habit,
+              });
+            }}
+          />
+        </ScrollView>
       </VStack>
     </>
   );
