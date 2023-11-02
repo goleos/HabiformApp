@@ -25,12 +25,12 @@ import UpNextBox from "../../components/UpNextBox";
 import HabitList from "../../components/HabitList";
 import InfoAlert from "../../components/InfoAlert";
 import { notificationsController } from "../../controllers/NotificationsController";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Habit from "../../models/habit";
 import HabitListItem from "../../components/listItems/HabitListItem";
 import ContentBox from "../../components/ContentBox";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {triggerScheduleController} from "../../controllers/TriggerScheduleController";
+import { triggerScheduleController } from "../../controllers/TriggerScheduleController";
 
 function DashboardScreen({ navigation }) {
   const prolongedNotifications = notificationsController.prolongedNotifications;
@@ -40,9 +40,10 @@ function DashboardScreen({ navigation }) {
       : null;
   // console.log("prolonged habit: " + prolongedHabit);
   const cancelRef = useRef(null);
+  const [dismissedProlong, setDismissedProlong] = useState(false);
   return (
     <SafeAreaView>
-      {prolongedHabit !== null && (
+      {prolongedHabit !== null && dismissedProlong === false && (
         <AlertDialog leastDestructiveRef={cancelRef} isOpen={prolongedHabit}>
           <AlertDialog.Content width={"90%"}>
             {/*<AlertDialog.CloseButton />*/}
@@ -89,6 +90,7 @@ function DashboardScreen({ navigation }) {
                       }
                     );
                     notificationsController.requestAllScheduledNotifications();
+                    setDismissedProlong(true);
                   }}
                   size={"md"}
                 >
@@ -100,7 +102,13 @@ function DashboardScreen({ navigation }) {
         </AlertDialog>
       )}
 
-      <VStack height={"100%"} bg={"white"} justifyContent={"space-between"} padding={2} space={8}>
+      <VStack
+        height={"100%"}
+        bg={"white"}
+        justifyContent={"space-between"}
+        padding={2}
+        space={8}
+      >
         <VStack space={3} paddingX={3}>
           {triggerScheduleController.schedule.length > 0 ? (
             <UpNextBox
@@ -108,13 +116,17 @@ function DashboardScreen({ navigation }) {
               habits={habitsController.habits.filter(
                 (habit) =>
                   habit.triggerEventID ===
-                    triggerScheduleController.schedule[0].triggerEventID
+                  triggerScheduleController.schedule[0].triggerEventID
               )}
             />
-          ) : (<VStack space={2}>
-            <Heading textAlign={"center"} alignSelf={"center"} mt={10}>No upcoming habits for the rest of the day</Heading>
-            {/*<Button onPress={() => navigation.navigate("My Habits")}>View all habits</Button>*/}
-          </VStack>)}
+          ) : (
+            <VStack space={2}>
+              <Heading textAlign={"center"} alignSelf={"center"} mt={10}>
+                No upcoming habits for the rest of the day
+              </Heading>
+              {/*<Button onPress={() => navigation.navigate("My Habits")}>View all habits</Button>*/}
+            </VStack>
+          )}
         </VStack>
         <VStack space={2}>
           <Heading>Habits without timed triggers</Heading>
