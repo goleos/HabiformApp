@@ -26,6 +26,7 @@ import InfoAlert from "./InfoAlert";
 import { Switch } from "react-native";
 import { uiTheme } from "../utils/uiTheme";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
+import {triggerFormValidationSchema} from "../utils/FormValidationSchemas";
 
 export default function ManageTriggerForm(props) {
   let trigger = props.trigger;
@@ -75,12 +76,7 @@ export default function ManageTriggerForm(props) {
 
   const [hasTime, setHasTime] = useState(!!initialValues.timeIntervalStart);
 
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("Name is required")
-      .trim("Invalid name")
-      .max(20, "Name can have at most 20 characters"),
-  });
+
 
   const toast = useToast();
 
@@ -104,7 +100,7 @@ export default function ManageTriggerForm(props) {
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
-      validationSchema={validationSchema}
+      validationSchema={triggerFormValidationSchema}
     >
       {({
         handleChange,

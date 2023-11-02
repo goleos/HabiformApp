@@ -38,7 +38,6 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       triggerScheduleController.formSchedule();
-      console.log("Time change");
     }, MINUTE_MS);
 
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
