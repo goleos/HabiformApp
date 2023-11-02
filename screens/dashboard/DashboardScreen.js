@@ -102,7 +102,7 @@ function DashboardScreen({ navigation }) {
 
       <VStack height={"100%"} bg={"white"} justifyContent={"space-between"} padding={2} space={8}>
         <VStack space={3} paddingX={3}>
-          {triggerScheduleController.schedule.length > 0 && (
+          {triggerScheduleController.schedule.length > 0 ? (
             <UpNextBox
               trigger={triggerScheduleController.schedule[0]}
               habits={habitsController.habits.filter(
@@ -111,7 +111,10 @@ function DashboardScreen({ navigation }) {
                     triggerScheduleController.schedule[0].triggerEventID
               )}
             />
-          )}
+          ) : (<VStack space={2}>
+            <Heading alignSelf={"center"} mt={10}>No upcoming habits</Heading>
+            <Button onPress={() => navigation.navigate("My Habits")}>View all habits</Button>
+          </VStack>)}
         </VStack>
         <VStack space={2}>
           <Heading>Habits without timed triggers</Heading>

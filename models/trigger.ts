@@ -1,3 +1,5 @@
+import {date} from "yup";
+
 class Trigger {
   triggerEventID?: number = null;
   name: string;
@@ -21,7 +23,7 @@ class Trigger {
     }
   }
 
-  startTimeAsDateObject() {
+  startTimeAsDateObject(): Date {
     if (this.timeIntervalStart) {
       const startHour = parseInt(this.timeIntervalStart.split(":")[0]);
       const startMinute = parseInt(this.timeIntervalStart.split(":")[1]);
@@ -32,6 +34,16 @@ class Trigger {
     } else {
       return null;
     }
+  }
+
+  startTimeObjectOrDefault(): Date {
+    const time = this.startTimeAsDateObject()
+    return (time) ? time : new Date(2021, 12, 4, 7, 0);
+  }
+
+  endTimeObjectOrDefault(): Date {
+    const time = this.endTimeAsDateObject()
+    return (time) ? time : new Date(2021, 12, 4, 7, 0);
   }
 
   endTimeAsDateObject() {

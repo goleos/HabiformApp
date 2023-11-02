@@ -8,8 +8,6 @@ export default function TimeIntervalSelector({
   defaultStart,
   defaultEnd,
 }) {
-  const defaultIntervalStart = new Date(2021, 12, 4, 7, 0);
-  const defaultIntervalEnd = new Date(2021, 12, 4, 8, 0);
 
   return (
     <Stack>
@@ -18,7 +16,7 @@ export default function TimeIntervalSelector({
         <RNDateTimePicker
           display="inline"
           mode="time"
-          value={defaultStart ? defaultStart : defaultIntervalStart}
+          value={defaultStart}
           onChange={(event, date) => {
             if (event.type === "set") {
               onStartTimeChange(date);
@@ -28,7 +26,7 @@ export default function TimeIntervalSelector({
         <Text>—</Text>
         <RNDateTimePicker
           mode="time"
-          value={defaultEnd ? defaultEnd : defaultIntervalEnd}
+          value={defaultEnd}
           onChange={(event, date) => {
             if (event.type === "set") {
               onEndTimeChange(date);

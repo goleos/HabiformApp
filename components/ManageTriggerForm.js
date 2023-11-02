@@ -152,8 +152,8 @@ export default function ManageTriggerForm(props) {
                     value.toLocaleTimeString(["en-GB"], localeTimeOptions)
                   );
                 }}
-                defaultStart={trigger.startTimeAsDateObject()}
-                defaultEnd={trigger.endTimeAsDateObject()}
+                defaultStart={values.startTimeObjectOrDefault()}
+                defaultEnd={values.endTimeObjectOrDefault()}
               />
             )}
             <Text>Extra notes</Text>
