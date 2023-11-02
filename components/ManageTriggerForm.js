@@ -22,18 +22,22 @@ import InfoAlert from "./InfoAlert";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 import { triggerFormValidationSchema } from "../utils/FormValidationSchemas";
 
+
 export default function ManageTriggerForm(props) {
   let trigger = props.trigger;
+  const toast = useToast();
   const formIsInAddMode = !trigger.triggerEventID;
-
+  const [hasTime, setHasTime] = useState(!!trigger.timeIntervalStart);
   const localeTimeOptions = {
     hour12: false,
     hour: "2-digit",
     minute: "2-digit",
   };
 
+
   const onSubmit = (values) => {
     console.info("Creating trigger: " + values.toString());
+
     focusedTriggerController.insertOrUpdate(
       values,
       () => {
@@ -44,31 +48,8 @@ export default function ManageTriggerForm(props) {
       },
       handleCreatedFailure
     );
+
   };
-
-  let startHour;
-  let startMinute;
-  let endHour;
-  let endMinute;
-
-  if (trigger.timeIntervalStart !== null) {
-    startHour = parseInt(trigger.timeIntervalStart.split(":")[0]);
-    startMinute = parseInt(trigger.timeIntervalStart.split(":")[1]);
-    endHour = parseInt(trigger.timeIntervalEnd.split(":")[0]);
-    endMinute = parseInt(trigger.timeIntervalEnd.split(":")[1]);
-  } else {
-    startHour = 7;
-    startMinute = 0;
-    endHour = 8;
-    endMinute = 0;
-  }
-
-  const defaultIntervalStart = new Date(2021, 12, 4, startHour, startMinute);
-  const defaultIntervalEnd = new Date(2021, 12, 4, endHour, endMinute);
-
-  const [hasTime, setHasTime] = useState(!!trigger.timeIntervalStart);
-
-  const toast = useToast();
 
   const handleCreatedFailure = () => {
     toast.show({
@@ -135,14 +116,14 @@ export default function ManageTriggerForm(props) {
                   if (boolValue === true) {
                     setFieldValue(
                       "timeIntervalStart",
-                      defaultIntervalStart.toLocaleTimeString(
+                        new Date(2021, 12, 4, 7, 0).toLocaleTimeString(
                         [],
                         localeTimeOptions
                       )
                     );
                     setFieldValue(
                       "timeIntervalEnd",
-                      defaultIntervalEnd.toLocaleTimeString(
+                        new Date(2021, 12, 4, 8, 0).toLocaleTimeString(
                         [],
                         localeTimeOptions
                       )
@@ -171,8 +152,8 @@ export default function ManageTriggerForm(props) {
                     value.toLocaleTimeString(["en-GB"], localeTimeOptions)
                   );
                 }}
-                defaultStart={defaultIntervalStart}
-                defaultEnd={defaultIntervalEnd}
+                defaultStart={trigger.startTimeAsDateObject()}
+                defaultEnd={trigger.endTimeAsDateObject()}
               />
             )}
             <Text>Extra notes</Text>
