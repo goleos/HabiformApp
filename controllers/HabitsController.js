@@ -33,8 +33,8 @@ export function setNotifications(habit) {
   }
 }
 
-export function addNotificationToHabit(habit) {
-  const trigger = triggersController.getTriggerById(habit.triggerEventID);
+export function addNotificationToHabit(habit, specificTrigger) {
+  const trigger = (!specificTrigger) ? triggersController.getTriggerById(habit.triggerEventID) : specificTrigger;
   if (trigger.timeIntervalStart !== null) {
     const triggerTime = trigger.startTimeAsDateObject();
     console.info(
