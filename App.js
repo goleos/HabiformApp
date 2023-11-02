@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   // https://stackoverflow.com/a/65049865
-  const MINUTE_MS = 60000;
+  const MINUTE_MS = 10000;
   useEffect(() => {
     const interval = setInterval(() => {
       triggerScheduleController.formSchedule();

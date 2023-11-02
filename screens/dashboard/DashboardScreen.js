@@ -100,7 +100,7 @@ function DashboardScreen({ navigation }) {
         </AlertDialog>
       )}
 
-      <VStack height={"100%"} bg={"white"} padding={2} space={8}>
+      <VStack height={"100%"} bg={"white"} justifyContent={"space-between"} padding={2} space={8}>
         <VStack space={3} paddingX={3}>
           {triggerScheduleController.schedule.length > 0 && (
             <UpNextBox
