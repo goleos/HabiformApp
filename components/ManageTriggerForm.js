@@ -10,29 +10,21 @@ import {
   Flex,
   HStack,
   Input,
-  Stack,
   Text,
   TextArea,
   useToast,
   VStack,
 } from "native-base";
-import Trigger from "../models/trigger";
-import { triggersController } from "../controllers/TriggersController";
-import { View } from "react-native";
+import { Switch } from "react-native";
 import TimeIntervalSelector from "./TimeIntervalSelector";
 import { Formik } from "formik";
-import * as Yup from "yup";
 import InfoAlert from "./InfoAlert";
-import { Switch } from "react-native";
-import { uiTheme } from "../utils/uiTheme";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
-import {triggerFormValidationSchema} from "../utils/FormValidationSchemas";
+import { triggerFormValidationSchema } from "../utils/FormValidationSchemas";
 
 export default function ManageTriggerForm(props) {
   let trigger = props.trigger;
   const formIsInAddMode = !trigger.triggerEventID;
-
-  const initialValues = trigger;
 
   const localeTimeOptions = {
     hour12: false,
@@ -59,11 +51,11 @@ export default function ManageTriggerForm(props) {
   let endHour;
   let endMinute;
 
-  if (initialValues.timeIntervalStart !== null) {
-    startHour = parseInt(initialValues.timeIntervalStart.split(":")[0]);
-    startMinute = parseInt(initialValues.timeIntervalStart.split(":")[1]);
-    endHour = parseInt(initialValues.timeIntervalEnd.split(":")[0]);
-    endMinute = parseInt(initialValues.timeIntervalEnd.split(":")[1]);
+  if (trigger.timeIntervalStart !== null) {
+    startHour = parseInt(trigger.timeIntervalStart.split(":")[0]);
+    startMinute = parseInt(trigger.timeIntervalStart.split(":")[1]);
+    endHour = parseInt(trigger.timeIntervalEnd.split(":")[0]);
+    endMinute = parseInt(trigger.timeIntervalEnd.split(":")[1]);
   } else {
     startHour = 7;
     startMinute = 0;
@@ -74,9 +66,7 @@ export default function ManageTriggerForm(props) {
   const defaultIntervalStart = new Date(2021, 12, 4, startHour, startMinute);
   const defaultIntervalEnd = new Date(2021, 12, 4, endHour, endMinute);
 
-  const [hasTime, setHasTime] = useState(!!initialValues.timeIntervalStart);
-
-
+  const [hasTime, setHasTime] = useState(!!trigger.timeIntervalStart);
 
   const toast = useToast();
 
@@ -87,7 +77,6 @@ export default function ManageTriggerForm(props) {
   };
 
   const handleDeleteTrigger = () => {
-
     focusedTriggerController.delete(() => {
       props.onDelete();
       toast.show({
@@ -98,7 +87,7 @@ export default function ManageTriggerForm(props) {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={trigger}
       onSubmit={onSubmit}
       validationSchema={triggerFormValidationSchema}
     >
