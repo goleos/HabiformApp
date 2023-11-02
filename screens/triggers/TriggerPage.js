@@ -23,10 +23,6 @@ function TriggerPage({ navigation }) {
   const trigger = focusedTriggerController.trigger;
   const linkedHabits = focusedTriggerController.getLinkedHabits();
 
-  navigation.addListener("beforeRemove", () => {
-    focusedTriggerController.dismissTrigger();
-  });
-
   return (
     <Flex height={"100%"} bg={"white"} justifyContent={"space-between"}>
       <ScrollView>
