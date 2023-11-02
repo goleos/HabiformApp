@@ -10,6 +10,7 @@ import {
 import { triggersController } from "./TriggersController";
 
 type GeneralCallbackType = () => void;
+type GeneralCallbackTypeWithMessage = (message: string) => void;
 
 export class FocusedTriggerController {
   trigger?: Trigger = null;
@@ -30,9 +31,13 @@ export class FocusedTriggerController {
     this.trigger = null;
   }
 
-  delete(onCompleteCallback: GeneralCallbackType) {
+  delete(onCompleteCallback: GeneralCallbackType, onFailCallback: GeneralCallbackTypeWithMessage) {
     if (this.trigger === null) {
       throw new Error("Focused trigger is null while trying to delete it");
+    }
+    if (this.getLinkedHabits().length > 0) {
+      onFailCallback("Can't delete trigger. You must first unlink all habits from this trigger.")
+      return
     }
     triggersController.deleteTrigger(
       this.trigger.triggerEventID,

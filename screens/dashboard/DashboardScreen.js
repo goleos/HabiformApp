@@ -112,8 +112,8 @@ function DashboardScreen({ navigation }) {
               )}
             />
           ) : (<VStack space={2}>
-            <Heading alignSelf={"center"} mt={10}>No upcoming habits</Heading>
-            <Button onPress={() => navigation.navigate("My Habits")}>View all habits</Button>
+            <Heading textAlign={"center"} alignSelf={"center"} mt={10}>No upcoming habits for the rest of the day</Heading>
+            {/*<Button onPress={() => navigation.navigate("My Habits")}>View all habits</Button>*/}
           </VStack>)}
         </VStack>
         <VStack space={2}>

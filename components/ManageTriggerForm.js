@@ -22,7 +22,6 @@ import InfoAlert from "./InfoAlert";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 import { triggerFormValidationSchema } from "../utils/FormValidationSchemas";
 
-
 export default function ManageTriggerForm(props) {
   let trigger = props.trigger;
   const toast = useToast();
@@ -33,7 +32,6 @@ export default function ManageTriggerForm(props) {
     hour: "2-digit",
     minute: "2-digit",
   };
-
 
   const onSubmit = (values) => {
     console.info("Creating trigger: " + values.toString());
@@ -48,7 +46,6 @@ export default function ManageTriggerForm(props) {
       },
       handleCreatedFailure
     );
-
   };
 
   const handleCreatedFailure = () => {
@@ -58,12 +55,19 @@ export default function ManageTriggerForm(props) {
   };
 
   const handleDeleteTrigger = () => {
-    focusedTriggerController.delete(() => {
-      props.onDelete();
-      toast.show({
-        description: "Trigger successfully deleted",
-      });
-    });
+    focusedTriggerController.delete(
+      () => {
+        props.onDelete();
+        toast.show({
+          description: "Trigger successfully deleted",
+        });
+      },
+      (message) => {
+        toast.show({
+          description: message
+        });
+      }
+    );
   };
 
   return (
@@ -116,14 +120,14 @@ export default function ManageTriggerForm(props) {
                   if (boolValue === true) {
                     setFieldValue(
                       "timeIntervalStart",
-                        new Date(2021, 12, 4, 7, 0).toLocaleTimeString(
+                      new Date(2021, 12, 4, 7, 0).toLocaleTimeString(
                         [],
                         localeTimeOptions
                       )
                     );
                     setFieldValue(
                       "timeIntervalEnd",
-                        new Date(2021, 12, 4, 8, 0).toLocaleTimeString(
+                      new Date(2021, 12, 4, 8, 0).toLocaleTimeString(
                         [],
                         localeTimeOptions
                       )
