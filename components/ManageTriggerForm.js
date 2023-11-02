@@ -15,7 +15,7 @@ import {
   useToast,
   VStack,
 } from "native-base";
-import { Switch } from "react-native";
+import { Keyboard, Switch } from "react-native";
 import TimeIntervalSelector from "./TimeIntervalSelector";
 import { Formik } from "formik";
 import InfoAlert from "./InfoAlert";
@@ -64,7 +64,7 @@ export default function ManageTriggerForm(props) {
       },
       (message) => {
         toast.show({
-          description: message
+          description: message,
         });
       }
     );
@@ -117,6 +117,7 @@ export default function ManageTriggerForm(props) {
                 trackColor={{ true: "#2061c8" }}
                 value={hasTime}
                 onValueChange={(boolValue) => {
+                  Keyboard.dismiss();
                   if (boolValue === true) {
                     setFieldValue(
                       "timeIntervalStart",
