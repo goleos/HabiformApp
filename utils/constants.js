@@ -1,4 +1,5 @@
 import { number } from "yup";
+import {i18n} from "./localisation";
 
 export const weekdays = [
   "Monday",
@@ -20,7 +21,7 @@ export const materialIconsNames = {
 export const welcomeMessages = [
   {
     number: 1,
-    title: "Thank you for downloading this app!",
+    title: i18n.t("welcomeScreen1Title"),
     iconName: "emoticon-excited",
     text: "Building a good habit is difficult. This app is built on scientific findings that could help with forming a habit",
     isLastSlide: false,

@@ -5,7 +5,7 @@ import { uiTheme } from "../utils/uiTheme";
 export default function WelcomeMessage({ message }) {
   return (
     <VStack alignItems={"center"} space={3}>
-      <Heading fontSize={"xl"}>{message.title}</Heading>
+      <Heading textAlign={"center"} fontSize={"xl"}>{message.title}</Heading>
       <MaterialCommunityIcons
         name={message.iconName}
         size={100}
