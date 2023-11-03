@@ -70,21 +70,21 @@ function SettingsScreen() {
                 <Text>days</Text>
               </HStack>
             </BoxStack>
-            <BoxStack title={"Data management"}>
-              <Button
-                colorScheme={"delete"}
-                onPress={() => {
-                  dbController.deleteEverything();
-                  notificationsController
-                    .cancelAllNotifications()
-                    .then((r) => console.log("deleted all notifs"));
-                  habitsController.requestHabits();
-                  triggersController.requestTriggers();
-                }}
-              >
-                Delete all data
-              </Button>
-            </BoxStack>
+            {/*<BoxStack title={"Data management"}>*/}
+            {/*  <Button*/}
+            {/*    colorScheme={"delete"}*/}
+            {/*    onPress={() => {*/}
+            {/*      dbController.deleteEverything();*/}
+            {/*      notificationsController*/}
+            {/*        .cancelAllNotifications()*/}
+            {/*        .then((r) => console.log("deleted all notifs"));*/}
+            {/*      habitsController.requestHabits();*/}
+            {/*      triggersController.requestTriggers();*/}
+            {/*    }}*/}
+            {/*  >*/}
+            {/*    Delete all data*/}
+            {/*  </Button>*/}
+            {/*</BoxStack>*/}
             <BoxStack>
               <HStack paddingY={2} justifyContent={"space-between"}>
                 <Text>App version</Text>

@@ -4,8 +4,8 @@ export const sampleHabits = [
     triggerEventID: 1000,
     name: "Exercise in the gym",
     intentions: [
-      "Take the U1A bus",
-      "Get off at Sports Centre",
+      "Take bus to gym",
+      "Get off at the Gym",
       "Walk to the gym and do 10 pull ups",
     ],
     extraNotes: "You should spend at least 30 minutes in the gym",
@@ -52,14 +52,7 @@ export const sampleHabits = [
     extraNotes:
       "Make sure to have your driving license when you are about to drive a car",
     habitStatus: "active",
-  },
-  {
-    triggerEventID: 1000,
-    habitID: 1005,
-    name: "Call my parents",
-    intentions: ["Open phone app", "Call Mum", "Call Dad"],
-    habitStatus: 'active'
-  },
+  }
 ];
 
 export const sampleTriggers = [
