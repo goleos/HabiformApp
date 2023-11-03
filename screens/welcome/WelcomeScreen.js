@@ -8,6 +8,7 @@ import { triggersController } from "../../controllers/TriggersController";
 import Habit from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
 import Trigger from "../../models/trigger";
+import { i18n } from "../../utils/localisation";
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -50,8 +51,7 @@ function WelcomeScreen({ navigation }) {
   const lastSlideFinishComponent = (
     <VStack space={5} margin={1}>
       <Text>
-        Would you like to start with example habits and triggers so you can
-        better understand how the app works?
+          {i18n.t("startWithSamplesMessage")}
       </Text>
       <VStack space={2}>
         <Button
@@ -61,7 +61,7 @@ function WelcomeScreen({ navigation }) {
             navigation.navigate("App");
           }}
         >
-          Start with example data
+            {i18n.t("startWithExampleData")}
         </Button>
         <Button
           variant={"outline"}
@@ -71,7 +71,7 @@ function WelcomeScreen({ navigation }) {
             navigation.navigate("App");
           }}
         >
-          Start with empty data
+            {i18n.t("startWithEmptyData")}
         </Button>
       </VStack>
     </VStack>
@@ -93,7 +93,7 @@ function WelcomeScreen({ navigation }) {
               setSlideNumber(slideNumber + 1);
             }}
           >
-            Continue
+            {i18n.t("continueButtonText")}
           </Button>
         )}
       </View>
