@@ -21,6 +21,7 @@ import Habit from "../../models/habit";
 import HabitListItem from "../../components/listItems/HabitListItem";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { triggerScheduleController } from "../../controllers/TriggerScheduleController";
+import {i18n} from "../../utils/localisation";
 
 function DashboardScreen({ navigation }) {
   const prolongedNotifications = notificationsController.prolongedNotifications;
@@ -119,10 +120,9 @@ function DashboardScreen({ navigation }) {
           )}
         </VStack>
         <VStack space={2}>
-          <Heading>Habits without timed triggers</Heading>
+          <Heading>{i18n.t("habitsWithoutTimedTriggers")}</Heading>
           <Alert colorScheme={"info"} borderRadius={10}>
-            Watch out for habits in this list since the app cannot remind you
-            about them
+            {i18n.t("noTimedTriggerInfoBox")}
           </Alert>
           <Button
             onPress={() => {
@@ -132,7 +132,7 @@ function DashboardScreen({ navigation }) {
               <Icon as={MaterialCommunityIcons} name={"chevron-right"} />
             }
           >
-            View habits without timed triggers
+            {i18n.t("viewHabitsWithoutTimedTriggers")}
           </Button>
         </VStack>
       </VStack>

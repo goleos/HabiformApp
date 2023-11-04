@@ -9,6 +9,7 @@ import {
 } from "native-base";
 import IntentionListItem from "./listItems/IntentionListItem";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { i18n } from "../utils/localisation";
 
 export default function IntentionsList({
   intentions,
@@ -43,7 +44,7 @@ export default function IntentionsList({
   const intentionsList = (
     <VStack space={1}>
       <Heading fontSize={"lg"} alignSelf={"center"}>
-        Implementation intentions
+        {i18n.t("implementationIntentionsHeader")}
       </Heading>
       {intentions.map((intention, index) => {
         return (
