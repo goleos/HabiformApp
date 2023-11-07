@@ -65,5 +65,6 @@
   "resetSettingsButton": "Reset settings",
   "days": "days",
   "intentionNotificationBody": "Let's start with",
-  "noIntentionNotificationBody": "Remember to complete this habit today"
+  "noIntentionNotificationBody": "Remember to complete this habit today",
+  "noUpcomingHabitsMessage": "No upcoming habits for the rest of the day"
 }
