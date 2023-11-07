@@ -16,7 +16,7 @@ import Trigger from "../../models/trigger";
 import { i18n } from "../../utils/localisation";
 import { getLocales } from "expo-localization";
 
-const deviceLanguage = getLocales()[0].languageCode;
+
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -24,42 +24,14 @@ function WelcomeScreen({ navigation }) {
     return message.number === slideNumber;
   });
 
-  // TODO: take this logic outside of the view
   const handleCreateSampleHabits = async () => {
     await appSettingsController.setShowIntroScreen(false);
-    switch (deviceLanguage) {
-      case "ru":
-        loadSampleData(sampleTriggersRussian, sampleHabitsRussian);
-        break;
-      default:
-        loadSampleData(sampleTriggersEnglish, sampleHabitsEnglish);
-    }
+    const deviceLanguage = getLocales()[0].languageCode;
+    habitsController.createSampleHabits(deviceLanguage)
     navigation.navigate("App");
   };
 
-  const loadSampleData = (sampleTriggers: object[], sampleHabits: object[]) => {
-    sampleTriggers.forEach((triggerObj) => {
-      console.log(triggerObj);
-      const trigger = new Trigger(triggerObj);
-      triggersController.createNewTrigger(
-        trigger,
-        () => {
-          console.log("succc");
-        },
-        () => {
-          console.log("faillll");
-        }
-      );
-    });
-    sampleHabits.forEach((habitObj) => {
-      const habit = new Habit(habitObj);
-      habitsController.createNewHabit(
-        habit,
-        () => {},
-        () => {}
-      );
-    });
-  };
+
 
   const lastSlideFinishComponent = (
     <VStack space={5} margin={1}>

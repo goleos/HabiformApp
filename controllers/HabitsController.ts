@@ -5,6 +5,15 @@ import { dbController } from "./DatabaseController";
 import { triggersController } from "./TriggersController";
 import HabitStatus from "../models/habitStatus";
 import { notificationsController } from "./NotificationsController";
+import Trigger from "../models/trigger";
+import {
+  sampleHabitsEnglish,
+  sampleHabitsRussian,
+  sampleTriggersEnglish,
+  sampleTriggersRussian
+} from "../assets/sample_data";
+
+// TODO: refactor this file with proper typescript
 
 export function setNotifications(habit) {
   if (notificationsController.notifications !== null) {
@@ -22,7 +31,7 @@ export function setNotifications(habit) {
           );
         } else {
           if (habit.shouldNotify) {
-            addNotificationToHabit(habit);
+            addNotificationToHabit(habit, null);
           }
         }
       }
@@ -32,7 +41,7 @@ export function setNotifications(habit) {
   }
 }
 
-export function addNotificationToHabit(habit, specificTrigger) {
+export function addNotificationToHabit(habit: Habit, specificTrigger?: Trigger) {
   const trigger = (!specificTrigger) ? triggersController.getTriggerById(habit.triggerEventID) : specificTrigger;
   if (trigger.timeIntervalStart !== null) {
     const triggerTime = trigger.startTimeAsDateObject();
@@ -141,12 +150,11 @@ export class HabitsController {
     });
   }
 
-  markHabitAsComplete(habit) {}
-
-  createNewHabit(habit, onSuccessCallback, onFailureCallback) {
+  createNewHabit(habit: Habit, onSuccessCallback, onFailureCallback) {
     const sqlStatement = `INSERT OR REPLACE INTO habit (habitID, name, intentions, habitStatus, isFormed, extraNotes, shouldNotify, triggerEventID) 
 VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
     dbController.db.transaction((tx) => {
+
       tx.executeSql(
         sqlStatement,
         [
@@ -163,6 +171,8 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
           console.info("Successfully inserted a new habit: " + habit.name);
           onSuccessCallback();
         },
+          // @ts-ignore
+        //  TODO: why does this raise an error
         (txtObj, error) => {
           console.error("Error inserting a new habit: " + error.message);
           onFailureCallback();
@@ -184,6 +194,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
           );
           onCompleteCallback();
         },
+          // @ts-ignore
         (txtObj, error) => {
           console.log(
             "SQLLITE: Error deleting habit with id: " + habitID + ": "
@@ -193,6 +204,39 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?) `;
       );
     });
     this.requestHabits();
+  }
+
+  createSampleHabits(language: string) {
+    const loadSampleData = (sampleTriggers: object[], sampleHabits: object[]) => {
+      sampleTriggers.forEach((triggerObj) => {
+        console.log(triggerObj);
+        const trigger = new Trigger(triggerObj);
+        triggersController.createNewTrigger(
+            trigger,
+            () => {
+              console.log("succc");
+            },
+            () => {
+              console.log("faillll");
+            }
+        );
+      });
+      sampleHabits.forEach((habitObj) => {
+        const habit = new Habit(habitObj);
+        this.createNewHabit(
+            habit,
+            () => {},
+            () => {}
+        );
+      });
+    };
+    switch (language) {
+      case "ru":
+        loadSampleData(sampleTriggersRussian, sampleHabitsRussian);
+        break;
+      default:
+        loadSampleData(sampleTriggersEnglish, sampleHabitsEnglish);
+    }
   }
 }
 
