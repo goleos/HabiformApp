@@ -32,11 +32,11 @@ function SettingsScreen() {
         >
           <VStack space={4}>
             <BoxStack title={"Notification settings"}>
-              <InfoAlert
-                text={i18n.t("noIntentionNotificationMessage")}
-              />
+              <InfoAlert text={i18n.t("noIntentionNotificationMessage")} />
               <HStack justifyContent={"space-between"} alignItems={"center"}>
-                <Text fontSize={"md"}>{i18n.t("remindWithIntentionsSwitch")}</Text>
+                <Text fontSize={"md"}>
+                  {i18n.t("remindWithIntentionsSwitch")}
+                </Text>
                 <Switch
                   trackColor={{ true: "#2061c8" }}
                   value={appSettingsController.shouldRemindWithIntentions}
@@ -66,7 +66,7 @@ function SettingsScreen() {
                   width={20}
                   backgroundColor={"primary.50"}
                 />
-                <Text>days</Text>
+                <Text>{i18n.t("days")}</Text>
               </HStack>
             </BoxStack>
             {/*<BoxStack title={"Data management"}>*/}

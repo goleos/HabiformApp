@@ -62,5 +62,8 @@
   "remindWithIntentionsSwitch": "Remind with habit intentions",
   "askToStopRemindersAfter": "Ask to stop reminders after",
   "appVersionTitle": "App version",
-  "resetSettingsButton": "Reset settings"
+  "resetSettingsButton": "Reset settings",
+  "days": "days",
+  "intentionNotificationBody": "Let's start with",
+  "noIntentionNotificationBody": "Remember to complete this habit today"
 }

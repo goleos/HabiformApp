@@ -25,7 +25,7 @@ function TriggersScreen({ navigation }) {
 
   return (
     <>
-      <InfoAlert heading={"Tip"} text={i18n.t("triggersScreenTip")} />
+      <InfoAlert heading={i18n.t("tipAlertBoxName")} text={i18n.t("triggersScreenTip")} />
       <ScrollView>
         {triggersController.triggers.map((trigger) => (
           <Pressable
