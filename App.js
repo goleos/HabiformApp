@@ -30,11 +30,15 @@ function App() {
       .catch(console.error);
     habitsController.requestHabits();
     triggersController.requestTriggers();
-    triggerScheduleController.formSchedule();
   }, []);
 
+  useEffect(() => {
+    triggerScheduleController.formSchedule()
+  }, [triggersController.triggers, habitsController.habits])
+
   // https://stackoverflow.com/a/65049865
-  const MINUTE_MS = 10000;
+  // every minute we refresh the habit schedule
+  const MINUTE_MS = 60000;
   useEffect(() => {
     const interval = setInterval(() => {
       triggerScheduleController.formSchedule();
