@@ -88,7 +88,7 @@ function SettingsScreen() {
             <BoxStack>
               <HStack paddingY={2} justifyContent={"space-between"}>
                 <Text>App version</Text>
-                <Text mr={3}>0.0.1</Text>
+                <Text mr={3}>1.0.0</Text>
               </HStack>
             </BoxStack>
           </VStack>
