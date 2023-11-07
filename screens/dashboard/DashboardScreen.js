@@ -113,7 +113,7 @@ function DashboardScreen({ navigation }) {
           ) : (
             <VStack space={2}>
               <Heading textAlign={"center"} alignSelf={"center"} mt={10}>
-                No upcoming habits for the rest of the day
+                {i18n.t("noUpcomingHabitsMessage")}
               </Heading>
               {/*<Button onPress={() => navigation.navigate("My Habits")}>View all habits</Button>*/}
             </VStack>
