@@ -21,6 +21,7 @@ import { Formik } from "formik";
 import InfoAlert from "./InfoAlert";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 import { triggerFormValidationSchema } from "../utils/FormValidationSchemas";
+import { i18n } from "../utils/localisation";
 
 export default function ManageTriggerForm(props) {
   let trigger = props.trigger;
@@ -41,7 +42,7 @@ export default function ManageTriggerForm(props) {
       () => {
         props.onCreateOrEdit();
         toast.show({
-          description: "Trigger successfully created",
+          description: i18n.t("triggerCreatedMessage"),
         });
       },
       handleCreatedFailure
@@ -50,7 +51,7 @@ export default function ManageTriggerForm(props) {
 
   const handleCreatedFailure = () => {
     toast.show({
-      description: "Error creating a trigger",
+      description: i18n.t("triggerErrorCreatedMessage"),
     });
   };
 
@@ -59,7 +60,7 @@ export default function ManageTriggerForm(props) {
       () => {
         props.onDelete();
         toast.show({
-          description: "Trigger successfully deleted",
+          description: i18n.t("triggerDeletedMessage"),
         });
       },
       (message) => {
@@ -93,18 +94,16 @@ export default function ManageTriggerForm(props) {
           justifyContent={"space-between"}
         >
           <VStack space={4}>
-            <Text>Trigger name</Text>
+            <Text>{i18n.t("triggerName")}</Text>
             <Input
               value={values.name}
               onChangeText={handleChange("name")}
-              placeholder="eg. Starting dinner, leaving for home after work"
+              placeholder={i18n.t("triggerNameInputExample")}
             />
             {errors.name && <Text color="red.500">{errors.name}</Text>}
             <InfoAlert
-              heading={"Tip"}
-              text={
-                "Providing an approximate daily time interval in which your trigger event occurs lets the app remind you when you should complete your habit"
-              }
+              heading={i18n.t("tipAlertBoxName")}
+              text={i18n.t("addTriggerScreenTip")}
             />
 
             <HStack
@@ -112,7 +111,7 @@ export default function ManageTriggerForm(props) {
               justifyContent="space-between"
               marginTop={3}
             >
-              <Text>Occurs at predictable times</Text>
+              <Text>{i18n.t("occursAtPredictableTimesSwitch")}</Text>
               <Switch
                 trackColor={{ true: "#2061c8" }}
                 value={hasTime}
@@ -161,7 +160,7 @@ export default function ManageTriggerForm(props) {
                 defaultEnd={values.endTimeObjectOrDefault()}
               />
             )}
-            <Text>Extra notes</Text>
+            <Text>{i18n.t("extraNotesHeader")}</Text>
             <TextArea
               value={values.extraNotes}
               onChangeText={handleChange("extraNotes")}
@@ -180,7 +179,7 @@ export default function ManageTriggerForm(props) {
                     handleSubmit();
                   } else {
                     toast.show({
-                      description: "Start time must be before end time",
+                      description: i18n.t("startBeforeEndMessage"),
                     });
                   }
                 } else {
@@ -189,7 +188,9 @@ export default function ManageTriggerForm(props) {
               }}
               colorScheme={"trigger"}
             >
-              {formIsInAddMode ? "Add Trigger" : "Update Trigger"}
+              {formIsInAddMode
+                ? i18n.t("addTriggerButtonText")
+                : i18n.t("updateTriggerButtonText")}
             </Button>
             {!formIsInAddMode && (
               <Button
@@ -197,7 +198,7 @@ export default function ManageTriggerForm(props) {
                 onPress={handleDeleteTrigger}
                 bg="red.600"
               >
-                Delete Trigger
+                {i18n.t("deleteTriggerButtonText")}
               </Button>
             )}
           </VStack>

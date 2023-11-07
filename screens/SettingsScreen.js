@@ -14,6 +14,7 @@ import { habitsController } from "../controllers/HabitsController";
 import { triggersController } from "../controllers/TriggersController";
 import { useRef, useState } from "react";
 import { notificationsController } from "../controllers/NotificationsController";
+import {i18n} from "../utils/localisation";
 
 function SettingsScreen() {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -31,13 +32,11 @@ function SettingsScreen() {
         >
           <VStack space={4}>
             <BoxStack title={"Notification settings"}>
-              <InfoAlert
-                text={
-                  "Turning this setting off means that you will not receive any information about implementation intentions, when you are reminded about a habit"
-                }
-              />
+              <InfoAlert text={i18n.t("noIntentionNotificationMessage")} />
               <HStack justifyContent={"space-between"} alignItems={"center"}>
-                <Text fontSize={"md"}>Remind with habit intentions</Text>
+                <Text fontSize={"md"}>
+                  {i18n.t("remindWithIntentionsSwitch")}
+                </Text>
                 <Switch
                   trackColor={{ true: "#2061c8" }}
                   value={appSettingsController.shouldRemindWithIntentions}
@@ -52,7 +51,7 @@ function SettingsScreen() {
                 alignItems={"center"}
                 space={3}
               >
-                <Text fontSize={"md"}>Ask to stop reminders after</Text>
+                <Text fontSize={"md"}>{i18n.t("askToStopRemindersAfter")}</Text>
                 <Input
                   keyboardType={"numeric"}
                   value={appSettingsController.daysBeforeRequestCancelNotification.toString()}
@@ -67,7 +66,7 @@ function SettingsScreen() {
                   width={20}
                   backgroundColor={"primary.50"}
                 />
-                <Text>days</Text>
+                <Text>{i18n.t("days")}</Text>
               </HStack>
             </BoxStack>
             {/*<BoxStack title={"Data management"}>*/}
@@ -87,7 +86,7 @@ function SettingsScreen() {
             {/*</BoxStack>*/}
             <BoxStack>
               <HStack paddingY={2} justifyContent={"space-between"}>
-                <Text>App version</Text>
+                <Text>{i18n.t("appVersionTitle")}</Text>
                 <Text mr={3}>1.0.0</Text>
               </HStack>
             </BoxStack>
@@ -97,7 +96,7 @@ function SettingsScreen() {
               await appSettingsController.resetSettings();
             }}
           >
-            Reset settings
+            {i18n.t("resetSettingsButton")}
           </Button>
         </Flex>
       </TouchableWithoutFeedback>

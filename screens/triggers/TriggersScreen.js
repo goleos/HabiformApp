@@ -6,10 +6,9 @@ import { observer } from "mobx-react";
 import InfoAlert from "../../components/InfoAlert";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
 import { triggerScheduleController } from "../../controllers/TriggerScheduleController";
+import {i18n} from "../../utils/localisation";
 
 function TriggersScreen({ navigation }) {
-  const alertText =
-    "Triggers are actions that you already do regularly. Linking a desired habit to a behaviour you already do inreases your chance of regularly repeating your habit";
 
   const handleCreateTrigger = () => {
     focusedTriggerController.newTrigger();
@@ -26,7 +25,7 @@ function TriggersScreen({ navigation }) {
 
   return (
     <>
-      <InfoAlert heading={"Tip"} text={alertText} />
+      <InfoAlert heading={i18n.t("tipAlertBoxName")} text={i18n.t("triggersScreenTip")} />
       <ScrollView>
         {triggersController.triggers.map((trigger) => (
           <Pressable

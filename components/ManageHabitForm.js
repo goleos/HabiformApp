@@ -23,6 +23,7 @@ import IntentionsList from "./IntentionsList";
 import BoxStack from "./boxes/BoxStack";
 import { Switch } from "react-native";
 import HabitStatus from "../models/habitStatus";
+import {i18n} from "../utils/localisation";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
@@ -73,13 +74,13 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
         <Flex height={"100%"} justifyContent={"space-between"} space={10}>
           <VStack id={"basic-info"} space={3}>
             <FormControl isInvalid={errors.name}>
-              <FormControl.Label>Habit name</FormControl.Label>
+              <FormControl.Label>{i18n.t("habitNameHeader")}</FormControl.Label>
               <Input value={values.name} onChangeText={handleChange("name")} />
               <FormControl.ErrorMessage>{errors.name}</FormControl.ErrorMessage>
             </FormControl>
 
             <FormControl isInvalid={errors.triggerEventID}>
-              <FormControl.Label>Link a trigger</FormControl.Label>
+              <FormControl.Label>{i18n.t("linkATriggerHeader")}</FormControl.Label>
               <Select
                 selectedValue={values.triggerEventID}
                 onValueChange={(itemValue) => {
@@ -114,7 +115,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
 
           <BoxStack>
             <HStack justifyContent={"space-between"} alignItems={"center"}>
-              <Text>Receive reminder notifications</Text>
+              <Text>{i18n.t("receiveRemindersSwitch")}</Text>
               <Switch
                 trackColor={{ true: "#2061c8" }}
                 value={!!values.shouldNotify}
@@ -126,7 +127,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               />
             </HStack>
             <HStack justifyContent={"space-between"} alignItems={"center"}>
-              <Text>Mark habit as formed</Text>
+              <Text>{i18n.t("markAsFormedSwitch")}</Text>
               <Switch
                 trackColor={{ true: "#2061c8" }}
                 value={!!values.isFormed}
@@ -147,8 +148,8 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
               }}
             >
               {formIsInAddMode
-                ? "Start habit now"
-                : "Update habit and make it active"}
+                ? i18n.t("startHabitNow")
+                : i18n.t("updateAndMakeActive")}
             </Button>
             {!(values.habitStatus === "draft" && !formIsInAddMode) && (
               <Button
@@ -158,7 +159,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                   handleSubmit();
                 }}
               >
-                {formIsInAddMode ? "Keep habit as draft" : "Move to draft"}
+                {formIsInAddMode ? i18n.t("startHabitNow") : i18n.t("moveToDraft")}
               </Button>
             )}
             {!formIsInAddMode && (
@@ -171,7 +172,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                     handleDelete(values.habitID);
                   }}
                 >
-                  Delete Habit
+                  {i18n.t("deleteHabit")}
                 </Button>
                 <Button
                   width={"50%"}
@@ -182,7 +183,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                     handleSubmit();
                   }}
                 >
-                  Archive Habit
+                  {i18n.t("archiveHabit")}
                 </Button>
               </HStack>
             )}
