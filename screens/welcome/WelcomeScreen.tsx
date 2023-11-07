@@ -3,20 +3,9 @@ import { appSettingsController } from "../../controllers/AppSettingsController";
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { welcomeMessages } from "../../utils/constants";
 import { useState } from "react";
-import {
-  sampleHabitsEnglish,
-  sampleTriggersEnglish,
-  sampleHabitsRussian,
-  sampleTriggersRussian,
-} from "../../assets/sample_data";
-import { triggersController } from "../../controllers/TriggersController";
-import Habit from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
-import Trigger from "../../models/trigger";
 import { i18n } from "../../utils/localisation";
 import { getLocales } from "expo-localization";
-
-
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -27,11 +16,9 @@ function WelcomeScreen({ navigation }) {
   const handleCreateSampleHabits = async () => {
     await appSettingsController.setShowIntroScreen(false);
     const deviceLanguage = getLocales()[0].languageCode;
-    habitsController.createSampleHabits(deviceLanguage)
+    habitsController.createSampleHabits(deviceLanguage);
     navigation.navigate("App");
   };
-
-
 
   const lastSlideFinishComponent = (
     <VStack space={5} margin={1}>
