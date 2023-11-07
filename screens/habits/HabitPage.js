@@ -6,6 +6,7 @@ import HeadingWithIcon from "../../components/HeadingWithIcon";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { materialIconsNames } from "../../utils/constants";
 import { triggersController } from "../../controllers/TriggersController";
+import {i18n} from "../../utils/localisation";
 
 function HabitPage({ navigation, route }) {
   const habit = route.params.habit;
@@ -39,7 +40,7 @@ function HabitPage({ navigation, route }) {
                 size={5}
                 color={"primary.500"}
               />
-              <Text fontSize={"xl"}>Linked trigger:</Text>
+              <Text fontSize={"xl"}>{i18n.t("linkedTrigger")}:</Text>
               <Text fontSize={"xl"}>{trigger.name}</Text>
             </HStack>
           </Box>
@@ -60,7 +61,7 @@ function HabitPage({ navigation, route }) {
             });
           }}
         >
-          Edit
+          {i18n.t("edit")}
         </Button>
         <Button
           variant={"outline"}
@@ -73,7 +74,7 @@ function HabitPage({ navigation, route }) {
             );
           }}
         >
-          Send test notification
+          {i18n.t("sendTestNotification")}
         </Button>
       </VStack>
     </Flex>

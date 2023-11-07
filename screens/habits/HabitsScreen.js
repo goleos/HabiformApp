@@ -5,6 +5,7 @@ import { observer } from "mobx-react";
 import HabitList from "../../components/HabitList";
 import { useState } from "react";
 import HabitStatus from "../../models/habitStatus";
+import {i18n} from "../../utils/localisation";
 
 function HabitsScreen({ navigation, isFocused }) {
   // console.log(habitsController.habits);
@@ -43,7 +44,7 @@ function HabitsScreen({ navigation, isFocused }) {
               setFilterValue(HabitStatus.Draft);
             }}
           >
-            Draft
+            {i18n.t("habitStateDraft")}
           </Button>
           <Button
             variant={filterValue !== HabitStatus.Active ? "outline" : "solid"}
@@ -51,7 +52,7 @@ function HabitsScreen({ navigation, isFocused }) {
               setFilterValue(HabitStatus.Active);
             }}
           >
-            Active
+              {i18n.t("habitStateActive")}
           </Button>
           <Button
             variant={filterValue !== HabitStatus.Archived ? "outline" : "solid"}
@@ -59,7 +60,7 @@ function HabitsScreen({ navigation, isFocused }) {
               setFilterValue(HabitStatus.Archived);
             }}
           >
-            Archived
+              {i18n.t("habitStateArchived")}
           </Button>
         </Button.Group>
         <ScrollView>

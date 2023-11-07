@@ -13,6 +13,7 @@ import {
 } from "./NativeStacks";
 import { uiTheme } from "../utils/uiTheme";
 import { materialIconsNames } from "../utils/constants";
+import {i18n} from "../utils/localisation";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,10 +45,10 @@ function AppTabs() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Triggers" component={TriggerNavigation} />
-      <Tab.Screen name="Habits" component={HabitNavigation} />
-      <Tab.Screen name="Dashboard" component={DashboardNavigation} options={{headerShown: false}} />
-      <Tab.Screen name="Settings" component={SettingsScreen} options={{headerShown: true}}/>
+      <Tab.Screen name="Triggers" component={TriggerNavigation} options={{title: i18n.t("triggersTab")}} />
+      <Tab.Screen name="Habits" component={HabitNavigation} options={{title: i18n.t("habitsTab")}} />
+      <Tab.Screen name="Dashboard" component={DashboardNavigation} options={{headerShown: false, title: i18n.t("dashboardTab")}} />
+      <Tab.Screen name="Settings" component={SettingsScreen} options={{headerShown: true, title: i18n.t("settingsTab")}}/>
     </Tab.Navigator>
   );
 }

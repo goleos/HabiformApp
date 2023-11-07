@@ -14,6 +14,7 @@ import HabitListItem from "../../components/listItems/HabitListItem";
 import { observer } from "mobx-react";
 import HeadingWithIcon from "../../components/HeadingWithIcon";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
+import {i18n} from "../../utils/localisation";
 
 function TriggerPage({ navigation }) {
   const trigger = focusedTriggerController.trigger;
@@ -33,7 +34,7 @@ function TriggerPage({ navigation }) {
             <VStack alignItems={"center"}>
               <HStack alignItems={"center"} space={1}>
                 <Icon as={Ionicons} size={25} name="time" color="blue.700" />
-                <Heading fontSize={18}>Estimated Time Interval</Heading>
+                <Heading fontSize={18}>{i18n.t("estimatedTimeInterval")}</Heading>
               </HStack>
               {trigger.timeIntervalStart != null ? (
                 <Text>
@@ -41,13 +42,13 @@ function TriggerPage({ navigation }) {
                 </Text>
               ) : (
                 <Text color={"gray.600"} italic>
-                  Not provided
+                  {i18n.t("notProvided")}
                 </Text>
               )}
             </VStack>
           </Box>
 
-          <Heading>Linked habits</Heading>
+          <Heading>{i18n.t("linkedHabits")}</Heading>
           {linkedHabits.length !== 0 ? (
             linkedHabits.map((habit) => {
               return (
@@ -59,7 +60,7 @@ function TriggerPage({ navigation }) {
               );
             })
           ) : (
-            <Text>There are no linked habits</Text>
+            <Text>{i18n.t("thereAreNoLinkedHabits")}</Text>
           )}
         </VStack>
         <Button
@@ -69,7 +70,7 @@ function TriggerPage({ navigation }) {
             navigation.navigate("ManageTrigger");
           }}
         >
-          Edit
+          {i18n.t("edit")}
         </Button>
       </ScrollView>
     </Flex>
