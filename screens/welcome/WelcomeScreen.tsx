@@ -3,12 +3,20 @@ import { appSettingsController } from "../../controllers/AppSettingsController";
 import WelcomeMessage from "../../components/WelcomeMessage";
 import { welcomeMessages } from "../../utils/constants";
 import { useState } from "react";
-import { sampleHabits, sampleTriggers } from "../../assets/sample_data";
+import {
+  sampleHabitsEnglish,
+  sampleTriggersEnglish,
+  sampleHabitsRussian,
+  sampleTriggersRussian,
+} from "../../assets/sample_data";
 import { triggersController } from "../../controllers/TriggersController";
 import Habit from "../../models/habit";
 import { habitsController } from "../../controllers/HabitsController";
 import Trigger from "../../models/trigger";
 import { i18n } from "../../utils/localisation";
+import { getLocales } from "expo-localization";
+
+const deviceLanguage = getLocales()[0].languageCode;
 
 function WelcomeScreen({ navigation }) {
   const [slideNumber, setSlideNumber] = useState(1);
@@ -16,7 +24,20 @@ function WelcomeScreen({ navigation }) {
     return message.number === slideNumber;
   });
 
-  const loadSampleData = () => {
+  // TODO: take this logic outside of the view
+  const handleCreateSampleHabits = async () => {
+    await appSettingsController.setShowIntroScreen(false);
+    switch (deviceLanguage) {
+      case "ru":
+        loadSampleData(sampleTriggersRussian, sampleHabitsRussian);
+        break;
+      default:
+        loadSampleData(sampleTriggersEnglish, sampleHabitsEnglish);
+    }
+    navigation.navigate("App");
+  };
+
+  const loadSampleData = (sampleTriggers: object[], sampleHabits: object[]) => {
     sampleTriggers.forEach((triggerObj) => {
       console.log(triggerObj);
       const trigger = new Trigger(triggerObj);
@@ -31,15 +52,7 @@ function WelcomeScreen({ navigation }) {
       );
     });
     sampleHabits.forEach((habitObj) => {
-      const habit = new Habit(
-        habitObj,
-        () => {
-          console.log("succc");
-        },
-        () => {
-          console.log("failll");
-        }
-      );
+      const habit = new Habit(habitObj);
       habitsController.createNewHabit(
         habit,
         () => {},
@@ -50,18 +63,10 @@ function WelcomeScreen({ navigation }) {
 
   const lastSlideFinishComponent = (
     <VStack space={5} margin={1}>
-      <Text>
-          {i18n.t("startWithSamplesMessage")}
-      </Text>
+      <Text>{i18n.t("startWithSamplesMessage")}</Text>
       <VStack space={2}>
-        <Button
-          onPress={async () => {
-            await appSettingsController.setShowIntroScreen(false);
-            loadSampleData();
-            navigation.navigate("App");
-          }}
-        >
-            {i18n.t("startWithExampleData")}
+        <Button onPress={handleCreateSampleHabits}>
+          {i18n.t("startWithExampleData")}
         </Button>
         <Button
           variant={"outline"}
@@ -71,7 +76,7 @@ function WelcomeScreen({ navigation }) {
             navigation.navigate("App");
           }}
         >
-            {i18n.t("startWithEmptyData")}
+          {i18n.t("startWithEmptyData")}
         </Button>
       </VStack>
     </VStack>
