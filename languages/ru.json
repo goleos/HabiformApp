@@ -62,5 +62,8 @@
   "remindWithIntentionsSwitch": "Напоминать с действием",
   "askToStopRemindersAfter": "Перестать напом. через",
   "appVersionTitle": "Версия",
-  "resetSettingsButton": "Сбросить настройки"
+  "resetSettingsButton": "Сбросить настройки",
+  "days": "дней",
+  "intentionNotificationBody": "Начните с",
+  "noIntentionNotificationBody": "Не забудьте выполнить эту привычку сегодня"
 }
