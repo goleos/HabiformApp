@@ -21,7 +21,7 @@ function TriggerPage({ navigation }) {
   const linkedHabits = focusedTriggerController.getLinkedHabits();
 
   return (
-    <Flex height={"100%"} bg={"white"} justifyContent={"space-between"}>
+    <Flex height={"100%"} bg={"white"} >
       <ScrollView>
         <VStack margin={2} space={2}>
           <HeadingWithIcon
