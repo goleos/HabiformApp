@@ -6,31 +6,16 @@ import HabitList from "../../components/HabitList";
 import { useState } from "react";
 import HabitStatus from "../../models/habitStatus";
 import {i18n} from "../../utils/localisation";
+import AppScreen from "../../components/AppScreen";
 
 function HabitsScreen({ navigation, isFocused }) {
-  // console.log(habitsController.habits);
   const [filterValue, setFilterValue] = useState(HabitStatus.Active);
   const habits = habitsController.habits.filter((habit) => {
     return habit.habitStatus === filterValue;
   });
   return (
-    <>
-      {/* https://docs.nativebase.io/fab */}
-      <Fab
-        renderInPortal={false}
-        marginBottom={0}
-        placement="bottom-right"
-        colorScheme="blue"
-        size="lg"
-        icon={<Icon name="add" as={Ionicons} />}
-        onPress={() => {
-          navigation.navigate("ManageHabit", {
-            habit: null,
-          });
-        }}
-      />
-
-      <VStack space={2} backgroundColor={"white"} flex={1}>
+    <AppScreen>
+      <VStack space={2} flex={1}>
         <Button.Group
           mt={3}
           alignSelf={"center"}
@@ -74,7 +59,21 @@ function HabitsScreen({ navigation, isFocused }) {
           />
         </ScrollView>
       </VStack>
-    </>
+        {/* https://docs.nativebase.io/fab */}
+        <Fab
+            renderInPortal={false}
+            marginBottom={0}
+            placement="bottom-right"
+            colorScheme="blue"
+            size="lg"
+            icon={<Icon name="add" as={Ionicons} />}
+            onPress={() => {
+                navigation.navigate("ManageHabit", {
+                    habit: null,
+                });
+            }}
+        />
+    </AppScreen>
   );
 }
 

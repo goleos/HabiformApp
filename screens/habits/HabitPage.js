@@ -7,18 +7,14 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { materialIconsNames } from "../../utils/constants";
 import { triggersController } from "../../controllers/TriggersController";
 import {i18n} from "../../utils/localisation";
+import AppScreen from "../../components/AppScreen";
 
 function HabitPage({ navigation, route }) {
   const habit = route.params.habit;
   const intentions = habit.intentions;
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
   return (
-    <Flex
-      bg={"white"}
-      padding={0}
-      height={"100%"}
-      justifyContent={"space-between"}
-    >
+      <AppScreen>
       <VStack space={8}>
         <HeadingWithIcon
           headingText={habit.name}
@@ -77,7 +73,7 @@ function HabitPage({ navigation, route }) {
           {i18n.t("sendTestNotification")}
         </Button>
       </VStack>
-    </Flex>
+      </AppScreen>
   );
 }
 
