@@ -3,6 +3,7 @@
 
 import HabitStatus from "./habitStatus";
 import { appSettingsController } from "../controllers/AppSettingsController";
+import {i18n} from "../utils/localisation";
 
 class Habit {
   habitID: number = null;
@@ -43,7 +44,7 @@ class Habit {
       appSettingsController.shouldRemindWithIntentions
         ? {
             title: reminderTitle,
-            body: "Let's start with " + '"' + this.intentions[0] + '"',
+            body: i18n.t("intentionNotificationBody") + ' "' + this.intentions[0] + '"',
             data: {
               startTime: new Date().toJSON(),
               habit: this,
@@ -51,7 +52,7 @@ class Habit {
           }
         : {
             title: reminderTitle,
-            body: "Remember to complete this habit today",
+            body: i18n.t("noIntentionNotificationBody"),
             data: {
               startTime: new Date().toJSON(),
               habit: this,

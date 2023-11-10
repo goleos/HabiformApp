@@ -10,13 +10,14 @@ import HabitPage from "../screens/habits/HabitPage";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import HabitListWithoutEstimate from "../screens/dashboard/HabitListWithoutEstimate";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
+import {i18n} from "../utils/localisation";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
 export const HabitNavigation = () => {
   return (
     <NativeNavigationStack.Navigator initialRouteName="HabitList">
-      <NativeNavigationStack.Screen name="My Habits" component={HabitsScreen} />
+      <NativeNavigationStack.Screen name="My Habits" component={HabitsScreen} options={{title: i18n.t("habitsTab")}} />
       <NativeNavigationStack.Screen
         name="ManageHabit"
         component={ManageHabitScreen}
@@ -35,6 +36,7 @@ export const TriggerNavigation = () => {
       <NativeNavigationStack.Screen
         name="My Triggers"
         component={TriggersScreen}
+        options={{title: i18n.t("triggersTab")}}
       />
       <NativeNavigationStack.Screen
         name="ManageTrigger"
@@ -56,7 +58,7 @@ export const DashboardNavigation = () => {
             <NativeNavigationStack.Screen
                 name="DashboardScreen"
                 component={DashboardScreen}
-                options={{title: "Dashboard"}}
+                options={{title: i18n.t("dashboardTab")}}
             />
             <NativeNavigationStack.Screen
                 name="NoTimeEstimateHabitList"

@@ -3,12 +3,13 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { useState } from "react";
 import IntentionsList from "./IntentionsList";
 import { materialIconsNames } from "../utils/constants";
+import {i18n} from "../utils/localisation";
 
 export default function UpNextBox({ trigger, habits }) {
   const hasHabits = habits.length >= 1;
 
   const noHabitsComponent = (
-    <Text>No habits are associated with this trigger</Text>
+    <Text>{i18n.t("noHabitsAssociated")}</Text>
   );
 
   const HabitsPresentComponent = ({ habits }) => {
