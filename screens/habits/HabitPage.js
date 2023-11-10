@@ -36,8 +36,10 @@ function HabitPage({ navigation, route }) {
                 size={5}
                 color={"primary.500"}
               />
-              <Text fontSize={"xl"}>{i18n.t("linkedTrigger")}:</Text>
-              <Text fontSize={"xl"}>{trigger.name}</Text>
+                <VStack>
+                    <Text bold alignSelf={"center"} fontSize={"xl"}>{i18n.t("linkedTrigger")}</Text>
+                    <Text fontSize={"xl"}>{trigger.name}</Text>
+                </VStack>
             </HStack>
           </Box>
         )}
