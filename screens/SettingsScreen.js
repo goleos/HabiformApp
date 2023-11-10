@@ -87,7 +87,7 @@ function SettingsScreen() {
             <BoxStack>
               <HStack paddingY={2} justifyContent={"space-between"}>
                 <Text>{i18n.t("appVersionTitle")}</Text>
-                <Text mr={3}>1.0.0</Text>
+                <Text mr={3}>0.9.1</Text>
               </HStack>
             </BoxStack>
           </VStack>
