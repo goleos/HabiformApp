@@ -13,7 +13,6 @@ import { Badge } from "native-base";
 import { triggersController } from "../../controllers/TriggersController";
 import IconWithText from "../IconWithText";
 import { materialIconsNames } from "../../utils/constants";
-import { Spacer } from "native-base/src/components/primitives/Flex/index";
 import {i18n} from "../../utils/localisation";
 
 export default function HabitListItem({ habit, hideArrowButton }) {

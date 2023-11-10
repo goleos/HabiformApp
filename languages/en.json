@@ -68,5 +68,6 @@
   "noIntentionNotificationBody": "Remember to complete this habit today",
   "noUpcomingHabitsMessage": "No upcoming habits for the rest of the day",
   "formed": "Formed",
-  "noIntentionsProvided": "No intentions provided"
+  "noIntentionsProvided": "No intentions provided",
+  "noHabitsAssociated": "No habits are associated with this trigger"
 }

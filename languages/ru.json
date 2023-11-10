@@ -68,5 +68,6 @@
   "noIntentionNotificationBody": "Не забудьте выполнить эту привычку сегодня",
   "noUpcomingHabitsMessage": "Больше нет запланированных привычек на сегодня",
   "formed": "Сформировано",
-  "noIntentionsProvided": "Не предоставлено действий"
+  "noIntentionsProvided": "Не предоставлено действий",
+  "noHabitsAssociated": "Этот триггер не привязан к привычке"
 }
