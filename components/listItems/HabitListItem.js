@@ -1,16 +1,25 @@
 import { Text } from "native-base";
-import { NativeBaseProvider, Box, Stack, IconButton, Icon } from "native-base";
+import {
+  NativeBaseProvider,
+  Box,
+  Stack,
+  IconButton,
+  Icon,
+  Flex,
+} from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ContentBox from "../ContentBox";
 import { Badge } from "native-base";
 import { triggersController } from "../../controllers/TriggersController";
 import IconWithText from "../IconWithText";
 import { materialIconsNames } from "../../utils/constants";
+import { Spacer } from "native-base/src/components/primitives/Flex/index";
+import {i18n} from "../../utils/localisation";
 
 export default function HabitListItem({ habit, hideArrowButton }) {
   let badge;
   if (!habit.isFormed) {
-    badge = (<></>);
+    badge = <></>;
     // badge = (
     //   <Badge variant="solid" borderRadius={10} colorScheme="info">
     //     Building
@@ -19,33 +28,29 @@ export default function HabitListItem({ habit, hideArrowButton }) {
   } else {
     badge = (
       <Badge variant="solid" borderRadius={10} colorScheme="success">
-        Formed
+        {i18n.t("formed")}
       </Badge>
     );
   }
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
-  const notifyCondition = (habit.shouldNotify && trigger !== undefined && trigger.timeIntervalStart !== null)
+  const notifyCondition =
+    habit.shouldNotify &&
+    trigger !== undefined &&
+    trigger.timeIntervalStart !== null;
 
   return (
     <ContentBox hideArrowButton={hideArrowButton}>
       <Stack direction="column" alignItems="left" space={2}>
-        <Stack
-          alignItems="center"
-          justifyContent="center"
-          direction="row"
-          space={1}
-        >
-          <Text maxWidth={200} fontSize="xl">{habit.name}</Text>
+        <Text maxWidth={260} fontSize="xl">
+          <Text>{habit.name} </Text>
           <Icon
             as={Ionicons}
             name={notifyCondition ? "notifications" : "notifications-off"}
             size={4}
-            color={notifyCondition ? "green.600" : 'red.600'}
+            color={notifyCondition ? "green.600" : "red.600"}
           />
-          {badge}
-        </Stack>
-
-
+        </Text>
+        {badge}
 
         {habit.triggerEventID !== null && trigger !== undefined && (
           <IconWithText
@@ -58,7 +63,7 @@ export default function HabitListItem({ habit, hideArrowButton }) {
           text={
             habit.intentions.length >= 1
               ? habit.intentions[0]
-              : "No intentions provided"
+              : i18n.t("noIntentionsProvided")
           }
         />
       </Stack>

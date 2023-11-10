@@ -66,5 +66,7 @@
   "days": "days",
   "intentionNotificationBody": "Let's start with",
   "noIntentionNotificationBody": "Remember to complete this habit today",
-  "noUpcomingHabitsMessage": "No upcoming habits for the rest of the day"
+  "noUpcomingHabitsMessage": "No upcoming habits for the rest of the day",
+  "formed": "Formed",
+  "noIntentionsProvided": "No intentions provided"
 }

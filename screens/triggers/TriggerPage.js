@@ -21,8 +21,7 @@ function TriggerPage({ navigation }) {
   const linkedHabits = focusedTriggerController.getLinkedHabits();
 
   return (
-    <Flex height={"100%"} bg={"white"} >
-      <ScrollView>
+    <Flex height={"100%"} bg={"white"} justifyContent={"space-between"} >
         <VStack margin={2} space={2}>
           <HeadingWithIcon
             iconName={"clock-out"}
@@ -49,19 +48,22 @@ function TriggerPage({ navigation }) {
           </Box>
 
           <Heading>{i18n.t("linkedHabits")}</Heading>
-          {linkedHabits.length !== 0 ? (
-            linkedHabits.map((habit) => {
-              return (
-                <HabitListItem
-                  hideArrowButton={true}
-                  habit={habit}
-                  key={habit.habitID}
-                />
-              );
-            })
-          ) : (
-            <Text>{i18n.t("thereAreNoLinkedHabits")}</Text>
-          )}
+          <ScrollView>
+
+            {linkedHabits.length !== 0 ? (
+                linkedHabits.map((habit) => {
+                  return (
+                      <HabitListItem
+                          hideArrowButton={true}
+                          habit={habit}
+                          key={habit.habitID}
+                      />
+                  );
+                })
+            ) : (
+                <Text>{i18n.t("thereAreNoLinkedHabits")}</Text>
+            )}
+          </ScrollView>
         </VStack>
         <Button
           marginX={2}
@@ -72,7 +74,6 @@ function TriggerPage({ navigation }) {
         >
           {i18n.t("edit")}
         </Button>
-      </ScrollView>
     </Flex>
   );
 }
