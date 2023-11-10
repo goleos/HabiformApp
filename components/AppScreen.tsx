@@ -17,7 +17,7 @@ const AppScreen = (props: appScreenProps) => {
   return (
     <VStack
       flex={1}
-      backgroundColor={"#cfd3f6"}
+      backgroundColor={"white"}
       justifyContent={(props.spaceBetween) ? "space-between" : undefined}
       padding={props.padding}
     >

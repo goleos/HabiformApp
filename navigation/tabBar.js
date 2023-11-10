@@ -43,6 +43,8 @@ function AppTabs() {
         tabBarActiveTintColor: uiTheme.colors.tabBarColour.focused,
         tabBarInactiveTintColor: uiTheme.colors.tabBarColour.unFocused,
         headerShown: false,
+          // tabBarActiveBackgroundColor: "#cfd3f6",
+          // tabBarInactiveBackgroundColor: "#cfd3f6"
       })}
     >
       <Tab.Screen name="Triggers" component={TriggerNavigation} options={{title: i18n.t("triggersTab")}} />
