@@ -159,7 +159,7 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                   handleSubmit();
                 }}
               >
-                {formIsInAddMode ? i18n.t("startHabitNow") : i18n.t("moveToDraft")}
+                {formIsInAddMode ? i18n.t("keepHabitAsDraft") : i18n.t("moveToDraft")}
               </Button>
             )}
             {!formIsInAddMode && (
