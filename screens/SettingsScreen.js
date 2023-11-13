@@ -15,6 +15,7 @@ import { triggersController } from "../controllers/TriggersController";
 import { useRef, useState } from "react";
 import { notificationsController } from "../controllers/NotificationsController";
 import {i18n} from "../utils/localisation";
+import Constants from 'expo-constants';
 
 function SettingsScreen() {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -87,7 +88,7 @@ function SettingsScreen() {
             <BoxStack>
               <HStack paddingY={2} justifyContent={"space-between"}>
                 <Text>{i18n.t("appVersionTitle")}</Text>
-                <Text mr={3}>0.9.1</Text>
+                <Text mr={3}>{Constants.expoConfig.version}</Text>
               </HStack>
             </BoxStack>
           </VStack>
