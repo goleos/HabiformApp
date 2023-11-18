@@ -10,7 +10,7 @@ export const sampleHabitsEnglish = [
     ],
     extraNotes: "You should spend at least 30 minutes in the gym",
     habitStatus: "active",
-    shouldNotify: true,
+    shouldNotify: false,
     isFormed: false,
   },
   //   {
@@ -125,7 +125,7 @@ export const sampleHabitsRussian = [
     ],
     extraNotes: "Нужно провести хотя бы 10 минут в спортзале",
     habitStatus: "active",
-    shouldNotify: true,
+    shouldNotify: false,
     isFormed: false,
   },
   {
