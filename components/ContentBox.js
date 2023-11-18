@@ -11,7 +11,7 @@ export default function ContentBox(props) {
         }) => {
           return (
               <Box
-                  backgroundColor={isPressed ? "gray.200" : "white"}
+                  backgroundColor={isPressed && props.onPress !== undefined ? "gray.200" : "white"}
                   borderRadius={15}
                   paddingLeft={3}
                   paddingY={3}
