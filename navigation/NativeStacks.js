@@ -11,6 +11,7 @@ import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import HabitListWithoutEstimate from "../screens/dashboard/HabitListWithoutEstimate";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 import {i18n} from "../utils/localisation";
+import ChooseNewTriggerTypeScreen from "../screens/triggers/ChooseNewTriggerTypeScreen";
 
 const NativeNavigationStack = createNativeStackNavigator();
 
@@ -48,6 +49,10 @@ export const TriggerNavigation = () => {
       <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} options={({route}) => ({
           title: focusedTriggerController.trigger.name
       })} />
+        <NativeNavigationStack.Screen name="ChooseNewTriggerType" component={ChooseNewTriggerTypeScreen} options={({route}) => ({
+            title: "Create a new trigger",
+            presentation: "modal"
+        })} />
     </NativeNavigationStack.Navigator>
   );
 };

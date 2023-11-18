@@ -12,7 +12,7 @@ import AppScreen from "../../components/AppScreen";
 function TriggersScreen({navigation}) {
     const handleCreateTrigger = () => {
         focusedTriggerController.newTrigger();
-        navigation.navigate("ManageTrigger");
+        navigation.navigate("ChooseNewTriggerType");
     };
 
     const handleViewTrigger = (trigger) => {
