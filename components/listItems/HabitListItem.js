@@ -15,7 +15,7 @@ import IconWithText from "../IconWithText";
 import { materialIconsNames } from "../../utils/constants";
 import {i18n} from "../../utils/localisation";
 
-export default function HabitListItem({ habit, hideArrowButton }) {
+export default function HabitListItem({ habit, hideArrowButton, onPress }) {
   let badge;
   if (!habit.isFormed) {
     badge = <></>;
@@ -38,7 +38,7 @@ export default function HabitListItem({ habit, hideArrowButton }) {
     trigger.timeIntervalStart !== null;
 
   return (
-    <ContentBox hideArrowButton={hideArrowButton}>
+    <ContentBox hideArrowButton={hideArrowButton} onPress={onPress}>
       <Stack direction="column" alignItems="left" space={2}>
         <Text maxWidth={260} fontSize="xl">
           <Text>{habit.name} </Text>

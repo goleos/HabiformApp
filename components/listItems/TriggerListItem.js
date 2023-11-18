@@ -7,9 +7,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ContentBox from "../ContentBox";
 import IconWithText from "../IconWithText";
 
-export default function TriggerListItem({ trigger }) {
+export default function TriggerListItem({ trigger, onPress }) {
   return (
-    <ContentBox>
+    <ContentBox onPress={onPress}>
       <Stack direction="column" alignItems="left" space={1.5}>
         <Text fontSize="xl">{trigger.name}</Text>
         {trigger.timeIntervalStart ? (

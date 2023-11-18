@@ -7,9 +7,7 @@ function HabitList({ habits, onItemPress, hideArrowButton }) {
       {habits !== null ? (
         habits.map((habit) =>
           onItemPress !== undefined ? (
-            <Pressable key={habit.habitID} onPress={() => onItemPress(habit)}>
-              <HabitListItem habit={habit} />
-            </Pressable>
+              <HabitListItem key={habit.habitID} onPress={() => onItemPress(habit)} habit={habit} />
           ) : (
             <HabitListItem
               hideArrowButton={hideArrowButton}
