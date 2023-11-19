@@ -4,6 +4,7 @@ export const dbInitQueries = [
     triggerEventID Integer Primary Key AUTOINCREMENT,
     name VARCHAR NOT NULL,
     extraNotes TEXT,
+    triggerType TEXT,
     timeIntervalStart TEXT,
     timeIntervalEnd TEXT,
     relevantWeekdays TEXT
