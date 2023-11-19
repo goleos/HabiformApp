@@ -1,10 +1,13 @@
+type timeInHHMMFormat = string;
+type weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
+
 class Trigger {
   triggerEventID?: number = null;
   name: string;
   extraNotes: string = "";
-  timeIntervalStart: string = null;
-  timeIntervalEnd: string = null;
-  relevantWeekdays: Array<string> = [
+  timeIntervalStart: timeInHHMMFormat = null;
+  timeIntervalEnd: timeInHHMMFormat = null;
+  relevantWeekdays: Array<weekday> = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -74,8 +77,3 @@ class Trigger {
 }
 
 export default Trigger;
-
-export const trig = new Trigger();
-trig.name = "Finishing dinner";
-trig.timeIntervalStart = "17:00";
-trig.timeIntervalEnd = "18:00";
