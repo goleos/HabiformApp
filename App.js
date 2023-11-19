@@ -10,6 +10,7 @@ import { WelcomeStack } from "./navigation/WelcomeNavigation";
 import { LogBox } from "react-native";
 import { appSettingsController } from "./controllers/AppSettingsController";
 import { triggerScheduleController } from "./controllers/TriggerScheduleController";
+import {migrationController} from "./controllers/MigrationController";
 
 LogBox.ignoreLogs(["In React 18, SSRProvider", "Constants.platform.ios.model"]);
 
@@ -21,6 +22,7 @@ function App() {
     const loadSettingsData = async () => {
       // console.log("Loading data for app settings");
       await appSettingsController.loadFromAsyncStorage();
+      migrationController.migrateDataModelIfOld();
       // console.log("Shouldshowscreen: " + appSettingsController.showIntroScreen);
     };
     loadSettingsData()

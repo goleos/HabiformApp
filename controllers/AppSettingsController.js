@@ -5,6 +5,7 @@ export class AppSettingsController {
   shouldRemindWithIntentions = true;
   showIntroScreen = true;
   daysBeforeRequestCancelNotification = 3;
+  dataModelVersion = 1;
   _storageKeyName = "appSettings";
 
   constructor() {
@@ -18,6 +19,11 @@ export class AppSettingsController {
 
   async setDaysBeforeRequestCancelNotification(val) {
     this.daysBeforeRequestCancelNotification = val;
+    await this.loadIntoAsyncStorage();
+  }
+
+  async setDataModelVersion(val) {
+    this.dataModelVersion = val;
     await this.loadIntoAsyncStorage();
   }
 
