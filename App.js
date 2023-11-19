@@ -11,6 +11,7 @@ import { LogBox } from "react-native";
 import { appSettingsController } from "./controllers/AppSettingsController";
 import { triggerScheduleController } from "./controllers/TriggerScheduleController";
 import {migrationController} from "./controllers/MigrationController";
+import {currentDataModelVersion} from "./utils/constants";
 
 LogBox.ignoreLogs(["In React 18, SSRProvider", "Constants.platform.ios.model"]);
 
@@ -22,11 +23,14 @@ function App() {
     const loadSettingsData = async () => {
       // console.log("Loading data for app settings");
       await appSettingsController.loadFromAsyncStorage();
-      migrationController.migrateDataModelIfOld();
       // console.log("Shouldshowscreen: " + appSettingsController.showIntroScreen);
     };
     loadSettingsData()
       .then((value) => {
+        if (appSettingsController.dataModelVersion < currentDataModelVersion) {
+          console.log("App.js: data model version is null or less than current, migrating data model");
+          migrationController.migrateDataModelIfOld();
+        }
         setEffectDone(true);
       })
       .catch(console.error);

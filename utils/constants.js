@@ -18,6 +18,8 @@ export const materialIconsNames = {
   habit: 'repeat'
 }
 
+export const currentDataModelVersion = 2;
+
 export const welcomeMessages = [
   {
     number: 1,
