@@ -8,6 +8,10 @@ export class MigrationController {
         switch (version) {
             case 1:
                 this.migrateDataModelFromVersion1to2();
+                break;
+            case 2:
+                console.log("data model is up to date");
+                break;
         }
     }
 

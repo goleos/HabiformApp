@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {currentDataModelVersion} from "../utils/constants";
 
 export class AppSettingsController {
   shouldRemindWithIntentions = true;
@@ -44,7 +45,13 @@ export class AppSettingsController {
     if (value !== null) {
       const obj = JSON.parse(value);
       Object.assign(this, obj);
+      // this line might not be necessary, but it's here just in case
+      if (!obj.hasOwnProperty("dataModelVersion")) {
+        this.dataModelVersion = 1;
+      }
     } else {
+      // If there is no data in AsyncStorage, we opened the app for the first time. Set the current data model version.
+      this.dataModelVersion = currentDataModelVersion;
       await this.resetSettings();
     }
   }
