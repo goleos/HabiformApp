@@ -43,7 +43,7 @@ export const TriggerNavigation = () => {
         name="ManageTrigger"
         component={ManageTriggerScreen}
         options={() => ({
-          title: "Add or edit trigger",
+          title: "Add or edit trigger"
         })}
       />
       <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} options={({route}) => ({

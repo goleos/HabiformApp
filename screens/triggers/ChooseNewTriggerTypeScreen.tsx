@@ -1,10 +1,5 @@
-import { View, Text, Heading, HStack, Flex, VStack } from "native-base";
 import AppScreen from "../../components/AppScreen";
-import ContentBox from "../../components/ContentBox";
-import { Icon } from "native-base";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import TriggerTypeListItem from "../../components/listItems/TriggerTypeListItem";
-import { Spacer } from "native-base";
 
 export default function ChooseNewTriggerTypeScreen({ navigation }) {
 
