@@ -1,10 +1,12 @@
 import AppScreen from "../../components/AppScreen";
 import TriggerTypeListItem from "../../components/listItems/TriggerTypeListItem";
+import {focusedTriggerController} from "../../controllers/FocusedTriggerController";
 
 export default function ChooseNewTriggerTypeScreen({ navigation }) {
 
     const handlePress = () => {
         navigation.goBack();
+        focusedTriggerController.newTrigger("SimpleTrigger");
         navigation.navigate("ManageTrigger");
     }
 
