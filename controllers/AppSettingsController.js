@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {currentDataModelVersion} from "../utils/constants";
+import { currentDataModelVersion } from "../utils/constants";
 
 export class AppSettingsController {
   shouldRemindWithIntentions = true;
