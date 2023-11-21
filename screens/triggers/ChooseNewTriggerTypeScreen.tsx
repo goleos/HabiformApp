@@ -4,9 +4,9 @@ import {focusedTriggerController} from "../../controllers/FocusedTriggerControll
 
 export default function ChooseNewTriggerTypeScreen({ navigation }) {
 
-    const handlePress = () => {
+    const handleCreate = (triggerType: "SimpleTrigger" | "TimeIntervalTrigger" | "LocationTrigger" | "AutomationTrigger") => {
         navigation.goBack();
-        focusedTriggerController.newTrigger("SimpleTrigger");
+        focusedTriggerController.newTrigger(triggerType);
         navigation.navigate("ManageTrigger");
     }
 
@@ -18,7 +18,7 @@ export default function ChooseNewTriggerTypeScreen({ navigation }) {
         description={
           "In this case, your trigger occurs in a predictable time interval. You will receive a habit reminder based on the start time of the interval"
         }
-        onPress={handlePress}
+        onPress={handleCreate.bind(this, "TimeIntervalTrigger")}
       />
       <TriggerTypeListItem
         materialIcon={"map-marker-radius"}
@@ -36,6 +36,7 @@ export default function ChooseNewTriggerTypeScreen({ navigation }) {
         description={
           "A trigger that you can't link to a time, location or create an automation for. In this case the app cannot remind you about the habit."
         }
+        onPress={handleCreate.bind(this, "SimpleTrigger")}
       />
     </AppScreen>
   );
