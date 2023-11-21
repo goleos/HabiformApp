@@ -1,10 +1,54 @@
 type timeInHHMMFormat = string;
 type weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 
+type SimpleTrigger = {
+    triggerEventID?: number;
+    name: string;
+    extraNotes: string;
+    triggerType: "SimpleTrigger";
+    timeIntervalStart: null;
+    timeIntervalEnd: null;
+    relevantWeekdays: null;
+}
+
+type TimeIntervalTrigger = {
+  triggerEventID?: number;
+  name: string;
+  extraNotes: string;
+  triggerType: "TimeIntervalTrigger";
+  timeIntervalStart: timeInHHMMFormat;
+  timeIntervalEnd: timeInHHMMFormat;
+  relevantWeekdays: Array<weekday>;
+}
+
+type LocationTrigger = {
+  triggerEventID?: number;
+  name: string;
+  extraNotes: string;
+  triggerType: "LocationTrigger";
+  timeIntervalStart: null;
+  timeIntervalEnd: null;
+  relevantWeekdays: null;
+}
+
+type AutomationTrigger = {
+  triggerEventID?: number;
+  name: string;
+  extraNotes: string;
+  triggerType: "AutomationTrigger";
+  timeIntervalStart: null;
+  timeIntervalEnd: null;
+  relevantWeekdays: null;
+}
+
+type TriggerType = SimpleTrigger | TimeIntervalTrigger | LocationTrigger | AutomationTrigger;
+
+
 class Trigger {
   triggerEventID?: number = null;
   name: string;
   extraNotes: string = "";
+  triggerType: "SimpleTrigger" | "TimeIntervalTrigger" | "LocationTrigger" | "AutomationTrigger";
   timeIntervalStart: timeInHHMMFormat = null;
   timeIntervalEnd: timeInHHMMFormat = null;
   relevantWeekdays: Array<weekday> = [
