@@ -23,8 +23,25 @@ export class FocusedTriggerController {
     this.trigger = trigger;
   }
 
-  newTrigger() {
-    this.trigger = new Trigger();
+  newTrigger(triggerType: "SimpleTrigger" | "TimeIntervalTrigger" | "LocationTrigger" | "AutomationTrigger") {
+    const trigger = new Trigger();
+    trigger.triggerType = triggerType;
+    switch (triggerType) {
+        case "SimpleTrigger":
+          break;
+        case "TimeIntervalTrigger":
+            trigger.timeIntervalStart = "07:00";
+            trigger.timeIntervalEnd = "08:00";
+            trigger.relevantWeekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+            break;
+        case "LocationTrigger":
+            break;
+        case "AutomationTrigger":
+            break;
+        default:
+            throw new Error("Unknown trigger type when creating new trigger");
+    }
+    this.trigger = trigger;
   }
 
   dismissTrigger() {
