@@ -21,16 +21,16 @@ export default function ChooseNewTriggerTypeScreen({ navigation }) {
         }
         onPress={handleCreate.bind(this, "TimeIntervalTrigger")}
       />
-      <TriggerTypeListItem
-        materialIcon={"map-marker-radius"}
-        title={i18n.t("locationBasedTrigger")}
-        description={i18n.t("locationBasedTriggerDescription")}
-      />
-      <TriggerTypeListItem
-        materialIcon={"robot"}
-        title={i18n.t("smartAutomationTrigger")}
-        description={i18n.t("smartAutomationTriggerDescription")}
-      />
+      {/*<TriggerTypeListItem*/}
+      {/*  materialIcon={"map-marker-radius"}*/}
+      {/*  title={i18n.t("locationBasedTrigger")}*/}
+      {/*  description={i18n.t("locationBasedTriggerDescription")}*/}
+      {/*/>*/}
+      {/*<TriggerTypeListItem*/}
+      {/*  materialIcon={"robot"}*/}
+      {/*  title={i18n.t("smartAutomationTrigger")}*/}
+      {/*  description={i18n.t("smartAutomationTriggerDescription")}*/}
+      {/*/>*/}
       <TriggerTypeListItem
         materialIcon={"calendar-question"}
         title={i18n.t("simpleTriggerTitle")}
