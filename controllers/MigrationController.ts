@@ -1,5 +1,6 @@
 import { appSettingsController } from "./AppSettingsController";
 import { dbController } from "./DatabaseController";
+import {i18n} from "../utils/localisation";
 
 export class MigrationController {
   migrateDataModelIfOld() {
@@ -35,6 +36,7 @@ export class MigrationController {
                     .setDataModelVersion(2)
                     .then((r) => console.log("updated data model version to 2"));
                 console.log("successfully migrated data model from version 1");
+                alert(i18n.t("migrationSuccessToVersion2Alert"));
             }
         );
     }

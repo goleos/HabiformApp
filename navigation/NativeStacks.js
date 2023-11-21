@@ -50,7 +50,7 @@ export const TriggerNavigation = () => {
           title: focusedTriggerController.trigger.name
       })} />
         <NativeNavigationStack.Screen name="ChooseNewTriggerType" component={ChooseNewTriggerTypeScreen} options={({route}) => ({
-            title: "Create a new trigger",
+            title: i18n.t("createANewTrigger"),
             presentation: "modal"
         })} />
     </NativeNavigationStack.Navigator>
