@@ -29,7 +29,6 @@ function DashboardScreen({ navigation }) {
     prolongedNotifications.length > 0
       ? prolongedNotifications[0].content.data.habit
       : null;
-  // console.log("prolonged habit: " + prolongedHabit);
   const cancelRef = useRef(null);
   const [dismissedProlong, setDismissedProlong] = useState(false);
   return (
@@ -40,17 +39,14 @@ function DashboardScreen({ navigation }) {
             {/*<AlertDialog.CloseButton />*/}
             <AlertDialog.Header>
               <Text bold>
-                Do you still need the app to remind you about "
-                {prolongedHabit.name}"?
+                {i18n.t("doYouNeedReminders")} "{prolongedHabit.name}"?
               </Text>
             </AlertDialog.Header>
             <AlertDialog.Body>
               <VStack padding={1} space={5}>
                 <HabitListItem habit={prolongedHabit} hideArrowButton={true} />
                 <Text fontSize={"md"}>
-                  If you remember to complete this specific habit every time,
-                  you should stop the app reminding you about it. Otherwise, you
-                  might become too dependent on this app.
+                  {i18n.t("doYouNeedRemindersMessage")}
                 </Text>
               </VStack>
             </AlertDialog.Body>
@@ -66,7 +62,7 @@ function DashboardScreen({ navigation }) {
                   variant={"outline"}
                   size={"md"}
                 >
-                  Keep reminders
+                  {i18n.t("keepRemindersOption")}
                 </Button>
                 <Button
                   onPress={() => {
@@ -85,7 +81,7 @@ function DashboardScreen({ navigation }) {
                   }}
                   size={"md"}
                 >
-                  Stop reminders
+                  {i18n.t("stopRemindersOption")}
                 </Button>
               </Button.Group>
             </AlertDialog.Footer>

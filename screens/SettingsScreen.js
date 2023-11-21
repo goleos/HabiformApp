@@ -32,7 +32,7 @@ function SettingsScreen() {
           justifyContent={"space-between"}
         >
           <VStack space={4}>
-            <BoxStack title={"Notification settings"}>
+            <BoxStack title={i18n.t("notificationSettingsTitle")}>
               <InfoAlert text={i18n.t("noIntentionNotificationMessage")} />
               <HStack justifyContent={"space-between"} alignItems={"center"}>
                 <Text fontSize={"md"}>

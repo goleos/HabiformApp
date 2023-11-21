@@ -1,6 +1,7 @@
 import AppScreen from "../../components/AppScreen";
 import TriggerTypeListItem from "../../components/listItems/TriggerTypeListItem";
 import {focusedTriggerController} from "../../controllers/FocusedTriggerController";
+import {i18n} from "../../utils/localisation";
 
 export default function ChooseNewTriggerTypeScreen({ navigation }) {
 
@@ -14,27 +15,27 @@ export default function ChooseNewTriggerTypeScreen({ navigation }) {
     <AppScreen spaceBetween={false}>
       <TriggerTypeListItem
         materialIcon={"clock-out"}
-        title={"Time-based trigger"}
+        title={i18n.t("timeBasedTrigger")}
         description={
-          "In this case, your trigger occurs in a predictable time interval. You will receive a habit reminder based on the start time of the interval"
+          i18n.t("timeBasedTriggerDescription")
         }
         onPress={handleCreate.bind(this, "TimeIntervalTrigger")}
       />
       <TriggerTypeListItem
         materialIcon={"map-marker-radius"}
-        title={"Location-based trigger"}
-        description={"For example, when I arrive to the office"}
+        title={i18n.t("locationBasedTrigger")}
+        description={i18n.t("locationBasedTriggerDescription")}
       />
       <TriggerTypeListItem
         materialIcon={"robot"}
-        title={"Smart automation trigger"}
-        description={"Use Apple Shortcuts or deep links to simulate a trigger"}
+        title={i18n.t("smartAutomationTrigger")}
+        description={i18n.t("smartAutomationTriggerDescription")}
       />
       <TriggerTypeListItem
         materialIcon={"calendar-question"}
-        title={"Whenever happens"}
+        title={i18n.t("simpleTriggerTitle")}
         description={
-          "A trigger that you can't link to a time, location or create an automation for. In this case the app cannot remind you about the habit."
+          i18n.t("simpleTriggerDescription")
         }
         onPress={handleCreate.bind(this, "SimpleTrigger")}
       />
