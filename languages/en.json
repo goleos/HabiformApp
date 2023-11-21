@@ -88,5 +88,7 @@
   "triggerNameIsTooLong": "Name can have at most 20 characters",
   "habitNameIsTooLong": "A habit name cannot be longer than 30 characters",
   "nameIsInvalid": "Name is invalid",
-  "mustLinkTrigger": "You need to link a trigger to this habit"
+  "mustLinkTrigger": "You need to link a trigger to this habit",
+  "addOrEditHabit": "Add or edit habit",
+  "addOrEditTrigger": "Add or edit trigger",
 }
