@@ -22,12 +22,13 @@ import InfoAlert from "./InfoAlert";
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 import { triggerFormValidationSchema } from "../utils/FormValidationSchemas";
 import { i18n } from "../utils/localisation";
+import { TriggerType } from "../models/trigger";
 
 export default function ManageTriggerForm(props) {
-  let trigger = props.trigger;
+  let trigger: TriggerType;
+  trigger = props.trigger as TriggerType;
   const toast = useToast();
   const formIsInAddMode = !trigger.triggerEventID;
-  const [hasTime, setHasTime] = useState(!!trigger.timeIntervalStart);
   const localeTimeOptions = {
     hour12: false,
     hour: "2-digit",
@@ -71,6 +72,7 @@ export default function ManageTriggerForm(props) {
     );
   };
 
+  // @ts-ignore
   return (
     <Formik
       initialValues={trigger}
@@ -90,7 +92,6 @@ export default function ManageTriggerForm(props) {
           direction="column"
           padding={3}
           backgroundColor="white"
-          space={2}
           justifyContent={"space-between"}
         >
           <VStack space={4}>
@@ -100,67 +101,35 @@ export default function ManageTriggerForm(props) {
               onChangeText={handleChange("name")}
               placeholder={i18n.t("triggerNameInputExample")}
             />
+            {/*// @ts-ignore*/}
             {errors.name && <Text color="red.500">{errors.name}</Text>}
             <InfoAlert
               heading={i18n.t("tipAlertBoxName")}
               text={i18n.t("addTriggerScreenTip")}
             />
-
-            <HStack
-              alignItems="center"
-              justifyContent="space-between"
-              marginTop={3}
-            >
-              <Text>{i18n.t("occursAtPredictableTimesSwitch")}</Text>
-              <Switch
-                trackColor={{ true: "#2061c8" }}
-                value={hasTime}
-                onValueChange={(boolValue) => {
-                  Keyboard.dismiss();
-                  if (boolValue === true) {
+            {trigger.triggerType === "TimeIntervalTrigger" && (
+              <>
+                <Text>{i18n.t("occursAtPredictableTimesSwitch")}</Text>
+                <TimeIntervalSelector
+                  onStartTimeChange={(value) => {
                     setFieldValue(
                       "timeIntervalStart",
-                      new Date(2021, 12, 4, 7, 0).toLocaleTimeString(
-                        [],
-                        localeTimeOptions
-                      )
+                      value.toLocaleTimeString(["en-GB"], localeTimeOptions)
                     );
+                  }}
+                  onEndTimeChange={(value) => {
                     setFieldValue(
                       "timeIntervalEnd",
-                      new Date(2021, 12, 4, 8, 0).toLocaleTimeString(
-                        [],
-                        localeTimeOptions
-                      )
+                      value.toLocaleTimeString(["en-GB"], localeTimeOptions)
                     );
-                    setHasTime(true);
-                  } else {
-                    setHasTime(false);
-                    setFieldValue("timeIntervalStart", null);
-                    setFieldValue("timeIntervalEnd", null);
-                  }
-                }}
-                size="sm"
-              />
-            </HStack>
-            {hasTime && (
-              <TimeIntervalSelector
-                onStartTimeChange={(value) => {
-                  setFieldValue(
-                    "timeIntervalStart",
-                    value.toLocaleTimeString(["en-GB"], localeTimeOptions)
-                  );
-                }}
-                onEndTimeChange={(value) => {
-                  setFieldValue(
-                    "timeIntervalEnd",
-                    value.toLocaleTimeString(["en-GB"], localeTimeOptions)
-                  );
-                }}
-                defaultStart={values.startTimeObjectOrDefault()}
-                defaultEnd={values.endTimeObjectOrDefault()}
-              />
+                  }}
+                  defaultStart={values.startTimeObjectOrDefault()}
+                  defaultEnd={values.endTimeObjectOrDefault()}
+                />
+              </>
             )}
             <Text>{i18n.t("extraNotesHeader")}</Text>
+            {/*// @ts-ignore*/}
             <TextArea
               value={values.extraNotes}
               onChangeText={handleChange("extraNotes")}
