@@ -103,13 +103,9 @@ export default function ManageTriggerForm(props) {
             />
             {/*// @ts-ignore*/}
             {errors.name && <Text color="red.500">{errors.name}</Text>}
-            <InfoAlert
-              heading={i18n.t("tipAlertBoxName")}
-              text={i18n.t("addTriggerScreenTip")}
-            />
             {trigger.triggerType === "TimeIntervalTrigger" && (
               <>
-                <Text>{i18n.t("occursAtPredictableTimesSwitch")}</Text>
+                <Text>{i18n.t("predictedTimeInterval")}</Text>
                 <TimeIntervalSelector
                   onStartTimeChange={(value) => {
                     setFieldValue(
