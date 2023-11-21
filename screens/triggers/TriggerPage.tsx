@@ -15,9 +15,10 @@ import { observer } from "mobx-react";
 import HeadingWithIcon from "../../components/HeadingWithIcon";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
 import {i18n} from "../../utils/localisation";
+import {SimpleTrigger, TriggerType} from "../../models/trigger";
 
 function TriggerPage({ navigation }) {
-  const trigger = focusedTriggerController.trigger;
+  const trigger = (focusedTriggerController.trigger as TriggerType);
   const linkedHabits = focusedTriggerController.getLinkedHabits();
 
   return (
@@ -53,11 +54,12 @@ function TriggerPage({ navigation }) {
             {linkedHabits.length !== 0 ? (
                 linkedHabits.map((habit) => {
                   return (
-                      <HabitListItem
-                          hideArrowButton={true}
-                          habit={habit}
-                          key={habit.habitID}
-                      />
+                    <HabitListItem
+                      hideArrowButton={true}
+                      habit={habit}
+                      key={habit.habitID}
+                      onPress={undefined}
+                    />
                   );
                 })
             ) : (
