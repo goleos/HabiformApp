@@ -6,7 +6,6 @@ import {i18n} from "../../utils/localisation";
 export default function ChooseNewTriggerTypeScreen({ navigation }) {
 
     const handleCreate = (triggerType: "SimpleTrigger" | "TimeIntervalTrigger" | "LocationTrigger" | "AutomationTrigger") => {
-        navigation.goBack();
         focusedTriggerController.newTrigger(triggerType);
         navigation.navigate("ManageTrigger");
     }
@@ -21,6 +20,7 @@ export default function ChooseNewTriggerTypeScreen({ navigation }) {
         }
         onPress={handleCreate.bind(this, "TimeIntervalTrigger")}
       />
+      {/*  TODO: Return these options when they are implemented*/}
       {/*<TriggerTypeListItem*/}
       {/*  materialIcon={"map-marker-radius"}*/}
       {/*  title={i18n.t("locationBasedTrigger")}*/}

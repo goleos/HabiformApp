@@ -11,7 +11,7 @@ import AppScreen from "../../components/AppScreen";
 
 function TriggersScreen({navigation}) {
     const handleCreateTrigger = () => {
-        navigation.navigate("ChooseNewTriggerType");
+        navigation.navigate("ManageTriggerNavigator");
     };
 
     const handleViewTrigger = (trigger) => {

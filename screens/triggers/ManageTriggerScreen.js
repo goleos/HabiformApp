@@ -12,6 +12,7 @@ export default function ManageTriggerScreen({ navigation }) {
           trigger={focusedTriggerController.trigger}
           onCreateOrEdit={() => {
             navigation.goBack();
+            navigation.goBack();
           }}
           onDelete={() => {
             navigation.navigate("My Triggers");
