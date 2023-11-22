@@ -1,5 +1,7 @@
 # Habiform
 
+[![EAS Build and Submit](https://github.com/goleos/HabitApplication/actions/workflows/submit_ios_app.yml/badge.svg)](https://github.com/goleos/HabitApplication/actions/workflows/submit_ios_app.yml)
+
 ![HabiformLogo](AppLogo.png)
 
 Habiform is an iOS app that aims to help with forming habits by relying on the published habit literature.
