@@ -134,7 +134,9 @@ export default function ManageTriggerForm(props) {
           </VStack>
 
           <VStack space={2}>
+            {/*TODO: This was a quick fix, need to remove mb prop later*/}
             <Button
+              mb={trigger.triggerEventID ? 0 : 4}
               onPress={() => {
                 if (values.timeIntervalStart !== null) {
                   if (
