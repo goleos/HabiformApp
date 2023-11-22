@@ -49,12 +49,30 @@ export const TriggerNavigation = () => {
       <NativeNavigationStack.Screen name="Trigger" component={TriggerPage} options={({route}) => ({
           title: focusedTriggerController.trigger.name
       })} />
-        <NativeNavigationStack.Screen name="ChooseNewTriggerType" component={ChooseNewTriggerTypeScreen} options={({route}) => ({
+        <NativeNavigationStack.Screen name="ManageTriggerNavigator" component={ManageTriggerNavigation} options={({route}) => ({
             title: i18n.t("createANewTrigger"),
-            presentation: "modal"
+            presentation: "modal",
+            headerShown: false
         })} />
     </NativeNavigationStack.Navigator>
   );
+};
+
+export const ManageTriggerNavigation = () => {
+    return (
+        <NativeNavigationStack.Navigator initialRouteName="ChooseNewTriggerType">
+            <NativeNavigationStack.Screen name="ChooseNewTriggerType" component={ChooseNewTriggerTypeScreen} options={({route}) => ({
+                title: i18n.t("createANewTrigger"),
+            })} />
+            <NativeNavigationStack.Screen
+                name="ManageTrigger"
+                component={ManageTriggerScreen}
+                options={() => ({
+                    title: i18n.t("addOrEditTrigger")
+                })}
+            />
+        </NativeNavigationStack.Navigator>
+    );
 };
 
 export const DashboardNavigation = () => {
