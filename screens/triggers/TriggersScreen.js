@@ -1,5 +1,5 @@
 import TriggerListItem from "../../components/listItems/TriggerListItem";
-import {Fab, Icon, Pressable, ScrollView, View, VStack} from "native-base";
+import {Fab, Icon, IconButton, Pressable, ScrollView, View, VStack} from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {triggersController} from "../../controllers/TriggersController";
 import {observer} from "mobx-react";
@@ -8,8 +8,33 @@ import {focusedTriggerController} from "../../controllers/FocusedTriggerControll
 import {triggerScheduleController} from "../../controllers/TriggerScheduleController";
 import {i18n} from "../../utils/localisation";
 import AppScreen from "../../components/AppScreen";
+import {useEffect} from "react";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {Button} from "react-native";
 
 function TriggersScreen({navigation}) {
+
+    const headerRightAddButton = () => {
+        return (
+            <IconButton
+                icon={<Icon as={MaterialCommunityIcons} name={"plus-circle"} />}
+                size={"lg"}
+                borderRadius={"full"}
+                onPress={handleCreateTrigger}
+                mr={-2}
+                mt={-1}
+                _pressed={{ bg: null, opacity: 0.5 }}
+            />
+            // <Button title={"test"} />
+        );
+    };
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => headerRightAddButton(),
+        });
+    }, []);
+
     const handleCreateTrigger = () => {
         navigation.navigate("ManageTriggerNavigator");
     };
