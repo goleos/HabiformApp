@@ -12,23 +12,10 @@ import HabitListWithoutEstimate from "../screens/dashboard/HabitListWithoutEstim
 import { focusedTriggerController } from "../controllers/FocusedTriggerController";
 import { i18n } from "../utils/localisation";
 import ChooseNewTriggerTypeScreen from "../screens/triggers/ChooseNewTriggerTypeScreen";
-import {Actionsheet, Box, Button, Icon, IconButton, Text} from "native-base";
+import { Actionsheet, Box, Button, Icon, IconButton, Text } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FilterSelector from "../components/FilterSelector";
 
 const NativeNavigationStack = createNativeStackNavigator();
-
-const headerRightAddButton = () => {
-  return (
-    <IconButton
-      icon={<Icon as={MaterialCommunityIcons} name={"plus"} />}
-      size={"md"}
-      borderRadius={"full"}
-      _pressed={{ bg: null, opacity: 0.5 }}
-    />
-  );
-};
-
 
 export const HabitNavigation = () => {
   return (
@@ -62,8 +49,6 @@ export const TriggerNavigation = () => {
         component={TriggersScreen}
         options={{
           title: i18n.t("triggersTab"),
-          headerRight: () => (headerRightAddButton()),
-            headerLeft: () => <FilterSelector />
         }}
       />
       <NativeNavigationStack.Screen
