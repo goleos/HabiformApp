@@ -7,7 +7,7 @@ import React from "react";
 type FilterSelectorProps = {
   children: any;
   initialFilter: Filter;
-  onFilterChange: (filterValue: string) => void;
+  onFilterChange: (filterValue: Filter) => void;
   filterMenuTitle?: string;
 };
 
