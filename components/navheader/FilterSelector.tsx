@@ -6,21 +6,25 @@ import React from "react";
 
 type FilterSelectorProps = {
   children: any;
-  initialFilter: string;
+  initialFilter: Filter;
   onFilterChange: (filterValue: string) => void;
   filterMenuTitle?: string;
 };
 
 type FilterSelectorItemProps = {
   materialIconName?: string;
-  value: string;
-  displayValue?: string;
+  value: Filter;
   onValuePressed?: () => void
 };
 
+type Filter = {
+    value: string;
+    displayValue?: string;
+}
+
 const FilterSelector = (props: FilterSelectorProps) => {
   const [isFilterEnabled, setIsFilterEnabled] = React.useState<boolean>(false);
-  const [selectedFilter, setSelectedFilter] = React.useState<string>(
+  const [selectedFilter, setSelectedFilter] = React.useState<Filter>(
     props.initialFilter
   );
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
@@ -30,12 +34,12 @@ const FilterSelector = (props: FilterSelectorProps) => {
       <Button
         onPress={() => setIsModalOpen((prevState) => !prevState)}
         leftIcon={
-          <Icon as={MaterialCommunityIcons} name={"filter"} size={"sm"} />
+          <Icon as={MaterialCommunityIcons} name={"filter"} size={4} />
         }
         _stack={{ space: 0 }}
         variant={"unstyled"}
       >
-        {selectedFilter}
+        {selectedFilter.displayValue ? selectedFilter.displayValue : selectedFilter.value}
       </Button>
       <Actionsheet
         isOpen={isModalOpen}
@@ -78,7 +82,7 @@ FilterSelector.FilterSelectorItem = (props: FilterSelectorItemProps) => {
   ) : undefined;
   return (
     <Actionsheet.Item startIcon={icon} onPress={props.onValuePressed}>
-      {props.displayValue ? props.displayValue : props.value}
+      {props.value.displayValue ? props.value.displayValue : props.value.value}
     </Actionsheet.Item>
   );
 };
