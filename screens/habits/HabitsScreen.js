@@ -77,38 +77,6 @@ function HabitsScreen({ navigation, isFocused }) {
   return (
     <AppScreen>
       <VStack space={2} flex={1}>
-        <Button.Group
-          mt={3}
-          alignSelf={"center"}
-          isAttached
-          colorScheme={"secondary"}
-          size={"md"}
-        >
-          <Button
-            variant={filterValue !== HabitStatus.Draft ? "outline" : "solid"}
-            onPress={() => {
-              setFilterValue(HabitStatus.Draft);
-            }}
-          >
-            {i18n.t("habitStateDraft")}
-          </Button>
-          <Button
-            variant={filterValue !== HabitStatus.Active ? "outline" : "solid"}
-            onPress={() => {
-              setFilterValue(HabitStatus.Active);
-            }}
-          >
-            {i18n.t("habitStateActive")}
-          </Button>
-          <Button
-            variant={filterValue !== HabitStatus.Archived ? "outline" : "solid"}
-            onPress={() => {
-              setFilterValue(HabitStatus.Archived);
-            }}
-          >
-            {i18n.t("habitStateArchived")}
-          </Button>
-        </Button.Group>
         <ScrollView>
           <HabitList
             habits={habits}
