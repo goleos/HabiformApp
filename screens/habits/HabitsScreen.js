@@ -8,6 +8,7 @@ import HabitStatus from "../../models/habitStatus";
 import { i18n } from "../../utils/localisation";
 import AppScreen from "../../components/AppScreen";
 import FilterSelector from "../../components/navheader/FilterSelector";
+import HeaderIconButton from "../../components/navheader/HeaderIconButton";
 
 function HabitsScreen({ navigation, isFocused }) {
   const [filterValue, setFilterValue] = useState(HabitStatus.Active);
@@ -15,7 +16,13 @@ function HabitsScreen({ navigation, isFocused }) {
     return habit.habitStatus === filterValue;
   });
 
-  const habitsFilterRightButton = (
+  const handleCreateHabit = () => {
+    navigation.navigate("ManageHabit", {
+      habit: null,
+    });
+  };
+
+  const habitsFilterLeftButton = (
     <FilterSelector
       initialFilter={{
         value: HabitStatus.Active,
@@ -55,7 +62,15 @@ function HabitsScreen({ navigation, isFocused }) {
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: () => habitsFilterRightButton,
+      headerLeft: () => habitsFilterLeftButton,
+        headerRight: () => (
+            <HeaderIconButton
+                materialIconName={"plus-circle"}
+                onPress={handleCreateHabit}
+                mr={-2}
+                mt={-1}
+            />
+        ),
     });
   }, []);
 
@@ -113,11 +128,7 @@ function HabitsScreen({ navigation, isFocused }) {
         colorScheme="blue"
         size="lg"
         icon={<Icon name="add" as={Ionicons} />}
-        onPress={() => {
-          navigation.navigate("ManageHabit", {
-            habit: null,
-          });
-        }}
+        onPress={handleCreateHabit}
       />
     </AppScreen>
   );
