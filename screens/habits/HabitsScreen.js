@@ -24,6 +24,10 @@ function HabitsScreen({ navigation, isFocused }) {
       onFilterChange={(filterValue) => {
         setFilterValue(filterValue.value)
       }}
+      _button={{
+          mt: -1,
+          ml: -2
+      }}
     >
       <FilterSelector.FilterSelectorItem
         value={{

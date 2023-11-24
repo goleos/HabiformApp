@@ -3,12 +3,14 @@
 import { Actionsheet, Box, Button, Icon, Pressable, Text } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
+import {InterfaceButtonProps} from "native-base/lib/typescript/components/primitives/Button/types";
 
 type FilterSelectorProps = {
   children: any;
   initialFilter: Filter;
   onFilterChange: (filterValue: Filter) => void;
   filterMenuTitle?: string;
+  _button?: InterfaceButtonProps;
 };
 
 type FilterSelectorItemProps = {
@@ -37,7 +39,8 @@ const FilterSelector = (props: FilterSelectorProps) => {
           <Icon as={MaterialCommunityIcons} name={"filter"} size={4} />
         }
         _stack={{ space: 0 }}
-        variant={"unstyled"}
+        variant={"ghost"}
+        {...props._button}
       >
         {selectedFilter.displayValue ? selectedFilter.displayValue : selectedFilter.value}
       </Button>
