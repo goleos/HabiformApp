@@ -32,7 +32,7 @@ function HabitsScreen({ navigation, isFocused }) {
         setFilterValue(filterValue.value)
       }}
       _button={{
-          mt: -1,
+          mt: -0.9,
           ml: -2
       }}
     >
