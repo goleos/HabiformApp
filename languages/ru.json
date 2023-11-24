@@ -35,7 +35,7 @@
   "triggerCreatedMessage": "Триггер успешно создан!",
   "triggerDeletedMessage": "Успешно удалён",
   "triggerErrorCreatedMessage": "Не удалось создать триггер",
-  "habitStateActive": "Активно",
+  "habitStateActive": "Активные",
   "habitStateDraft": "Черновик",
   "habitStateArchived": "Архив",
   "habitNameHeader": "Название привычки",
