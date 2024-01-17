@@ -7,7 +7,9 @@ import {
   Flex,
   FormControl,
   HStack,
+  Icon,
   Input,
+  Modal,
   Select,
   Text,
   useToast,
@@ -23,7 +25,9 @@ import IntentionsList from "./IntentionsList";
 import BoxStack from "./boxes/BoxStack";
 import { Switch } from "react-native";
 import HabitStatus from "../models/habitStatus";
-import {i18n} from "../utils/localisation";
+import { i18n } from "../utils/localisation";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useState } from "react";
 
 export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   let initialValues;
@@ -32,6 +36,8 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
   } else {
     initialValues = { ...habit };
   }
+
+  const [intentionModalIsOpen, setIntentionModalIsOpen] = useState(false);
 
   const formIsInAddMode = !initialValues.habitID;
 
@@ -80,7 +86,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             </FormControl>
 
             <FormControl isInvalid={errors.triggerEventID}>
-              <FormControl.Label>{i18n.t("linkATriggerHeader")}</FormControl.Label>
+              <FormControl.Label>
+                {i18n.t("linkATriggerHeader")}
+              </FormControl.Label>
               <Select
                 selectedValue={values.triggerEventID}
                 onValueChange={(itemValue) => {
@@ -103,15 +111,41 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             </FormControl>
           </VStack>
 
-          <VStack space={1}>
-            {/*<Heading>Implementation intentions</Heading>*/}
-            <IntentionsList
-              intentions={values.intentions}
-              onChange={(intentions) => {
-                setFieldValue("intentions", intentions);
-              }}
-            />
-          </VStack>
+          <Button
+            rightIcon={
+              <Icon as={MaterialCommunityIcons} name={"arrow-top-right"} />
+            }
+            onPress={() => {
+              setIntentionModalIsOpen(true);
+            }}
+          >
+            {i18n.t("implementationIntentionsHeader")}
+          </Button>
+
+          <Modal isOpen={intentionModalIsOpen} onClose={setIntentionModalIsOpen} avoidKeyboard>
+            <Modal.Content width={"100%"}>
+              <Modal.CloseButton />
+              <Modal.Header>
+                {i18n.t("implementationIntentionsHeader")}
+              </Modal.Header>
+              <VStack space={1}>
+                {/*<Heading>Implementation intentions</Heading>*/}
+                <IntentionsList
+                  makeScrollable={true}
+                  includeTitle={false}
+                  intentions={values.intentions}
+                  onChange={(intentions) => {
+                    setFieldValue("intentions", intentions);
+                  }}
+                />
+              </VStack>
+            <Modal.Footer>
+              <Button.Group space={2}>
+              <Button onPress={() => setIntentionModalIsOpen(false)} size={"md"}>Done</Button>
+              </Button.Group>
+            </Modal.Footer>
+            </Modal.Content>
+          </Modal>
 
           <BoxStack>
             <HStack justifyContent={"space-between"} alignItems={"center"}>
@@ -159,7 +193,9 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
                   handleSubmit();
                 }}
               >
-                {formIsInAddMode ? i18n.t("keepHabitAsDraft") : i18n.t("moveToDraft")}
+                {formIsInAddMode
+                  ? i18n.t("keepHabitAsDraft")
+                  : i18n.t("moveToDraft")}
               </Button>
             )}
             {!formIsInAddMode && (
