@@ -67,6 +67,7 @@ function TriggerPage({ navigation }) {
                 <Text>{i18n.t("thereAreNoLinkedHabits")}</Text>
             )}
         </VStack>
+          </ScrollView>
         <Button
           marginX={2}
           marginY={3}
@@ -76,7 +77,6 @@ function TriggerPage({ navigation }) {
         >
           {i18n.t("edit")}
         </Button>
-          </ScrollView>
     </AppScreen>
   );
 }
