@@ -9,7 +9,7 @@ export default function IntentionListItem({
   isReadOnly,
 }) {
   return (
-    <Box shadow={3} backgroundColor={"white"} paddingX={3} borderRadius={8}>
+    <Box shadow={3} backgroundColor={"white"} paddingX={3} borderRadius={8} my={1}>
       <HStack alignItems={"center"} space={3}>
         <Text fontSize={"5xl"}>{intentionNumber}</Text>
         <Input

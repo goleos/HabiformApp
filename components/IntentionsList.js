@@ -17,6 +17,7 @@ export default function IntentionsList({
   readOnly,
   includeTitle,
   disableScroll,
+    makeScrollable
 }) {
   const adjustButtons = (
     <HStack justifyContent={"center"} space={3}>
@@ -41,34 +42,41 @@ export default function IntentionsList({
     </HStack>
   );
 
+  const oneIntentionItem = intentions.map((intention, index) => {
+          return (
+              <IntentionListItem
+                  intentionText={intention}
+                  isReadOnly={readOnly}
+                  key={index}
+                  intentionNumber={(index + 1).toString()}
+                  onChangeText={(newText) => {
+                      const intentionsArray = [...intentions];
+                      intentionsArray[index] = newText;
+                      onChange(intentionsArray);
+                  }}
+              />
+          );
+      })
+
   const intentionsList = (
-    <VStack space={1}>
-      <Heading fontSize={"lg"} alignSelf={"center"}>
+    <VStack>
+        {includeTitle === false ? <></> : <Heading fontSize={"lg"} alignSelf={"center"}>
         {i18n.t("implementationIntentionsHeader")}
-      </Heading>
-      {intentions.map((intention, index) => {
-        return (
-          <IntentionListItem
-            intentionText={intention}
-            isReadOnly={readOnly}
-            key={index}
-            intentionNumber={(index + 1).toString()}
-            onChangeText={(newText) => {
-              const intentionsArray = [...intentions];
-              intentionsArray[index] = newText;
-              onChange(intentionsArray);
-            }}
-          />
-        );
-      })}
+      </Heading>}
+        {makeScrollable ?         <ScrollView>
+            {oneIntentionItem}
+        </ScrollView> :
+            oneIntentionItem
+        }
+
     </VStack>
   );
   return (
-    <Box bg={"gray.200"} padding={2} borderRadius={10} >
-      <VStack space={3}>
+    <Box bg={"gray.200"} padding={2} borderRadius={10}  >
+      <VStack space={3} maxHeight={makeScrollable ? 200 : undefined}>
           {intentionsList}
-          {!readOnly && adjustButtons}
       </VStack>
+          {!readOnly && adjustButtons}
     </Box>
   );
 }
