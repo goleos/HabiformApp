@@ -65,19 +65,20 @@ function HabitPage({ navigation, route }) {
         >
           {i18n.t("edit")}
         </Button>
-        <Button
-          variant={"outline"}
-          size={"md"}
-          onPress={() => {
-            notificationsController.schedulePushNotification(
-              habit.produceNotification(),
-              { seconds: 2 },
-              "habit " + habit.habitID
-            );
-          }}
-        >
-          {i18n.t("sendTestNotification")}
-        </Button>
+        {/*  Removed this button as it was not needed anymore*/}
+        {/*<Button*/}
+        {/*  variant={"outline"}*/}
+        {/*  size={"md"}*/}
+        {/*  onPress={() => {*/}
+        {/*    notificationsController.schedulePushNotification(*/}
+        {/*      habit.produceNotification(),*/}
+        {/*      { seconds: 2 },*/}
+        {/*      "habit " + habit.habitID*/}
+        {/*    );*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  {i18n.t("sendTestNotification")}*/}
+        {/*</Button>*/}
       </VStack>
       </AppScreen>
   );
