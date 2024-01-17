@@ -16,13 +16,15 @@ import HeadingWithIcon from "../../components/HeadingWithIcon";
 import { focusedTriggerController } from "../../controllers/FocusedTriggerController";
 import {i18n} from "../../utils/localisation";
 import {SimpleTrigger, TriggerType} from "../../models/trigger";
+import AppScreen from "../../components/AppScreen";
 
 function TriggerPage({ navigation }) {
   const trigger = (focusedTriggerController.trigger as TriggerType);
   const linkedHabits = focusedTriggerController.getLinkedHabits();
 
   return (
-    <Flex height={"100%"} bg={"white"} justifyContent={"space-between"} >
+    <AppScreen>
+          <ScrollView>
         <VStack margin={2} space={2}>
           <HeadingWithIcon
             iconName={"clock-out"}
@@ -49,7 +51,6 @@ function TriggerPage({ navigation }) {
           </Box>
 
           <Heading>{i18n.t("linkedHabits")}</Heading>
-          <ScrollView>
 
             {linkedHabits.length !== 0 ? (
                 linkedHabits.map((habit) => {
@@ -65,7 +66,6 @@ function TriggerPage({ navigation }) {
             ) : (
                 <Text>{i18n.t("thereAreNoLinkedHabits")}</Text>
             )}
-          </ScrollView>
         </VStack>
         <Button
           marginX={2}
@@ -76,7 +76,8 @@ function TriggerPage({ navigation }) {
         >
           {i18n.t("edit")}
         </Button>
-    </Flex>
+          </ScrollView>
+    </AppScreen>
   );
 }
 
