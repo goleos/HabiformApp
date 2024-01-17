@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { NativeBaseProvider, Text } from "native-base";
+import {NativeBaseProvider, Text} from "native-base";
 import { uiTheme } from "./utils/uiTheme";
 import { habitsController } from "./controllers/HabitsController";
 import { triggersController } from "./controllers/TriggersController";
@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { WelcomeStack } from "./navigation/WelcomeNavigation";
 
-import { LogBox } from "react-native";
+import {LogBox, StatusBar} from "react-native";
 import { appSettingsController } from "./controllers/AppSettingsController";
 import { triggerScheduleController } from "./controllers/TriggerScheduleController";
 import {migrationController} from "./controllers/MigrationController";
@@ -36,6 +36,8 @@ function App() {
       .catch(console.error);
     habitsController.requestHabits();
     triggersController.requestTriggers();
+    // So that the status bar does not disappear in dark mode
+    StatusBar.setBarStyle('dark-content');
   }, []);
 
   useEffect(() => {
