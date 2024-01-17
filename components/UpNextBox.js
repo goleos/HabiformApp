@@ -1,4 +1,4 @@
-import { Box, Divider, HStack, Icon, Select, Text, VStack } from "native-base";
+import {Box, Divider, Heading, HStack, Icon, Select, Text, VStack} from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useState } from "react";
 import IntentionsList from "./IntentionsList";
@@ -15,7 +15,7 @@ export default function UpNextBox({ trigger, habits }) {
   const HabitsPresentComponent = ({ habits }) => {
     const [selectedHabit, setSelectedHabit] = useState(habits[0]);
     return (
-      <VStack space={1} padding={2}>
+      <VStack space={1.5} >
         <Select
           selectedValue={selectedHabit}
           onValueChange={(itemValue) => {
@@ -32,12 +32,16 @@ export default function UpNextBox({ trigger, habits }) {
   };
 
   return (
-    <Box borderWidth={2} borderRadius={10} padding={2}>
+    <>
       <HStack
         id="triggerInfo"
         justifyContent={"center"}
         alignItems={"center"}
         space={2}
+        paddingY={2}
+        borderRadius={13}
+        backgroundColor={'primary.50'}
+        marginY={1}
       >
         <Icon
           as={MaterialCommunityIcons}
@@ -52,13 +56,13 @@ export default function UpNextBox({ trigger, habits }) {
           </Text>
         </VStack>
       </HStack>
-      <Divider my={2} />
+      {/*<Divider my={2} />*/}
       {/*<Heading fontSize={'xl'}>Habits</Heading>*/}
       {hasHabits ? (
         <HabitsPresentComponent habits={habits} />
       ) : (
         noHabitsComponent
       )}
-    </Box>
+    </>
   );
 }

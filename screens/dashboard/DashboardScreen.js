@@ -93,7 +93,7 @@ function DashboardScreen({ navigation }) {
         height={"100%"}
         bg={"white"}
         justifyContent={"space-between"}
-        padding={2}
+        // padding={2}
         space={8}
       >
         <VStack space={3} paddingX={3}>
