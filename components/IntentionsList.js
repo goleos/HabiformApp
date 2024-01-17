@@ -64,19 +64,10 @@ export default function IntentionsList({
     </VStack>
   );
   return (
-    <Box bg={"gray.200"} padding={2} borderRadius={10} maxHeight={200}>
+    <Box bg={"gray.200"} padding={2} borderRadius={10} >
       <VStack space={3}>
-        {!disableScroll ? (
-          <ScrollView>
-            {intentionsList}
-            {!readOnly && adjustButtons}
-          </ScrollView>
-        ) : (
-          <>
-            {intentionsList}
-            {!readOnly && adjustButtons}
-          </>
-        )}
+          {intentionsList}
+          {!readOnly && adjustButtons}
       </VStack>
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, HStack, Icon, Text, VStack } from "native-base";
+import {Box, Button, Flex, HStack, Icon, ScrollView, Text, VStack} from "native-base";
 import IntentionsList from "../../components/IntentionsList";
 import { notificationsController } from "../../controllers/NotificationsController";
 import { observer } from "mobx-react";
@@ -15,6 +15,9 @@ function HabitPage({ navigation, route }) {
   const trigger = triggersController.getTriggerById(habit.triggerEventID);
   return (
       <AppScreen>
+          <ScrollView>
+
+
       <VStack space={8}>
         <HeadingWithIcon
           headingText={habit.name}
@@ -51,6 +54,7 @@ function HabitPage({ navigation, route }) {
         />
       </VStack>
 
+          </ScrollView>
       <VStack space={1} padding={3}>
         <Button
           onPress={() => {
