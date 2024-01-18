@@ -1,4 +1,4 @@
-import {Box, Button, Flex, HStack, Icon, ScrollView, Text, VStack} from "native-base";
+import {Box, Button, Flex, Heading, HStack, Icon, ScrollView, Text, VStack} from "native-base";
 import IntentionsList from "../../components/IntentionsList";
 import { notificationsController } from "../../controllers/NotificationsController";
 import { observer } from "mobx-react";
@@ -19,7 +19,7 @@ function HabitPage({ navigation, route }) {
           <ScrollView>
 
 
-      <VStack margin={2} space={8}>
+      <VStack margin={2} space={3}>
         <HeadingWithIcon
           headingText={habit.name}
           bodyText={habit.extraNotes}
@@ -49,8 +49,10 @@ function HabitPage({ navigation, route }) {
           // </Box>
         )}
 
+          <Heading>{i18n.t("implementationIntentionsHeader")}</Heading>
+
         <IntentionsList
-          includeTitle={true}
+          includeTitle={false}
           intentions={intentions}
           readOnly={true}
         />
