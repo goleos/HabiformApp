@@ -1,23 +1,25 @@
-import { Heading, Icon, Text, VStack } from "native-base";
+import { Heading, Icon, Text, VStack, HStack } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import BasicBox from "./boxes/BasicBox";
 
 export default function HeadingWithIcon({ iconName, headingText, bodyText }) {
   return (
-    <VStack alignItems={"center"} space={0.5}>
-      {/*<Text>{"Trigger id:" + trigger.triggerEventID} </Text>*/}
+    <BasicBox >
+        <HStack alignItems={"center"} space={2}>
       <Icon
         as={MaterialCommunityIcons}
-        size={100}
+        size={85}
         name={iconName}
         color={"primary.500"}
       />
-      <Heading>{headingText}</Heading>
-      {bodyText !== "" && (
-        <BasicBox>
-          <Text>{bodyText}</Text>
-        </BasicBox>
-      )}
-    </VStack>
+          <Heading maxWidth={"70%"}>{headingText}</Heading>
+        </HStack>
+      {/*<Text>{"Trigger id:" + trigger.triggerEventID} </Text>*/}
+      <VStack space={1}>
+          {bodyText !== "" && (
+                  <Text>{bodyText}</Text>
+          )}
+      </VStack>
+    </BasicBox>
   );
 }

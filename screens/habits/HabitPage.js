@@ -18,7 +18,7 @@ function HabitPage({ navigation, route }) {
           <ScrollView>
 
 
-      <VStack space={8}>
+      <VStack margin={2} space={8}>
         <HeadingWithIcon
           headingText={habit.name}
           bodyText={habit.extraNotes}
