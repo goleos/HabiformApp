@@ -39,7 +39,7 @@ function TriggerPage({ navigation }) {
           />
 
           <SubDescription
-            iconName={"time"}
+            iconName={"clock-time-eight"}
             title={i18n.t("estimatedTimeInterval")}
             value={timeIntervalData}
           />

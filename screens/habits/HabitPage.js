@@ -8,6 +8,7 @@ import { materialIconsNames } from "../../utils/constants";
 import { triggersController } from "../../controllers/TriggersController";
 import {i18n} from "../../utils/localisation";
 import AppScreen from "../../components/AppScreen";
+import SubDescription from "../../components/SubDescription";
 
 function HabitPage({ navigation, route }) {
   const habit = route.params.habit;
@@ -26,25 +27,26 @@ function HabitPage({ navigation, route }) {
         />
 
         {trigger !== undefined && (
-          <Box
-            padding={2}
-            borderRadius={10}
-            backgroundColor={"blue.200"}
-            alignSelf={"center"}
-          >
-            <HStack space={2} alignItems={"center"}>
-              <Icon
-                as={MaterialCommunityIcons}
-                name={materialIconsNames.trigger}
-                size={5}
-                color={"primary.500"}
-              />
-                <VStack>
-                    <Text bold alignSelf={"center"} fontSize={"xl"}>{i18n.t("linkedTrigger")}</Text>
-                    <Text fontSize={"xl"}>{trigger.name}</Text>
-                </VStack>
-            </HStack>
-          </Box>
+            <SubDescription iconName={"clock-out"} title={i18n.t("linkedTrigger")} value={trigger.name} />
+          // <Box
+          //   padding={2}
+          //   borderRadius={10}
+          //   backgroundColor={"blue.200"}
+          //   alignSelf={"center"}
+          // >
+          //   <HStack space={2} alignItems={"center"}>
+          //     <Icon
+          //       as={MaterialCommunityIcons}
+          //       name={materialIconsNames.trigger}
+          //       size={5}
+          //       color={"primary.500"}
+          //     />
+          //       <VStack>
+          //           <Text bold alignSelf={"center"} fontSize={"xl"}>{i18n.t("linkedTrigger")}</Text>
+          //           <Text fontSize={"xl"}>{trigger.name}</Text>
+          //       </VStack>
+          //   </HStack>
+          // </Box>
         )}
 
         <IntentionsList
