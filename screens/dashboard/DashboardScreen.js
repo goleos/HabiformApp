@@ -5,7 +5,7 @@ import {
   AlertDialog,
   Button,
   Heading,
-  Icon,
+  Icon, ScrollView,
   Text,
   VStack,
 } from "native-base";
@@ -96,6 +96,7 @@ function DashboardScreen({ navigation }) {
         // padding={2}
         space={8}
       >
+        <ScrollView>
         <VStack space={3} paddingX={3}>
           {triggerScheduleController.schedule.length > 0 ? (
             <UpNextBox
@@ -115,7 +116,8 @@ function DashboardScreen({ navigation }) {
             </VStack>
           )}
         </VStack>
-        <VStack space={2}>
+        </ScrollView>
+        <VStack space={2} padding={2}>
           <Heading>{i18n.t("habitsWithoutTimedTriggers")}</Heading>
           <Alert colorScheme={"info"} borderRadius={10}>
             {i18n.t("noTimedTriggerInfoBox")}
