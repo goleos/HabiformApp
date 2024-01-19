@@ -1,11 +1,11 @@
 import {
-  Box,
-  Heading,
-  HStack,
-  Icon,
-  IconButton,
-  ScrollView,
-  VStack,
+    Box,
+    Heading,
+    HStack,
+    Icon,
+    IconButton,
+    ScrollView, Text,
+    VStack,
 } from "native-base";
 import IntentionListItem from "./listItems/IntentionListItem";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -74,7 +74,9 @@ export default function IntentionsList({
   return (
     <Box bg={"gray.200"} padding={2} borderRadius={10}  >
       <VStack space={3} maxHeight={makeScrollable ? 200 : undefined}>
-          {intentionsList}
+          {intentions.length === 0 ?
+          <Text italic>There are no intentions provided for this habit</Text> :
+          intentionsList}
       </VStack>
           {!readOnly && adjustButtons}
     </Box>
