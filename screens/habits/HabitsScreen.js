@@ -63,14 +63,14 @@ function HabitsScreen({ navigation, isFocused }) {
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => habitsFilterLeftButton,
-        headerRight: () => (
-            <HeaderIconButton
-                materialIconName={"plus-circle"}
-                onPress={handleCreateHabit}
-                mr={-2}
-                mt={-1}
-            />
-        ),
+        // headerRight: () => (
+        //     <HeaderIconButton
+        //         materialIconName={"plus-circle"}
+        //         onPress={handleCreateHabit}
+        //         mr={-2}
+        //         mt={-1}
+        //     />
+        // ),
     });
   }, []);
 
@@ -93,7 +93,7 @@ function HabitsScreen({ navigation, isFocused }) {
         renderInPortal={false}
         marginBottom={0}
         placement="bottom-right"
-        colorScheme="blue"
+        colorScheme="primary"
         size="lg"
         icon={<Icon name="add" as={Ionicons} />}
         onPress={handleCreateHabit}

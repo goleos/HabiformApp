@@ -24,14 +24,14 @@ import HeaderIconButton from "../../components/navheader/HeaderIconButton";
 function TriggersScreen({ navigation }) {
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <HeaderIconButton
-          materialIconName={"plus-circle"}
-          onPress={handleCreateTrigger}
-          mr={-2}
-          mt={-1}
-        />
-      ),
+      // headerRight: () => (
+      //   <HeaderIconButton
+      //     materialIconName={"plus-circle"}
+      //     onPress={handleCreateTrigger}
+      //     mr={-2}
+      //     mt={-1}
+      //   />
+      // ),
     });
   }, []);
 
@@ -64,7 +64,7 @@ function TriggersScreen({ navigation }) {
         renderInPortal={false}
         marginBottom={0}
         placement="bottom-right"
-        bgColor="triggerColour.100"
+        colorScheme="primary"
         size="lg"
         icon={<Icon name="add" as={Ionicons} />}
         onPress={handleCreateTrigger}
