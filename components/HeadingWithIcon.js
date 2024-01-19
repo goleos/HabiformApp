@@ -5,7 +5,7 @@ import BasicBox from "./boxes/BasicBox";
 export default function HeadingWithIcon({ iconName, headingText, bodyText }) {
   return (
     <BasicBox >
-        <HStack alignItems={"center"} space={2}>
+        <HStack alignItems={"center"} >
       <Icon
         as={MaterialCommunityIcons}
         size={85}
@@ -15,7 +15,7 @@ export default function HeadingWithIcon({ iconName, headingText, bodyText }) {
           <Heading maxWidth={"70%"}>{headingText}</Heading>
         </HStack>
       {/*<Text>{"Trigger id:" + trigger.triggerEventID} </Text>*/}
-      <VStack space={1}>
+      <VStack ml={3} space={1}>
           {bodyText !== "" && (
                   <Text>{bodyText}</Text>
           )}
