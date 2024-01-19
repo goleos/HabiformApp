@@ -5,7 +5,7 @@ import Habit from "../models/habit";
 import {
   Button,
   Flex,
-  FormControl,
+  FormControl, Heading,
   HStack,
   Icon,
   Input,
@@ -111,16 +111,20 @@ export default function ManageHabitForm({ habit, onCreateOrEdit, onDelete }) {
             </FormControl>
           </VStack>
 
+          <FormControl>
+ <FormControl.Label>{i18n.t("implementationIntentionsHeader")} ({values.intentions.length})</FormControl.Label>
           <Button
-            rightIcon={
-              <Icon as={MaterialCommunityIcons} name={"arrow-top-right"} />
+              size={'md'}
+            leftIcon={
+              <Icon as={MaterialCommunityIcons} name={"arrow-expand"} />
             }
             onPress={() => {
               setIntentionModalIsOpen(true);
             }}
           >
-            {i18n.t("implementationIntentionsHeader")}
+            {i18n.t("edit")}
           </Button>
+          </FormControl>
 
           <Modal isOpen={intentionModalIsOpen} onClose={setIntentionModalIsOpen} avoidKeyboard>
             <Modal.Content width={"100%"}>
