@@ -5,7 +5,7 @@ import BasicBox from "./boxes/BasicBox";
 export default function HeadingWithIcon({ iconName, headingText, bodyText }) {
   return (
     <BasicBox >
-        <HStack alignItems={"center"} >
+        <HStack alignItems={"center"} space={1} >
       <Icon
         as={MaterialCommunityIcons}
         size={85}

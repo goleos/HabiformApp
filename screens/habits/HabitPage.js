@@ -27,7 +27,7 @@ function HabitPage({ navigation, route }) {
         />
 
         {trigger !== undefined && (
-            <SubDescription iconName={"clock-out"} title={i18n.t("linkedTrigger")} value={trigger.name} />
+            <SubDescription iconName={materialIconsNames.trigger} title={i18n.t("linkedTrigger")} value={trigger.name} />
           // <Box
           //   padding={2}
           //   borderRadius={10}

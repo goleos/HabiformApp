@@ -18,6 +18,7 @@ import { i18n } from "../../utils/localisation";
 import { SimpleTrigger, TriggerType } from "../../models/trigger";
 import AppScreen from "../../components/AppScreen";
 import SubDescription from "../../components/SubDescription";
+import {materialIconsNames} from "../../utils/constants";
 
 function TriggerPage({ navigation }) {
   const trigger = focusedTriggerController.trigger as TriggerType;
@@ -33,7 +34,7 @@ function TriggerPage({ navigation }) {
       <ScrollView>
         <VStack margin={2} space={2}>
           <HeadingWithIcon
-            iconName={"clock-out"}
+            iconName={materialIconsNames.trigger}
             headingText={trigger.name}
             bodyText={trigger.extraNotes}
           />
