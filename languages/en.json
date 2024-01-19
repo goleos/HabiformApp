@@ -11,7 +11,7 @@
   "welcomeScreen5Title": "Let's begin",
   "welcomeScreen5Text": "You are now ready to start using the app. Use the app as a tool to achieve your habit goals. But remember that no app could ever do your habits for you",
   "startWithExampleData": "Start with example data",
-  "startWithEmptyData": "Start with example data",
+  "startWithEmptyData": "Start with no pre-existing data",
   "startWithSamplesMessage": "Would you like to start with example habits and triggers so you can better understand how the app works?",
   "triggersTab": "Triggers",
   "habitsTab": "Habits",

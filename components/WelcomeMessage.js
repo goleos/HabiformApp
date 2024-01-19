@@ -9,7 +9,7 @@ export default function WelcomeMessage({ message }) {
       <MaterialCommunityIcons
         name={message.iconName}
         size={100}
-        color={uiTheme.colors.welcomeIcon.base}
+        color={uiTheme.colors.primary['400']}
       />
       <Alert borderWidth={1} padding={2}>
         <Text fontSize={"md"}>{message.text}</Text>
