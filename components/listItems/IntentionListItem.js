@@ -21,6 +21,7 @@ export default function IntentionListItem({
           size={"xl"}
           value={intentionText}
           onChangeText={onChangeText}
+          maxWidth={"93%"}
         />
       </HStack>
     </Box>

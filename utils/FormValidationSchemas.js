@@ -10,5 +10,5 @@ export const triggerFormValidationSchema = Yup.object({
   name: Yup.string()
       .required(i18n.t('nameIsRequired'))
       .trim(i18n.t('nameIsInvalid'))
-      .max(20, i18n.t('triggerNameIsTooLong')),
+      .max(30, i18n.t('triggerNameIsTooLong')),
 });
