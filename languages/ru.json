@@ -80,7 +80,7 @@
   "simpleTriggerTitle": "Простой триггер",
   "simpleTriggerDescription": "Триггер который не привязан к месту или времени",
   "doYouNeedReminders": "Нужны ли вам всё ещё напоминания о",
-  "doYouNeedRemindersMessage": "Чтобы избежать зависимости от напоминаний Habiform, мы рекомендуем вам отключить их, если чувствуете что вы уже соблюдаете привычку",
+  "doYouNeedRemindersMessage": "Чтобы избежать возникновения зависимости от напоминаний Habiform, мы рекомендуем вам отключить их, если чувствуете что вы уже соблюдаете привычку",
   "keepRemindersOption": "Продолжать",
   "stopRemindersOption": "Остановить",
   "nameIsRequired": "Название обязательно",
