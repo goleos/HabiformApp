@@ -32,9 +32,6 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "updates": {
-      "url": "https://u.expo.dev/a28d0b8b-9667-46b5-ad80-582dcb32d62c"
-    },
     "plugins": [
       "expo-localization"
     ]

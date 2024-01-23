@@ -21,7 +21,6 @@
     "expo-notifications": "~0.27.4",
     "expo-sqlite": "~13.2.1",
     "expo-status-bar": "~1.11.1",
-    "expo-updates": "~0.24.8",
     "formik": "^2.4.3",
     "i18n-js": "^4.3.2",
     "mobx": "^6.10.0",
