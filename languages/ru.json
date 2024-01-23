@@ -74,7 +74,7 @@
   "timeBasedTrigger": "Временной триггер",
   "timeBasedTriggerDescription": "Если можете предоставить примерный временной интервал, в который этот триггер происходит, Habiform будет вам напоминать о привычках привязанных к этому действию ",
   "locationBasedTrigger": "Триггер на геолокацию",
-  "locationBasedTriggerDescription": "Триггер может активироваться, когда вы приходите в определенное место",
+  "locationBasedTriggerDescription": "Триггер активируется, когда вы приходите в определенное место",
   "smartAutomationTrigger": "Триггер с автоматизацией",
   "smartAutomationTriggerDescription": "Используйте быстрые команды Siri для активации триггера",
   "simpleTriggerTitle": "Простой триггер",
