@@ -28,8 +28,10 @@ export class FocusedTriggerController {
     trigger.triggerType = triggerType;
     switch (triggerType) {
         case "SimpleTrigger":
+            trigger.triggerType = "SimpleTrigger"
           break;
         case "TimeIntervalTrigger":
+            trigger.triggerType = "TimeIntervalTrigger"
             trigger.timeIntervalStart = "07:00";
             trigger.timeIntervalEnd = "08:00";
             trigger.relevantWeekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];

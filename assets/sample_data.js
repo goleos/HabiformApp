@@ -64,6 +64,7 @@ export const sampleTriggersEnglish = [
     timeIntervalEnd: "18:00",
     extraNotes: "When I leave office",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    triggerType: "TimeIntervalTrigger"
   },
   {
     triggerEventID: 1001,
@@ -71,6 +72,7 @@ export const sampleTriggersEnglish = [
     timeIntervalStart: "07:00",
     timeIntervalEnd: "07:30",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    triggerType: "TimeIntervalTrigger"
   },
   {
     triggerEventID: 1002,
@@ -78,10 +80,12 @@ export const sampleTriggersEnglish = [
     timeIntervalStart: "06:30",
     timeIntervalEnd: "06:40",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    triggerType: "TimeIntervalTrigger"
   },
   {
     triggerEventID: 1003,
     name: "Entering my car",
+    triggerType: "SimpleTrigger"
   },
 ];
 
@@ -93,6 +97,7 @@ export const sampleTriggersRussian = [
     timeIntervalEnd: "18:00",
     extraNotes: "Когда я выхожу с работы",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    triggerType: "TimeIntervalTrigger"
   },
   {
     triggerEventID: 1001,
@@ -100,6 +105,7 @@ export const sampleTriggersRussian = [
     timeIntervalStart: "07:00",
     timeIntervalEnd: "07:30",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    triggerType: "TimeIntervalTrigger"
   },
   {
     triggerEventID: 1002,
@@ -107,10 +113,12 @@ export const sampleTriggersRussian = [
     timeIntervalStart: "06:30",
     timeIntervalEnd: "06:40",
     relevantWeekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    triggerType: "TimeIntervalTrigger"
   },
   {
     triggerEventID: 1003,
     name: "Захожу в машину",
+    triggerType: "SimpleTrigger"
   },
 ];
 

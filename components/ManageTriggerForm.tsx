@@ -36,7 +36,7 @@ export default function ManageTriggerForm(props) {
   };
 
   const onSubmit = (values) => {
-    console.info("Creating trigger: " + values.toString());
+    console.info("Creating trigger: ", values);
 
     focusedTriggerController.insertOrUpdate(
       values,
